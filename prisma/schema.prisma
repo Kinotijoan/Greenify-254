@@ -12,3 +12,102 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Individual {
+  individualId    String    @id @default(uuid())
+  name            String
+  email           String
+  password        String
+  phoneNumber     String
+  profileimageUrl String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  Comment         Comment[]
+  Post            Post[]
+  Like            Like[]
+}
+
+model WasteFacility {
+  wasteFacilityId String   @id @default(uuid())
+  name            String
+  email           String
+  district        String
+  county          String
+  longitude       String
+  latitude        String
+  location        String
+  address         String
+  wasteType       String
+  facilityType    String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model CompanyAccount {
+  companyAccountId String   @id @default(uuid())
+  name             String
+  email            String
+  password         String
+  bio              String
+  profileImageUrl  String
+  location         String
+  phoneNumber      String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  Post             Post[]
+}
+
+model DonationOrganisation {
+  donationOrganisationId String   @id @default(uuid())
+  name                   String
+  email                  String
+  phoneNumber            String
+  location               String
+  bio                    String
+  profileImageUrl        String
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+  Post                   Post[]
+}
+
+model Post {
+  postId           String   @id @default(uuid())
+  title            String
+  content          String
+  imageUrl         String
+  category         String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  authorId         String? // Assuming this is for individuals
+  companyAccountId String? // New field for company accounts
+
+  author         Individual?     @relation(fields: [authorId], references: [individualId])
+  companyAccount CompanyAccount? @relation(fields: [companyAccountId], references: [companyAccountId])
+
+  DonationOrganisation                       DonationOrganisation? @relation(fields: [donationOrganisationId], references: [donationOrganisationId])
+  donationOrganisationId String?
+  Comment                                    Comment[]
+  Like                                       Like[]
+
+}
+
+model Comment {
+  commentId String     @id @default(uuid())
+  content   String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  postId    String
+  authorId  String
+  author    Individual @relation(fields: [authorId], references: [individualId])
+  post      Post       @relation(fields: [postId], references: [postId], onDelete: Cascade)
+}
+
+model Like {
+  likeId    String     @id @default(uuid())
+  postId    String
+  authorId  String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  author    Individual @relation(fields: [authorId], references: [individualId])
+  post      Post       @relation(fields: [postId], references: [postId], onDelete: Cascade)
+}
