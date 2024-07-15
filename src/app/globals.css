@@ -67,3 +67,11 @@
       @apply bg-background text-foreground;
     }
   }
+
+  .background{
+    background-image: url('../../public/data_scientist.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 17vh;
+}
