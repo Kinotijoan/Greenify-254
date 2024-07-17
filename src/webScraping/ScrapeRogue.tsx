@@ -3,12 +3,12 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 import { revalidatePath } from "next/cache";
 
-interface Blog {
+type Blog = {
   title: string;
   description: string;
-  //   author: string;
+  author: string | null;
   date: string;
-  //   image: string;
+  image: string | null;
   link: string;
 }
 
@@ -35,10 +35,10 @@ export const scrapeRogue = async (url: string): Promise<Blog[] | null> => {
       const blogData: Blog[] = [];
 
       blogElements.forEach((blog) => {
-        const titleElement = blog.querySelector(".C27-heading a"); // Anchor tag inside h2 with class entry-title
-        const contentElement = blog.querySelector(".C27-excerpt"); // Paragraph tag inside div with class entry-content
-        const imageElement = blog.querySelector(".post-thumbnail img"); // Image tag inside div with class entry-content
-        const linkElement = blog.querySelector(".arrow-link"); // Anchor tag inside h2 with class entry-title
+        const titleElement = blog.querySelector(".C27-heading a"); 
+        const contentElement = blog.querySelector(".C27-excerpt"); 
+        const imageElement = blog.querySelector(".post-thumbnail img");
+        const linkElement = blog.querySelector(".arrow-link");
 
         const title = titleElement ? titleElement.textContent : "";
         const description = contentElement
@@ -46,15 +46,15 @@ export const scrapeRogue = async (url: string): Promise<Blog[] | null> => {
           : "";
         const image = imageElement ? imageElement.getAttribute("data-src") : "";
         const link = linkElement ? linkElement.getAttribute("href") : "";
-        const authorElement = blog.querySelector(".author a"); // Modify if needed
-        const dateElement = blog.querySelector(".postMeta-date"); // Modify if needed
+        const authorElement = blog.querySelector(".author a"); 
+        const dateElement = blog.querySelector(".postMeta-date"); 
 
-        const author = authorElement ? authorElement.textContent?.trim() : "";
+        const author = authorElement ? authorElement.textContent?.trim() ?? null : null;
         const date = dateElement ? dateElement.textContent?.trim() : "";
 
-        if (title && description && date && link) {
-          // Only add if both title and description are present
-          blogData.push({ title, description, date, link });
+        if (title && description && date && link ) {
+          
+          blogData.push({ title, description, date, link, image, author });
         }
       });
 
@@ -74,3 +74,23 @@ export const scrapeRogue = async (url: string): Promise<Blog[] | null> => {
     return null;
   }
 };
+
+export async function sendBlogs(blogs: Blog[]){
+  const response = await fetch(
+    "http://localhost:3000/api/add-blog",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(blogs),
+    }
+  );
+  console.log(blogs)
+
+  if (response.ok) {
+    console.log("Blogs sent successfully");
+  } else {
+    console.error("Error sending blogs");
+  }
+} 
