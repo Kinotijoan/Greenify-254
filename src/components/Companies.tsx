@@ -4,7 +4,7 @@ import React from "react";
 
 const CompaniesSection = () => {
   return (
-    <div>
+    <div className="mt-20 mb-20">
       <div>
         <h2 className="text-center font-bold text-3xl my-10">
           2.Find Recyclables

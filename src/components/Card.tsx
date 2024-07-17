@@ -8,7 +8,7 @@ interface CardProps {
 }
 const Card = ({ title, description, href }: CardProps) => {
   return (
-    <div className="max-w-sm px-10 py-20 flex flex-col justify-between bg-cardbg border-gray-200 rounded-lg shadow-xl  w-[338px] h-[488px] z-10">
+    <div className=" px-10 py-20 flex flex-col justify-between bg-cardbg border-gray-200 rounded-2xl shadow-xl  w-[315px] h-[425px] z-10 bg-opacity-70">
       <a href="#">
         <h3 className="mb-2 text-2xl font-bold  text-gray-900 ">{title}</h3>
       </a>

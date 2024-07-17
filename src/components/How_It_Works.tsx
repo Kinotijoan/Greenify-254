@@ -4,14 +4,14 @@ import React from "react";
 
 const How_It_Works = () => {
   return (
-    <div className=" ">
+    <div className="bg-gradient-to-r from-[rgba(255, 255, 255, 0.8)] to-[rgba(117, 255, 247, 0.8)]">
       <div className="text-center">
-        <h1 className="font-bold text-3xl my-5">How It Works</h1>
+        <h1 className="font-bold text-5xl py-8">How It Works</h1>
         <p className="text-2xl ">
           Wasteless is your go to site for all things waste management and
           making <br /> our environment cleaner! Whether you want to:
         </p>
-        <h2 className="font-bold text-3xl my-10">
+        <h2 className="font-bold text-3xl my-5">
           1.Manage your waste effectively
         </h2>
       </div>
@@ -51,7 +51,7 @@ const How_It_Works = () => {
             alt=""
             width={200}
             height={0}
-            className="-rotate-45 absolute left-[168px] -bottom-[180px]"
+            className="rotate-45 left-[150px] -bottom-[180px]"
           />
           <Card className="bg-[#D2B8DF] bg-opacity-20 p-16">
             <CardHeader>
