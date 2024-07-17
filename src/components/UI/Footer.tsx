@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-cover bg-no-repeat bg-center sticky bottom-0 w-full" style={{ backgroundImage: `url('/images/Rectangle.jpg')` }}>
+    <footer className="bg-cover bg-no-repeat bg-center bottom-0 w-full" style={{ backgroundImage: `url('/images/Rectangle.jpg')` }}>
       <div className="bg-opacity-75 text-white h-full flex flex-col justify-between">
         <div className="container mx-auto flex justify-between mt-8">
           <div>
