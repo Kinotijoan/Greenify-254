@@ -113,8 +113,7 @@ model Like {
 }
 
 model Blog {
-  blogId    String   @id @default(uuid())
-  title     String
+  title     String @id @default(uuid())
   description   String
   image  String
   author    String?
