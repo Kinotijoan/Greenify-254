@@ -28,18 +28,20 @@ const myFeatures: FeaturesType[] = [
 const Features = () => {
   return (
     <>
-      <div className=" flex justify-center absolute gap-4 w-full">
-        {myFeatures.map(({ title, description, href }, index) => (
-          <Card title={title} description={description} href={href} />
-        ))}
+      <div className="flex">
+        <Image
+          src="/flower.svg"
+          alt="flower"
+          width={300}
+          height={300}
+          className="hidden md:block left-0 "
+        />
+        <div className=" flex absolute justify-center gap-10 w-full">
+          {myFeatures.map(({ title, description, href }, index) => (
+            <Card title={title} description={description} href={href} />
+          ))}
+        </div>
       </div>
-      <Image
-        src="/flower.svg"
-        alt="flower"
-        width={300}
-        height={300}
-        className="hidden md:block absolute left-0 opacity-90"
-      />
     </>
   );
 };
