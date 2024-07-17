@@ -1,8 +1,16 @@
-import { Button } from "@/components/UI/Button";
 import Image from "next/image";
+import Hero from "@/components/HeroSection";
+import Card from "@/components/Card";
+import MakeDifference from "@/components/MakeDifference";
+import Features from "@/components/Features";
+
 
 export default function Home() {
   return (
-    <Button variant="outline">Button</Button>
+    <main>
+      <Hero/>
+      <Features />
+      <MakeDifference/>
+    </main>
   );
 }
