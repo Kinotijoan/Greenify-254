@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-cover bg-no-repeat bg-center sticky bottom-0 w-full" style={{ backgroundImage: `url('/images/Rectangle.jpg')` }}>
+    <footer className="bg-cover bg-no-repeat bg-center bottom-0 w-full" style={{ backgroundImage: `url('/images/Rectangle.jpg')` }}>
       <div className="bg-opacity-75 text-white h-full flex flex-col justify-between">
         <div className="container mx-auto flex justify-between mt-8">
           <div>
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="flex items-center justify-center py-16">
-          <div className="flex items-center border-t border-white px-56 py-2">
+          <div className="flex items-center border-t border-white px-64 py-2">
             <p className="mr-1">Copyright</p>
             <Image
               src="/icons/copyright.png"
