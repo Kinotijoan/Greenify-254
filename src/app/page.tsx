@@ -1,8 +1,18 @@
-import { Button } from "@/components/UI/Button";
-import Image from "next/image";
 
-export default function Home() {
+import React from 'react';
+
+import Aboutus from './about-us/page';
+import Footer from '@/components/UI/Footer';
+
+
+const MyApp: React.FC = () => {
   return (
-    <Button variant="outline">Button</Button>
+    <div>
+      <Aboutus />
+      <Footer/>
+    </div>
   );
-}
+};
+
+
+export default MyApp;
