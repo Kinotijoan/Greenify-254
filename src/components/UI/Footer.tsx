@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="flex items-center justify-center py-16">
-          <div className="flex items-center border-t border-white px-56 py-2">
+          <div className="flex items-center border-t border-white px-64 py-2">
             <p className="mr-1">Copyright</p>
             <Image
               src="/icons/copyright.png"
