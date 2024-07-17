@@ -19,6 +19,11 @@ const config = {
     },
     extend: {
       colors: {
+        lowpink: "#F6E7FF",
+        highpink: "#D175FF",
+        greenbg: "#F0FFF4",
+        cardbg:"#FAFFF9",
+        quotebg:"#FFE2B4",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -52,6 +57,8 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+         // CUSTOM:
+        btn: "hsl(var(--btn))",
       },
       borderRadius: {
         lg: "var(--radius)",
