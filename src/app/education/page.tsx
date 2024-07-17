@@ -18,30 +18,27 @@ const Page: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   const fetchBlogs = async () => {
-    const url1 = "https://roguedisposal.com/resources/education";
+    const url1 = "https://roguedisposal.com/resources/education/p3";
     const url2 =
-      "https://www.forgerecycling.co.uk/blog/category/recycling/page/2/";
+      "https://www.forgerecycling.co.uk/blog/category/recycling/page/3/";
 
     const blogsData1 = await scrapeRogue(url1);
-    // const blogsData2 = await scrapeBlogs(url2);
+    const blogsData2 = await scrapeBlogs(url2);
 
-    // const combinedBlogs = [...(blogsData1 || []), ...(blogsData2 || [])];
+    const combinedBlogs = [...(blogsData1 || []), ...(blogsData2 || [])];
 
-    // if (combinedBlogs) {
-    //   setBlogs(combinedBlogs);
-    // }
-    if (blogsData1) {
-      setBlogs(blogsData1);
+    if (combinedBlogs) {
+      setBlogs(combinedBlogs);
     }
-    console.log(blogsData1);
+    
+    console.log(combinedBlogs);
 
   };
  
 
   useEffect(() => {
     fetchBlogs();
-    // console.log(blogs);
-    // close
+    
   }, []);
 
   useEffect(() => {
