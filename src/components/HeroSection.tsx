@@ -28,17 +28,15 @@ const Hero = () => {
           className="hidden md:block absolute right-20 -top-7 "
         />
         <div className="  flex flex-col items-center justify-center p-20">
-          <h1 className=" font-bold text-6xl">Turning trash to treasure</h1>
+          <h1 className=" font-bold text-6xl">Turning Trash Into Treasure</h1>
           <p className=" text-center text-2xl mt-3 max-w-[860px]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae
-            scelerisque enim ligula venenatis dolor
+          Make a difference for our planet, one step at a time. Wasteless empowers you to adopt sustainable habits and create a positive impact on the environment.
           </p>
           <Button
             asChild
             className=" text-black bg-white rounded-full mt-3 text-xl hover:bg-purple-400"
           >
-            <Link href="/about">Learn more</Link>
+            <Link href="/Aboutus">Learn more</Link>
           </Button>
         </div>
         <Image
