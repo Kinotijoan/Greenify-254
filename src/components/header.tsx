@@ -1,15 +1,15 @@
 import React from "react";
 import NavLinks, { NavLink } from "./UI/Nav-bar";
-import Link from "next/link";
 import { Button } from "./UI/Button";
 
 const Header: React.FC = () => {
   const links: NavLink[] = [
-    { text: "features", href: "/" },
-    { text: "about", href: "/about" },
-    { text: "contact", href: "/contact" },
+    { text: "Home", href: "/#hero" },
+    { text: "Features", href: "/features" },
+    { text: "About", href: "/about" },
+    { text: "Contact", href: "/contact" },
   ];
-  return (    
+  return (
     <nav className=" hidden  h-12 md:flex items-center justify-between py-10 container">
       <h1 className=" text-4xl">Wasteless</h1>
       <div className=" flex space-x-6 items-center">
