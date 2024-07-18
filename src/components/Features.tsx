@@ -9,18 +9,18 @@ type FeaturesType = {
 };
 const myFeatures: FeaturesType[] = [
   {
-    title: "Feature 1",
-    description: "Description 1",
+    title: "Education Platform",
+    description: "Learn about waste reduction, recycling techniques, and composting through informative articles and engaging resources.",
     href: "#",
   },
   {
-    title: "Feature 2",
-    description: "Description 2",
+    title: "Discover Recyclers",
+    description: "Our app connects you with a network of trusted recyclers, making responsible waste disposal a breeze. Simply browse our directory and find the perfect recycling solution for your needs.",
     href: "#",
   },
   {
-    title: "Feature 3",
-    description: "Description 3",
+    title: "Discover Recycling Events",
+    description: "Never miss out on a local recycling event again! We keep you informed about upcoming waste collection drives and other sustainability initiatives happening in your community.",
     href: "#",
   },
 ];

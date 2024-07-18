@@ -63,28 +63,36 @@ const Page: React.FC = () => {
     fetchData();
   }, []); // Fetch data when component mounts
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+
+
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   
 
   return (
     <div>
-      <h1 className="text-4xl text-center font-bold mt-4">Education Resources</h1>
-      <div className="flex flex-wrap justify-center">
-        {data.map((blog) => (
-          <Ed_card
-            key={blog.title}
-            title={blog.title}
-            date={blog.date}
-            author={blog.author}
-            description={blog.description}
-            img_url={blog.image}
-            link={blog.link}
-          />
-        ))}
-      </div>
+      <h1 className="text-5xl text-center font-bold pt-10">
+        Education Resources
+      </h1>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="wrapper">
+          {data.map((blog) => (
+            <Ed_card
+              key={blog.title}
+              title={blog.title}
+              date={blog.date}
+              author={blog.author}
+              description={blog.description}
+              img_url={blog.image}
+              link={blog.link}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
