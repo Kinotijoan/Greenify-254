@@ -10,7 +10,7 @@ const Hero = () => {
       <div>
         <Header />
       </div>
-      <div className="w-screen h-[90vh] hero-bg absolute"></div>
+      <div className="h-[90vh] hero-bg w-full absolute"></div>
       <div className=" flex justify-evenly h-full relative">
         <Image
           src="/world.png"
@@ -35,7 +35,7 @@ const Hero = () => {
             asChild
             className=" text-black bg-white rounded-full mt-3 text-xl hover:bg-green-500 hover:text-white"
           >
-            <Link href="/Aboutus">Learn more</Link>
+            <Link href="/#about-us">Learn more</Link>
           </Button>
         </div>
         <Image
