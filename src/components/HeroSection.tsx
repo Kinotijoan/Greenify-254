@@ -3,11 +3,10 @@ import Header from "./header";
 import Link from "next/link";
 import { Button } from "./UI/Button";
 import Image from "next/image";
-import Features from "./Features";
 
 const Hero = () => {
   return (
-    <section className="w-full h-[90vh]">
+    <section className="w-full h-[90vh]" id="hero">
       <div>
         <Header />
       </div>
@@ -36,7 +35,7 @@ const Hero = () => {
           </p>
           <Button
             asChild
-            className=" text-black bg-white rounded-full mt-3 text-xl hover:bg-purple-400"
+            className=" text-black bg-white rounded-full mt-3 text-xl hover:bg-green-500 hover:text-white"
           >
             <Link href="/about">Learn more</Link>
           </Button>
