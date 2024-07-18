@@ -94,3 +94,10 @@ export async function sendBlogs(blogs: Blog[]){
     console.error("Error sending blogs");
   }
 } 
+
+export async function getBlogs(): Promise<Blog[]> {
+  console.log("getting blogs.....")
+  const response = await fetch("http://localhost:3000/api/get-blog");
+  const blogs = await response.json();
+  return blogs;
+}
