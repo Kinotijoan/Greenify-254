@@ -12,7 +12,7 @@ interface NavProps {
 
 const NavLink = ({ links }: NavProps) => {
   return (
-    <ul className='flex text-xl lg:w-96 gap-2  justify-between pl-5 pt-4'>
+    <ul className='flex text-xl font-medium gap-8 justify-between pt-4'>
         {links.map((link, index) => (
             <li key={index} className="hover:text-purple-500">
                 <Link href={link.href}>
