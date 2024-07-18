@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
           <div>
-            <h2 className="text-xl font-bold mb-4">Reach out to us</h2>
+            <h2 className="text-xl font-bold mb-4" id="footer">Reach out to us</h2>
             <div className="hover:scale-125 transition-transform duration-300 flex items-center mb-4">
               <Image
                 src="/icons/github(1).png"
