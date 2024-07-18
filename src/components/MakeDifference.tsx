@@ -3,7 +3,7 @@ import { Button } from "./UI/Button";
 
 const make_difference = () => {
   return (
-    <section className="mt-[50px] font-bold text-3xl flex flex-col items-center w-screen">
+    <section className="mt-[50px] font-bold text-3xl flex flex-col items-center">
       <blockquote className=" italic text-xl flex flex-col items-center justify-center bg-gradient-to-r from-quotebg  to-highpink w-[1250px] h-[200px] rounded-3xl">
         <p className="max-w-[800px] text-center">“Do your little bit of good where you are; it is those little bits of
         good put together that overwhelm the world.”</p>
