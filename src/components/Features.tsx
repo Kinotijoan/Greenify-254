@@ -28,7 +28,8 @@ const myFeatures: FeaturesType[] = [
 const Features = () => {
   return (
     <>
-      <div className="flex">
+      <div className="flex"
+      id="features">
         <Image
           src="/flower.svg"
           alt="flower"
