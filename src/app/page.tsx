@@ -10,8 +10,8 @@ const MyApp: React.FC = () => {
     <main>
       <Hero />
       <Features />
-      <MakeDifference />
       <Aboutus />
+      <MakeDifference />
       <Footer />
     </main>
   );
