@@ -6,17 +6,17 @@ const CompaniesSection = () => {
   return (
     <div className="mt-20 mb-20">
       <div>
-        <h2 className="text-center font-bold text-3xl my-10">
+        <h2 className="text-center font-bold text-4xl my-10">
           2.Find Recyclables
         </h2>
       </div>
-      <div className="flex justify-evenly text-center">
+      <div className="flex-col lg:flex justify-evenly text-center">
         <div>
           <div className="flex justify-center">
             <Image src="/images/PostIcon.png" alt="" width={200} height={200} />
           </div>
           <div>
-            <h3 className="font-medium text-[#FFB84D] text-2xl">
+            <h3 className=" font-bold text-[#FFB84D] text-2xl">
               Post what you're recycling
             </h3>
             <p>
@@ -32,7 +32,7 @@ const CompaniesSection = () => {
             <Image src="/images/search.png" alt="" width={200} height={200} />
           </div>
           <div>
-            <h3 className="font-medium text-[#FFB84D] text-2xl">
+            <h3 className="font-bold text-[#FFB84D] text-2xl">
               Update your profile
             </h3>
             <p>
@@ -48,7 +48,7 @@ const CompaniesSection = () => {
             <Image src="/images/event.png" alt="" width={200} height={200} />
           </div>
           <div>
-            <h3 className="font-medium text-[#FFB84D] text-2xl">
+            <h3 className="font-bold text-[#FFB84D] text-2xl">
               Post an event
             </h3>
             <p>
