@@ -37,7 +37,7 @@ const Features = () => {
           height={300}
           className="hidden md:block left-0 "
         />
-        <div className=" flex absolute justify-center gap-10 w-full">
+        <div className="flex flex-col items-center lg:flex lg:absolute justify-center gap-10 w-full">
           {myFeatures.map(({ title, description, href }, index) => (
             <Card title={title} description={description} href={href} />
           ))}
