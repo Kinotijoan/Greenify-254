@@ -111,3 +111,12 @@ model Like {
   author    Individual @relation(fields: [authorId], references: [individualId])
   post      Post       @relation(fields: [postId], references: [postId], onDelete: Cascade)
 }
+
+model Blog {
+  title     String @id @default(uuid())
+  description   String
+  image  String
+  author    String?
+  link      String?
+  date      String
+}

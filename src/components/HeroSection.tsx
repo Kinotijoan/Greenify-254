@@ -11,7 +11,7 @@ const Hero = () => {
       <div>
         <Header />
       </div>
-      <div className="w-screen h-[150vh] hero-bg absolute"></div>
+      <div className="w-screen h-[90vh] hero-bg absolute"></div>
       <div className=" flex justify-evenly h-full relative">
         <Image
           src="/world.png"
