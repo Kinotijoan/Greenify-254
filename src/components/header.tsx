@@ -5,9 +5,9 @@ import { Button } from "./UI/Button";
 const Header: React.FC = () => {
   const links: NavLink[] = [
     { text: "Home", href: "/#hero" },
-    { text: "Features", href: "/features" },
-    { text: "About", href: "/about" },
-    { text: "Contact", href: "/contact" },
+    { text: "Features", href: "/#features" },
+    { text: "About", href: "/#about-us" },
+    { text: "Contact", href: "/#footer" },
   ];
   return (
     <nav className=" hidden  h-12 md:flex items-center justify-between py-10 container">
