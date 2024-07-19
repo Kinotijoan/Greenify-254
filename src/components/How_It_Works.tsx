@@ -1,16 +1,24 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/UI/HowItWorksCard";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/UI/HowItWorksCard";
 import Image from "next/image";
 import React from "react";
 
 const How_It_Works = () => {
   return (
-    <div className="bg-gradient-to-r from-[rgba(255, 255, 255, 0.8)] to-[rgba(117, 255, 247, 0.8)]">
+    <div
+      className="container bg-gradient-to-r from-[rgba(255, 255, 255, 0.8)] to-[rgba(117, 255, 247, 0.8)]"
+      id="how-it-works"
+    >
       <div className="text-center">
-        <h1 className="font-bold text-5xl py-8">How It Works</h1>
-        <p className="text-2xl px-52">
+        <h2 className="font-bold mt-6  text-2xl md:text-3xl md:pt-20 select-none">
+        <p className="text-lg mt-3 md:text-xl ">
         Wasteless empowers both individuals and companies to embrace a more sustainable lifestyle. Learn how our app simplifies waste management for everyone:
         </p>
-        <h2 className="font-bold text-3xl my-5">
+        <h2 className="font-semibold md:font-bold text-xl md:text-2xl mt-3 md:my-5">
           1.As a common user you can:
         </h2>
       </div>
@@ -39,6 +47,7 @@ const How_It_Works = () => {
         </div>
         <div className="flex justify-center gap-10 m-10">
           <Card className="bg-[#D2B8DF] bg-opacity-20 p-16 text-center">
+
             <CardHeader>
               <CardTitle>Join the Wasteless Movement</CardTitle>
             </CardHeader>
@@ -47,17 +56,11 @@ const How_It_Works = () => {
             </CardContent>
           </Card>
           <div className="mt-10">
-            <Image
-              src="/images/Arrow 2.png"
-              alt=""
-              width={150}
-              height={0}
-              className="rotate-12 absolute right-20"
-            />
-            <p className="text-xl font-medium my-16 text-[#65FF00]">
+           <p className="text-xl font-medium my-16 text-[#65FF00]">
               Community Engagement
             </p>
           </div>
+  
         </div>
         <div className="flex justify-center gap-10 mx-20 ">
           <div className="my-5">
@@ -80,6 +83,7 @@ const How_It_Works = () => {
               <p>Locate recycling companies in your area with a tap! Our app connects you with a network of verified recyclers, simplifying responsible waste disposal. Find the perfect recycling solution for your needs and contribute to a more sustainable future.</p>
             </CardContent>
           </Card>
+
         </div>
       </div>
     </div>
