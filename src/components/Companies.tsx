@@ -1,113 +1,68 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/UI/HowItWorksCard";
 import Image from "next/image";
 import React from "react";
 
+interface CompaniesCardProps {
+  image: string;
+  title: string;
+  description: string;
+}
+
+const CompaniesCard = ({ image, title, description }: CompaniesCardProps) => {
+  return (
+    <div className="mx-auto mb-6">
+      <div className="flex justify-center">
+        <Image
+          src={image}
+          alt={title}
+          width={150}
+          height={150}
+          className="object-contain"
+        />
+      </div>
+      <div>
+        <h3 className="font-semibold md:font-medium text-[#FFB84D] text-2xl mb-3">{title}</h3>
+        <p className="max-w-[400px] text-lg md:text-xl">{description}</p>
+      </div>
+    </div>
+  );
+};
+
+const CompaniesCardArray: CompaniesCardProps[] = [
+  {
+    image: "/images/PostIcon.png",
+    title: "Post what you're recycling",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.",
+  },
+  {
+    image: "/images/search.png",
+    title: "Update your profile",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.",
+  },
+  {
+    image: "/images/event.png",
+    title: "Post an event",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.",
+  },
+];
+
 const CompaniesSection = () => {
   return (
-    <div className="mt-20 mb-20">
-      <h2 className="text-center font-bold text-2xl my-10">
+    <div className="mt-10 md:mt-20 md:mb-20 container">
+      <h2 className="text-center font-bold text-xl md:text-2xl md:my-10">
         2.Find Recyclables
       </h2>
-      <div className="flex justify-evenly text-center">
-        <div className="flex justify-center">
-          <Image src="/images/PostIcon.png" alt="" width={200} height={200} />
-        </div>
-        <div>
-          <h3 className="font-medium text-[#FFB84D] text-2xl">
-            Post what you're recycling
-          </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
-            Phasellus imperdiet, nulla et <br /> dictum interdum, nisi lorem
-            egestas odio, <br />
-            vitae scelerisque enim ligula venenatis <br /> dolor.
-          </p>
-        </div>
-        <div className="flex justify-center">
-          <Image src="/images/search.png" alt="" width={200} height={200} />
-        </div>
-        <div>
-          <h3 className="font-medium text-[#FFB84D] text-2xl">
-            Update your profile
-          </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
-            Phasellus imperdiet, nulla et <br /> dictum interdum, nisi lorem
-            egestas odio, <br />
-            vitae scelerisque enim ligula venenatis <br /> dolor.
-          </p>
-        </div>
-
-        <div className="flex justify-center">
-          <Image src="/images/event.png" alt="" width={200} height={200} />
-        </div>
-        <div>
-          <h3 className="font-medium text-[#FFB84D] text-2xl">Post an event</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
-            Phasellus imperdiet, nulla et <br /> dictum interdum, nisi lorem
-            egestas odio, <br />
-            vitae scelerisque enim ligula venenatis <br /> dolor.
-          </p>
-      <div>
-        <h2 className="text-center font-bold text-4xl my-10">
-          2.Find Recyclables
-        </h2>
-      </div>
-      <div className="flex-col lg:flex justify-evenly text-center">
-        <div>
-          <div className="flex justify-center">
-            <Image src="/images/PostIcon.png" alt="" width={200} height={200} />
-          </div>
-          <div>
-            <h3 className=" font-bold text-[#FFB84D] text-2xl">
-              Post what you're recycling
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
-              Phasellus imperdiet, nulla et <br /> dictum interdum, nisi lorem
-              egestas odio, <br />
-              vitae scelerisque enim ligula venenatis <br /> dolor.
-            </p>
-          </div>
-        </div>
-        <div>
-          <div className="flex justify-center">
-            <Image src="/images/search.png" alt="" width={200} height={200} />
-          </div>
-          <div>
-            <h3 className="font-bold text-[#FFB84D] text-2xl">
-              Update your profile
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
-              Phasellus imperdiet, nulla et <br /> dictum interdum, nisi lorem
-              egestas odio, <br />
-              vitae scelerisque enim ligula venenatis <br /> dolor.
-            </p>
-          </div>
-        </div>
-        <div>
-          <div className="flex justify-center">
-            <Image src="/images/event.png" alt="" width={200} height={200} />
-          </div>
-          <div>
-            <h3 className="font-bold text-[#FFB84D] text-2xl">
-              Post an event
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
-              Phasellus imperdiet, nulla et <br /> dictum interdum, nisi lorem
-              egestas odio, <br />
-              vitae scelerisque enim ligula venenatis <br /> dolor.
-            </p>
-          </div>
-        </div>
+      <div className="md:flex justify-center md:text-xl text-center md:gap-4">
+        {CompaniesCardArray.map(({ image, title, description }, index) => (
+          <CompaniesCard
+            key={index}
+            image={image}
+            title={title}
+            description={description}
+          />
+        ))}
       </div>
     </div>
   );
