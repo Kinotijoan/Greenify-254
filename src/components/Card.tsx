@@ -12,7 +12,7 @@ const Card = ({ title, description, href }: CardProps) => {
       <a href="#">
         <h3 className="mb-2 text-xl font-bold">{title}</h3>
       </a>
-      <p className="mb-2 text-xl">{description}</p>
+      <p className="mb-2 md:text-lg">{description}</p>
       <Link
         href={href}
         className="mt-6 inline-flex items-center justify-center px-5 py-2 text-sm font-bold text-center bg-green-500 rounded-lg hover:bg-green-300 focus:ring-4 focus:outline-none focus:ring-green-600"
