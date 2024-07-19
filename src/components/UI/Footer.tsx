@@ -30,23 +30,23 @@ const Footer: React.FC = () => {
       style={{ backgroundImage: `url("/images/Rectangle.jpg")` }}
     >
       <div className="bg-opacity-75 text-white h-full flex flex-col justify-between">
-        <div className="container mx-auto flex flex-col sm:flex-row sm:justify-between items-center mt-8">
+        <h3 className="text-2xl font-bold text-center my-3">WASTELESS</h3>
+        <div className="container flex flex-col items-start sm:flex-row sm:justify-between mt-8">
           <div className="mb-8 sm:mb-0">
-            <h3 className="text-2xl font-bold mb-2">WASTELESS</h3>
-            <p className="text-lg font-bold md:text-xl">Links</p>
+            <p className="text-lg font-semibold md:text-xl">Links</p>
             <ul className="">
               {links.map((link, index) => (
-                <li key={index} className="mb-2 hover:scale-105">
-                  <Link href={link.href}>{link.text}</Link>
+                <li key={index} className="mb-2 hover:scale-105 ">
+                  <Link className="font-normal text-sm" href={link.href}>{link.text}</Link>
                 </li>
               ))}
             </ul>
           </div>
           <div className="mb-8 sm:mb-0">
-            <h2 className="text-xl font-bold mb-4" id="footer">
+            <h2 className="text-xl font-semibold mb-4" id="footer">
               Reach out to us
             </h2>
-            <div className="hover:scale-105 transition-transform duration-300 flex items-center mb-4">
+            <div className="hover:scale-105 transition-transform duration-300 flex items-center mb-4 font-normal text-sm ">
               <Image
                 src="/icons/github(1).png"
                 alt="GitHub Link"
