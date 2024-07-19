@@ -14,8 +14,8 @@ const CompaniesCard = ({ image, title, description }: CompaniesCardProps) => {
         <Image
           src={image}
           alt={title}
-          width={150}
-          height={150}
+          width={200}
+          height={200}
           className="object-contain"
         />
       </div>
@@ -29,19 +29,19 @@ const CompaniesCard = ({ image, title, description }: CompaniesCardProps) => {
 
 const CompaniesCardArray: CompaniesCardProps[] = [
   {
-    image: "/images/PostIcon.png",
-    title: "Post what you're recycling",
+    image: "/trash.png",
+    title: " Market recycled products",
     description:
       " Increase awareness of your recycling services! Post the materials you accept on our app, attracting new customers and promoting responsible waste management practices. Grow your business and contribute to a circular economy.",
   },
   {
-    image: "/images/search.png",
+    image: "/images/profile.jpg",
     title: "Update your profile",
     description:
       "Keep your company profile up-to-date! Easily edit your contact details, service offerings, and location information, ensuring users can find you effortlessly. Manage your online presence and connect with eco-conscious customers.",
   },
   {
-    image: "/images/event.png",
+    image: "/images/event-sketch.png",
     title: "Post an event",
     description:
       "Educate and engage your community!  Announce upcoming recycling drives, composting workshops, or other sustainability initiatives through our event posting feature.  Reach new customers, raise awareness of your services, and foster a collaborative approach to waste reduction.",
@@ -63,7 +63,6 @@ const CompaniesSection = () => {
             description={description}
           />
         ))}
-
       </div>
     </div>
   );
