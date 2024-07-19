@@ -14,7 +14,7 @@ const How_It_Works = () => {
       id="how-it-works"
     >
       <div className="text-center">
-        <h2 className="font-bold mt-6  text-2xl md:text-3xl md:pt-20 select-none">
+        <h2 className="font-bold mt-6  text-2xl md:text-3xl md:pt-20 select-none">How it works</h2>
         <p className="text-lg mt-3 md:text-xl ">
         Wasteless empowers both individuals and companies to embrace a more sustainable lifestyle. Learn how our app simplifies waste management for everyone:
         </p>
@@ -83,8 +83,7 @@ const How_It_Works = () => {
               width={200}
               height={0}
               className="rotate-12 absolute right-20"
-            />
-           
+            />                    
         </div>
         <div className="flex justify-center gap-10 mx-10 relative">
           <div className="my-5">
@@ -116,6 +115,8 @@ const How_It_Works = () => {
         />
       </div>
     </div>
+  </div>
+</div>
   );
 };
 
