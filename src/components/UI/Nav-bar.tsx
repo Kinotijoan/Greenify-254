@@ -25,7 +25,7 @@ const NavLink = () => {
   console.log(isOpen);
   return (
     <>
-      <Menu onClick={() => setIsOpen(!isOpen)} className="z-30 md:hidden" />
+      <Menu onClick={() => setIsOpen(!isOpen)} className="z-30 md:hidden ml-4" />
 
       <ul className="hidden md:flex text-xl font-medium gap-8 justify-between">
         {links.map(({ text, href }, index) => (
@@ -47,7 +47,7 @@ const NavLink = () => {
         <ul
           className={`${
             isOpen ? "block" : "hidden"
-          } absolute top-16 z-30 bg-gray-50 p-4 -r-10 text-xl font-medium`}
+          } absolute top-16 z-30 bg-gray-50 p-4  text-xl font-medium`}
         >
           {links.map(({ text, href }, index) => (
             <li
