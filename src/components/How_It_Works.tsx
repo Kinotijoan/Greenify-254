@@ -9,15 +9,20 @@ import React from "react";
 
 const How_It_Works = () => {
   return (
-    <div className="bg-gradient-to-r from-[rgba(255, 255, 255, 0.8)] to-[rgba(117, 255, 247, 0.8)]" id="how-it-works">
+    <div
+      className="container bg-gradient-to-r from-[rgba(255, 255, 255, 0.8)] to-[rgba(117, 255, 247, 0.8)]"
+      id="how-it-works"
+    >
       <div className="text-center">
-        <h2 className="font-bold text-3xl py-8">How It Works</h2>
-        <p className="text-2xl ">
+        <h2 className="font-bold mt-6  text-2xl md:text-3xl md:pt-20 select-none">
+          How It Works
+        </h2>
+        <p className="text-lg mt-3 md:text-xl ">
           Wasteless is your go to site for all things waste management and
           making <br /> our environment cleaner! Whether you want to:
         </p>
-        <h2 className="font-bold text-2xl my-5">
-          1.Manage your waste effectively
+        <h2 className="font-semibold md:font-bold text-xl md:text-2xl mt-3 md:my-5">
+          1. Manage your waste effectively
         </h2>
       </div>
 
@@ -47,7 +52,7 @@ const How_It_Works = () => {
           alt=""
           width={200}
           height={0}
-          className="rotate-12 absolute right-[168px]  -bottom-[40px]"
+          className="hidden md:rotate-12 md:absolute md:right-[168px]  md:-bottom-[40px]"
         />
       </div>
       <div className="flex justify-center gap-10 m-10">
@@ -56,7 +61,7 @@ const How_It_Works = () => {
           alt=""
           width={200}
           height={0}
-          className="rotate-45 left-[150px] -bottom-[180px]"
+          className="hidden md:rotate-45 md:left-[150px] md:-bottom-[180px]"
         />
         <Card className="bg-[#D2B8DF] bg-opacity-20 p-16">
           <CardHeader>
@@ -105,7 +110,7 @@ const How_It_Works = () => {
           alt=""
           width={200}
           height={0}
-          className="rotate-12 absolute right-[140px] -bottom-[40px]"
+          className="hidden md:rotate-12 md:absolute md:right-[140px] md:-bottom-[40px]"
         />
       </div>
     </div>
