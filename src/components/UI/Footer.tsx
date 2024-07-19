@@ -1,7 +1,8 @@
-
-import React from 'react';
-import Image from 'next/image';
-import { NavLink } from './Nav-bar';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { NavLink } from "./Nav-bar";
+import { url } from "inspector";
 
 const Footer: React.FC = () => {
   const links: NavLink[] = [
@@ -22,38 +23,30 @@ const Footer: React.FC = () => {
       href: "/#how-it-works",
     },
   ];
+
   return (
     <footer
       className="bg-cover bg-no-repeat bg-center bottom-0 w-full"
-      style={{ backgroundImage: `url('/images/Rectangle.jpg')` }}
+      style={{ backgroundImage: `url("/images/Rectangle.jpg")` }}
     >
       <div className="bg-opacity-75 text-white h-full flex flex-col justify-between">
-        <div className="container mx-auto flex flex-col sm:flex-row sm:justify-between mt-8">
+        <div className="container mx-auto flex flex-col sm:flex-row sm:justify-between items-center mt-8">
           <div className="mb-8 sm:mb-0">
-            <p className="text-2xl font-bold mb-2">WASTELESS</p>
-            <h1 className="sm:text-lg lg:text-xl">Links</h1>
-            <h1 className="sm:text-lg lg:text-xl">Home</h1>
-            <h1 className="sm:text-lg lg:text-xl">Feature</h1>
-            <h1 className="sm:text-lg lg:text-xl">About us</h1>
-            <h1 className="sm:text-lg lg:text-xl">How it works</h1>
-        <div className="container mx-auto flex justify-between mt-8">
-          <div>
             <h3 className="text-2xl font-bold mb-2">WASTELESS</h3>
-            <p className="text-xl">Links</p>
-       
+            <p className="text-lg font-bold md:text-xl">Links</p>
             <ul className="">
-              {links.map((link,index) => (
-                <li key={index} className="mb-2 hover:scale-125">
+              {links.map((link, index) => (
+                <li key={index} className="mb-2 hover:scale-105">
                   <Link href={link.href}>{link.text}</Link>
                 </li>
               ))}
             </ul>
           </div>
           <div className="mb-8 sm:mb-0">
-            <h1 className="text-xl font-bold mb-4">Reach out to us</h1>
-          <div>
-            <h2 className="text-xl font-bold mb-4" id="footer">Reach out to us</h2>
-            <div className="hover:scale-125 transition-transform duration-300 flex items-center mb-4">
+            <h2 className="text-xl font-bold mb-4" id="footer">
+              Reach out to us
+            </h2>
+            <div className="hover:scale-105 transition-transform duration-300 flex items-center mb-4">
               <Image
                 src="/icons/github(1).png"
                 alt="GitHub Link"
@@ -61,16 +54,16 @@ const Footer: React.FC = () => {
                 height={25}
                 className="mr-2"
               />
-              <a href="https://github.com/Kinotijoan/wasteless" target="_blank" rel="noopener noreferrer" className="sm:text-lg lg:text-xl">GitHub</a>
               <a
                 href="https://github.com/Kinotijoan/wasteless"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="sm:text-lg lg:text-xl"
               >
                 GitHub
               </a>
             </div>
-            <div className="hover:scale-125 transition-transform duration-300 flex items-center mb-4">
+            <div className="hover:scale-105 transition-transform duration-300 flex items-center mb-4">
               <Image
                 src="/icons/phone.png"
                 alt="Phone Number"
@@ -80,7 +73,7 @@ const Footer: React.FC = () => {
               />
               <span className="sm:text-lg lg:text-xl">0712345678</span>
             </div>
-            <div className="hover:scale-125 transition-transform duration-300 flex items-center">
+            <div className="hover:scale-105 transition-transform duration-300 flex items-center">
               <Image
                 src="/icons/mail.png"
                 alt="Email Address"
@@ -88,30 +81,30 @@ const Footer: React.FC = () => {
                 height={25}
                 className="mr-2"
               />
-              <a href="mailto:wasteless2024@gmail.com" className="sm:text-lg lg:text-xl">wasteless2024@gmail.com</a>
-              <a href="mailto:wasteless2024@gmail.com">
+              <a
+                href="mailto:wasteless2024@gmail.com"
+                className="sm:text-lg lg:text-xl"
+              >
                 wasteless2024@gmail.com
               </a>
             </div>
           </div>
           <div>
-            <h1 className="text-xl font-bold mb-4">Send us a message</h1>
-            <input type="text" placeholder="Your Name" className="bg-transparent border-b border-white text-white mb-4 w-full focus:outline-none sm:text-lg lg:text-xl" />
-            <textarea placeholder="Your Message" className="bg-transparent border-b border-white text-white h-20 w-full focus:outline-none sm:text-lg lg:text-xl"></textarea>
+            <h3 className="text-xl font-bold mb-4">Send us a message</h3>
             <input
               type="text"
               placeholder="Your Name"
-              className="bg-transparent border-b border-white text-white mb-4 w-full focus:outline-none"
+              className="bg-transparent border-b border-white text-white mb-4 w-full focus:outline-none  md:text-lg"
             />
             <textarea
               placeholder="Your Message"
-              className="bg-transparent border-b border-white text-white h-20 w-full focus:outline-none"
+              className="bg-transparent border-b border-white text-white h-20 w-full focus:outline-none  md:text-lg"
             ></textarea>
           </div>
         </div>
         <div className="flex items-center justify-center py-16">
-          <div className="flex items-center border-t border-white px-4 sm:px-64 py-2">
-            <p className="mr-1 sm:text-lg lg:text-xl">Copyright</p>
+          <div className="flex items-center md:border-t md:border-white px-4 sm:px-64 py-2">
+            <p className="mr-3 md:text-lg">Copyright</p>
             <Image
               src="/icons/copyright.png"
               alt="Copyright Icon"
@@ -119,7 +112,7 @@ const Footer: React.FC = () => {
               height={20}
               className="mr-1"
             />
-            <p className="sm:text-lg lg:text-xl">2024 All rights reserved</p>
+            <p className="md:text-lg ">2024 All rights reserved</p>
           </div>
         </div>
       </div>
