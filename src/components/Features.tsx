@@ -28,15 +28,15 @@ const myFeatures: FeaturesType[] = [
 const Features = () => {
   return (
     <>
-      <div className="flex">
+      <div className="flex lg:flex">
         <Image
           src="/flower.svg"
           alt="flower"
           width={300}
           height={300}
-          className="hidden md:block left-0 "
+          className="hidden lg:block left-0"
         />
-        <div className="flex flex-col items-center lg:flex lg:absolute justify-center gap-10 w-full">
+        <div className="flex flex-col items-center lg:flex lg:absolute lg:flex-row lg:justify-center gap-10 w-full">
           {myFeatures.map(({ title, description, href }, index) => (
             <Card title={title} description={description} href={href} />
           ))}

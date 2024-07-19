@@ -7,36 +7,36 @@ import Features from "./Features";
 
 const Hero = () => {
   return (
-    <section className="w-full h-[90vh]">
+    <section className="w-full h-auto lg:h-[90vh]">
       <div>
         <Header />
       </div>
-      <div className="w-screen h-[90vh] hero-bg absolute"></div>
-      <div className=" flex justify-evenly h-full relative">
+      <div className="w-screen h-auto lg:h-[90vh] hero-bg absolute"></div>
+      <div className="flex flex-col lg:flex-row justify-evenly h-full relative">
         <Image
           src="/world.png"
           alt="world"
           width={350}
           height={350}
-          className="hidden md:block absolute left-20 -top-10"
+          className="hidden lg:block absolute left-20 -top-10"
         />
         <Image
           src="/recycle.png"
           alt="recycle"
           width={250}
           height={250}
-          className="hidden md:block absolute right-20 -top-7 "
+          className="hidden lg:block absolute right-20 -top-7"
         />
-        <div className="  flex flex-col items-center justify-center p-20">
-          <h1 className=" font-bold text-6xl">Turning trash to treasure</h1>
-          <p className=" text-center text-2xl mt-3 max-w-[860px]">
+        <div className="flex flex-col items-center justify-center mt-10 lg:p-20">
+          <h1 className="font-bold text-3xl lg:text-6xl">Turning trash to treasure</h1>
+          <p className="text-center mx-4  lg:text-2xl mt-4 max-w-[860px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
             imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae
             scelerisque enim ligula venenatis dolor
           </p>
           <Button
             asChild
-            className=" text-black bg-white rounded-full mt-3 text-xl hover:bg-purple-400"
+            className="font-bold text-black bg-white rounded-full mt-3 text-base lg:text-xl hover:bg-purple-400"
           >
             <Link href="/about">Learn more</Link>
           </Button>
@@ -46,7 +46,7 @@ const Hero = () => {
           alt="trash"
           width={250}
           height={250}
-          className="hidden md:block absolute right-10 bottom-20"
+          className="hidden lg:block absolute right-10 bottom-20"
         />
       </div>
     </section>
