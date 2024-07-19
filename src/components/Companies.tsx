@@ -32,19 +32,19 @@ const CompaniesCardArray: CompaniesCardProps[] = [
     image: "/images/PostIcon.png",
     title: "Post what you're recycling",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.",
+      " Increase awareness of your recycling services! Post the materials you accept on our app, attracting new customers and promoting responsible waste management practices. Grow your business and contribute to a circular economy.",
   },
   {
     image: "/images/search.png",
     title: "Update your profile",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.",
+      "Keep your company profile up-to-date! Easily edit your contact details, service offerings, and location information, ensuring users can find you effortlessly. Manage your online presence and connect with eco-conscious customers.",
   },
   {
     image: "/images/event.png",
     title: "Post an event",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.",
+      "Educate and engage your community!  Announce upcoming recycling drives, composting workshops, or other sustainability initiatives through our event posting feature.  Reach new customers, raise awareness of your services, and foster a collaborative approach to waste reduction.",
   },
 ];
 
@@ -52,7 +52,7 @@ const CompaniesSection = () => {
   return (
     <div className="mt-10 md:mt-20 md:mb-20 container">
       <h2 className="text-center font-bold text-xl md:text-2xl md:my-10">
-        2.Find Recyclables
+          2. As a waste management company you can:
       </h2>
       <div className="md:flex justify-center md:text-xl text-center md:gap-4">
         {CompaniesCardArray.map(({ image, title, description }, index) => (
@@ -63,6 +63,7 @@ const CompaniesSection = () => {
             description={description}
           />
         ))}
+
       </div>
     </div>
   );
