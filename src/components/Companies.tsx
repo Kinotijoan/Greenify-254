@@ -9,7 +9,7 @@ interface CompaniesCardProps {
 
 const CompaniesCard = ({ image, title, description }: CompaniesCardProps) => {
   return (
-    <div className="mx-auto mb-6">
+    <div className="mx-auto mb-6 flex flex-col justify-center space-y-6">
       <div className="flex justify-center">
         <Image
           src={image}
@@ -21,7 +21,7 @@ const CompaniesCard = ({ image, title, description }: CompaniesCardProps) => {
       </div>
       <div>
         <h3 className="font-semibold md:font-medium text-[#FFB84D] text-2xl mb-3">{title}</h3>
-        <p className="max-w-[400px] text-lg md:text-xl">{description}</p>
+        <p className="max-w-[400px] text-lg md:text-lg">{description}</p>
       </div>
     </div>
   );
