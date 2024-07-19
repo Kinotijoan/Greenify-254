@@ -10,10 +10,10 @@ import React from "react";
 const How_It_Works = () => {
   return (
     <div
-      className="container"
+      className=""
       id="how-it-works"
     >
-      <div className="text-center">
+      <div className="text-center container">
         <h2 className="font-bold mt-6  text-2xl md:text-3xl md:pt-20 select-none">
           How it works
         </h2>
@@ -22,14 +22,14 @@ const How_It_Works = () => {
           sustainable lifestyle. Learn how our app simplifies waste management
           for everyone:
         </p>
-        <h2 className="font-semibold md:font-bold text-xl md:text-2xl mt-3 md:my-5">
-          1.As a common user you can:
+        <h2 className="font-bold text-xl md:text-2xl mt-3 md:my-5">
+          1. As a common user you can:
         </h2>
       </div>
-      <div className="">
-        <div className="flex gap-10 mx-20 relative ">
+      <div className="p-6">
+        <div className="flex mb-6 md:gap-10 md:mx-20 md:relative ">
           <div className="my-5">
-            <p className="text-xl font-medium text-[#65FF00] ">
+            <p className="hidden md:block md:text-xl  md:text-[#65FF00] ">
               Learn about the 3R's
             </p>
             <Image
@@ -37,15 +37,15 @@ const How_It_Works = () => {
               alt=""
               width={150}
               height={0}
-              className="absolute ml-8"
+              className="hidden md:block md:absolute md:ml-8"
             />
           </div>
-          <Card className="bg-[#FFF8ED] py-10 text-center">
+          <Card className="bg-[#FFF8ED] md:py-10 text-center">
             <CardHeader>
-              <CardTitle>Become a Waste Management Pro</CardTitle>
+              <CardTitle className="text-lg font-bold">Become a Waste Management Pro</CardTitle>
             </CardHeader>
-            <CardContent className="text-xl">
-              <p>
+            <CardContent className="text-lg font-light md:font-normal md:text-xl">
+              <p  className="text-lg font-light md:font-normal md:text-xl">
                 Empower yourself with knowledge! Access informative articles,
                 tips, and resources to learn about waste reduction, recycling
                 best practices, and composting techniques. Take control of your
@@ -54,13 +54,13 @@ const How_It_Works = () => {
             </CardContent>
           </Card>
         </div>
-        <div className="flex justify-center relative mx-20 gap-10 my-10">
+        <div className="flex mb-6 md:justify-center md:relative md:mx-20 md:gap-10 md:my-10">
           <Card className="bg-[#D2B8DF] py-10 text-center">
               <CardHeader>
-                <CardTitle>Join the Wasteless Movement</CardTitle>
+                <CardTitle className="text-lg font-bold">Join the Wasteless Movement</CardTitle>
               </CardHeader>
               <CardContent className="text-xl">
-                <p>
+                <p  className="text-lg font-light md:font-normal md:text-xl">
                 Connect with like-minded individuals passionate about reducing
                 waste! Share experiences, swap tips, and find encouragement
                 within our supportive community forum. Together, we can create
@@ -74,30 +74,30 @@ const How_It_Works = () => {
               alt=""
               width={150}
               height={0}
-              className="rotate-12 absolute top-0 right-12"
+              className="hidden md:block md:rotate-12 md:absolute md:top-0 md:right-12"
             />
-          <p className="text-xl font-medium mt-10 text-[#65FF00] -right-[70px]"> Community Engagement</p>
+          <p className="hidden md:block md:text-xl  md:mt-10 md:text-[#65FF00] md:-right-[70px]"> Community Engagement</p>
         </div>
         </div>
-        <div className="flex justify-center gap-10 ">
+        <div className="flex md:justify-center md:gap-10 ">
             <div className="my-5">
               <Image
                 src="/images/Arrow 3.png"
                 alt=""
                 width={150}
                 height={0}
-                className="absolute ml-16"
+                className="hidden md:block md:absolute ml-16"
               />
-              <p className="text-xl font-medium text-[#65FF00] mt-28 ">
+              <p className="hidden md:block md:text-xl  md:text-[#65FF00] md:mt-28 ">
                 Find recycling places near you
               </p>
             </div>
             <Card className="bg-[#FFF8ED] py-10 text-center">
               <CardHeader>
-                <CardTitle>Make Recycling Effortless</CardTitle>
+                <CardTitle className="text-lg font-bold">Make Recycling Effortless</CardTitle>
               </CardHeader>
               <CardContent className="text-xl">
-                <p>
+                <p  className="text-lg font-light md:font-normal md:text-xl">
                   Locate recycling companies in your area with a tap! Our app
                   connects you with a network of verified recyclers, simplifying
                   responsible waste disposal. Find the perfect recycling
