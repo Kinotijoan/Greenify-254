@@ -7,7 +7,7 @@ const Aboutus: React.FC = () => {
       <h2 className="text-center text-2xl md:text-3xl font-bold pt-20 pb-2 ">
         About Us
       </h2>
-      <p className="text-center mb-3 text-lg md:text-xl">
+      <p className="text-center mb-3 text-lg font-light md:font-normal md:text-xl">
         Our innovative web application directly assigns responsibility to the
         people, waste collectors and Waste producers, aligning with SDG 11 and
         with the goals of the NEMA Sustainable Waste Management Act of 2022, to
