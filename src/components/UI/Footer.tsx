@@ -29,9 +29,9 @@ const Footer: React.FC = () => {
       className="bg-cover bg-no-repeat bg-center bottom-0 w-full"
       style={{ backgroundImage: `url("/images/Rectangle.jpg")` }}
     >
-      <div className="bg-opacity-75 text-white h-full flex flex-col justify-between">
+      <div className="bg-opacity-75 text-white h-full flex flex-col container justify-between">
         <h3 className="text-2xl font-bold text-center my-3">WASTELESS</h3>
-        <div className="container flex flex-col items-start sm:flex-row sm:justify-between mt-6">
+        <div className="container flex flex-col items-start sm:flex-row sm:justify-between gap-3 mt-6">
           <div className="mb-6 sm:mb-0">
             <p className="text-lg font-semibold md:text-xl">Links</p>
             <ul className="">
@@ -89,11 +89,17 @@ const Footer: React.FC = () => {
               </a>
             </div>
           </div>
-          <div>
+          <div className="md:max-w-[290px]">
             <h3 className="text-xl font-bold mb-4">Send us a message</h3>
             <input
               type="text"
               placeholder="Your Name"
+              // max={1}
+              className="bg-transparent border-b border-white text-white mb-4 w-full focus:outline-none  md:text-lg"
+            />
+             <input
+              type="email"
+              placeholder="Your Email Address"
               className="bg-transparent border-b border-white text-white mb-4 w-full focus:outline-none  md:text-lg"
             />
             <textarea
