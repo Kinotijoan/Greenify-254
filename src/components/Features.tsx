@@ -41,7 +41,12 @@ const Features = () => {
         /> */}
         <div className="flex flex-col md:flex-row items-center  gap-5 md:gap-10 w-full mt-3">
           {myFeatures.map(({ title, description, href }, index) => (
-            <Card title={title} description={description} href={href} />
+            <Card
+              key={index}
+              title={title}
+              description={description}
+              href={href}
+            />
           ))}
         </div>
       </div>
