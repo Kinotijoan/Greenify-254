@@ -20,8 +20,8 @@ const Aboutus: React.FC = () => {
         <Image
           src="/images/bin.png"
           alt="bin image"
-          width={200}
-          height={400}
+          width={300}
+          height={200}
           className="hidden md:flex justify-start"
         />
 
@@ -29,7 +29,7 @@ const Aboutus: React.FC = () => {
           src="/images/leaf.png"
           alt="leaf image"
           width={200}
-          height={300}
+          height={200}
           className="hidden md:flex justify-end"
         />
       </div>

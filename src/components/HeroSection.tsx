@@ -24,7 +24,7 @@ const Hero = () => {
           alt="recycle"
           width={250}
           height={250}
-          className="hidden md:block absolute right-20 top-10"
+          className="hidden md:block absolute right-20 top-12"
         />
         <div className="  flex flex-col h-full justify-center my-auto md:flex md:flex-col md:justify-center md:items-center md:mt-24 px-5 select-none ">
           <h1 className=" font-bold text-5xl mb-6 text-center md:text-6xl ">

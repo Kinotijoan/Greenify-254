@@ -31,15 +31,15 @@ const myFeatures: FeaturesType[] = [
 const Features = () => {
   return (
     <>
-      <div className="flex" id="features">
-        <Image
+      <div className="flex container" id="features">
+        {/* <Image
           src="/flower.svg"
           alt="flower"
           width={250}
           height={250}
-          className="hidden md:block md:left-0 select-none "
-        />
-        <div className="flex flex-col md:flex-row items-center md:justify-center gap-5 md:gap-10 w-full mt-3">
+          className="hidden md:block md:left-0 select-none  "
+        /> */}
+        <div className="flex flex-col md:flex-row items-center  gap-5 md:gap-10 w-full mt-3">
           {myFeatures.map(({ title, description, href }, index) => (
             <Card
               key={index}

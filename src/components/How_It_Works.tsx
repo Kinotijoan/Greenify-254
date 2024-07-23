@@ -17,7 +17,7 @@ const How_It_Works = () => {
         <h2 className="font-bold mt-6  text-2xl md:text-3xl md:pt-20 select-none">
           How it works
         </h2>
-        <p className="text-lg mt-3 md:text-xl ">
+        <p className="text-lg mt-3 md:text-xl  md:font-normal">
           Wasteless empowers both individuals and companies to embrace a more
           sustainable lifestyle. Learn how our app simplifies waste management
           for everyone:
