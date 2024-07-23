@@ -31,22 +31,22 @@ const Footer: React.FC = () => {
     >
       <div className="bg-opacity-75 text-white h-full flex flex-col justify-between">
         <h3 className="text-2xl font-bold text-center my-3">WASTELESS</h3>
-        <div className="container flex flex-col items-start sm:flex-row sm:justify-between mt-8">
-          <div className="mb-8 sm:mb-0">
+        <div className="container flex flex-col items-start sm:flex-row sm:justify-between mt-6">
+          <div className="mb-6 sm:mb-0">
             <p className="text-lg font-semibold md:text-xl">Links</p>
             <ul className="">
               {links.map((link, index) => (
                 <li key={index} className="mb-2 hover:scale-105 ">
-                  <Link className="font-normal text-sm" href={link.href}>{link.text}</Link>
+                  <Link className="font-normal text-lg" href={link.href}>{link.text}</Link>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="mb-8 sm:mb-0">
+          <div className="mb-6">
             <h2 className="text-xl font-semibold mb-4" id="footer">
               Reach out to us
             </h2>
-            <div className="hover:scale-105 transition-transform duration-300 flex items-center mb-4 font-normal text-sm ">
+            {/* <div className="hover:scale-105 transition-transform duration-300 flex items-center mb-4 font-normal text-sm ">
               <Image
                 src="/icons/github(1).png"
                 alt="GitHub Link"
@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
               >
                 GitHub
               </a>
-            </div>
+            </div> */}
             <div className="hover:scale-105 transition-transform duration-300 flex items-center mb-4">
               <Image
                 src="/icons/phone.png"
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                 height={25}
                 className="mr-2"
               />
-              <span className="sm:text-lg lg:text-xl">0712345678</span>
+              <span className="text-lg">0712345678</span>
             </div>
             <div className="hover:scale-105 transition-transform duration-300 flex items-center">
               <Image
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
               />
               <a
                 href="mailto:wasteless2024@gmail.com"
-                className="sm:text-lg lg:text-xl"
+                className="text-lg"
               >
                 wasteless2024@gmail.com
               </a>
@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
             ></textarea>
           </div>
         </div>
-        <div className="flex items-center justify-center py-16">
+        <div className="flex items-center justify-center py-10">
           <div className="flex items-center md:border-t md:border-white px-4 sm:px-64 py-2">
             <p className="mr-3 md:text-lg">Copyright</p>
             <Image
