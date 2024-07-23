@@ -8,14 +8,14 @@ interface CardProps {
 }
 const Card = ({ title, description, href }: CardProps) => {
   return (
-    <div className=" p-5 flex flex-col justify-evenly bg-cardbg border-gray-200 rounded-2xl shadow md:shadow-xl w-[280px] h-[350px] md:w-[300px] md:h-[380px] z-10 bg-opacity-70">
+    <div className=" p-5 flex flex-col justify-evenly bg-cardbg border-gray-200 rounded-2xl shadow md:shadow-xl w-[280px] h-[350px] md:w-[300px] md:h-[400px] z-10 bg-opacity-70">
       <a href="#">
         <h3 className="mb-2 text-xl font-bold">{title}</h3>
       </a>
       <p className="mb-2 md:text-lg">{description}</p>
       <Link
         href={href}
-        className="mt-6 inline-flex items-center justify-center px-5 py-2 text-sm font-bold text-center bg-green-500 rounded-lg hover:bg-green-300 focus:ring-4 focus:outline-none focus:ring-green-600"
+        className="inline-flex items-center justify-center px-5 py-2 text-sm font-bold text-center bg-green-500 rounded-lg hover:bg-green-300 focus:ring-4 focus:outline-none focus:ring-green-600"
       >
         CTA
         <svg
