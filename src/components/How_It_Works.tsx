@@ -9,7 +9,7 @@ import React from "react";
 
 const How_It_Works = () => {
   return (
-    <div
+    <section
       className=""
       id="how-it-works"
     >
@@ -26,7 +26,7 @@ const How_It_Works = () => {
           1. As a common user you can:
         </h2>
       </div>
-      <div className="p-6">
+      <div className="p-6 container    ">
         <div className="flex mb-6 md:gap-10 md:mx-20 md:relative ">
           <div className="my-5">
             <p className="hidden md:block md:text-xl  md:text-[#65FF00] ">
@@ -108,7 +108,7 @@ const How_It_Works = () => {
             </Card>
           </div>
         </div>
-      </div>
+      </section>
   );
 };
 
