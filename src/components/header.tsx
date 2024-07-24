@@ -1,7 +1,6 @@
 import React from "react";
-import NavLinks, { NavLink } from "./UI/Nav-bar";
+import NavLinks from "./UI/Nav-bar";
 import { Button } from "./UI/Button";
-import { Menu } from "lucide-react";
 
 const Header: React.FC = () => {
   return (
