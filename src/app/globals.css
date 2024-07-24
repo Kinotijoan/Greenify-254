@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .bg-custom-gradient {
+    height: 100vh;
+    background: radial-gradient(circle at left, #E0C3FC, white 50%),
+                radial-gradient(circle at right, #B1FDAE, white 50%);
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
