@@ -37,7 +37,7 @@ const Hero = () => {
           </p>
           <Button
             asChild
-            className=" text-black bg-white rounded-full md:w-64  text-xl hover:bg-green-500 hover:text-white"
+            className=" text-black bg-white rounded-full w-36 mx-auto md:w-64  text-xl hover:bg-green-500 hover:text-white"
           >
             <Link href="/#about-us">Learn more</Link>
           </Button>
