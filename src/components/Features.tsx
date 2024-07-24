@@ -31,7 +31,7 @@ const myFeatures: FeaturesType[] = [
 const Features = () => {
   return (
     <>
-      <div className="flex container " id="features">
+      <section className="flex container " id="features">
         {/* <Image
           src="/flower.svg"
           alt="flower"
@@ -49,7 +49,7 @@ const Features = () => {
             />
           ))}
         </div>
-      </div>
+      </section>
     </>
   );
 };
