@@ -1,22 +1,18 @@
 import React from "react";
-import NavLinks, { NavLink } from "./UI/Nav-bar";
-import Link from "next/link";
+import NavLinks from "./UI/Nav-bar";
 import { Button } from "./UI/Button";
 
 const Header: React.FC = () => {
-  const links: NavLink[] = [
-    { text: "features", href: "/" },
-    { text: "about", href: "/about" },
-    { text: "contact", href: "/contact" },
-  ];
-  return (    
-    <nav className=" hidden  h-12 md:flex items-center justify-between py-10 container">
-      <h1 className=" text-4xl">Wasteless</h1>
-      <div className=" flex space-x-6 items-center">
-        <NavLinks links={links} />
-        <Button className=" bg-gradient-to-r from-purple-500 to-purple-300 rounded-full px-6 mt-4  hover:text-purple-700">
-          Login
-        </Button>
+  return (
+    <nav className=" fixed top-0 z-20 bg-white shadow md:flex py-4 w-full">
+      <div className="container flex justify-between items-center">
+        <h1 className="text-3xl md:text-4xl select-none">Wasteless</h1>
+        <div className=" flex space-x-2 md:space-x-6 justify-between items-center">
+          <NavLinks />
+          <Button className="bg-transparent hover:bg-green-500 hover:text-white hover:outline-1 text-green-500 ring-1 ring-green-500 font-bold rounded-full">
+            Login
+          </Button>
+        </div>
       </div>
     </nav>
   );

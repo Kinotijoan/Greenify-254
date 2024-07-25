@@ -91,3 +91,24 @@
   background-position: center center, center center;
   background-repeat: no-repeat;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-inline: 3rem;
+}
+
+.box {
+  border: 1px solid #056c24;
+  border-radius: 6px;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; /* Ensure spacing between items */
+  align-items: center; /* Center items */
+  height: auto; /* Adjusted to auto for flexible height */
+  width: 95%;
+}

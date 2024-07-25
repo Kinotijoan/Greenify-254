@@ -9,18 +9,21 @@ type FeaturesType = {
 };
 const myFeatures: FeaturesType[] = [
   {
-    title: "Feature 1",
-    description: "Description 1",
+    title: "Education Platform",
+    description:
+      "Learn about waste reduction, recycling techniques, and composting through informative articles and engaging resources.",
     href: "#",
   },
   {
-    title: "Feature 2",
-    description: "Description 2",
+    title: "Discover Recyclers",
+    description:
+      "Our app connects you with a network of trusted recyclers, making responsible waste disposal a breeze. Simply browse our directory and find the perfect recycling solution for your needs.",
     href: "#",
   },
   {
-    title: "Feature 3",
-    description: "Description 3",
+    title: "Discover Recycling Events",
+    description:
+      "Never miss out on a local recycling event again! We keep you informed about upcoming waste collection drives and other sustainability initiatives happening in your community.",
     href: "#",
   },
 ];
@@ -28,20 +31,25 @@ const myFeatures: FeaturesType[] = [
 const Features = () => {
   return (
     <>
-      <div className="flex">
-        <Image
+      <section className="flex container " id="features">
+        {/* <Image
           src="/flower.svg"
           alt="flower"
-          width={300}
-          height={300}
-          className="hidden md:block left-0 "
-        />
-        <div className=" flex absolute justify-center gap-10 w-full">
+          width={250}
+          height={250}
+          className="hidden md:block md:left-0 select-none  "
+        /> */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-10 w-full mt-10">
           {myFeatures.map(({ title, description, href }, index) => (
-            <Card title={title} description={description} href={href} />
+            <Card
+              key={index}
+              title={title}
+              description={description}
+              href={href}
+            />
           ))}
         </div>
-      </div>
+      </section>
     </>
   );
 };
