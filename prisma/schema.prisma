@@ -25,6 +25,15 @@ model Individual {
   Comment         Comment[]
   Post            Post[]
   Like            Like[]
+  Session         Session[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+
+  individual Individual @relation(fields: [userId], references: [individualId], onDelete: Cascade)
 }
 
 model WasteFacility {
@@ -84,11 +93,10 @@ model Post {
   author         Individual?     @relation(fields: [authorId], references: [individualId])
   companyAccount CompanyAccount? @relation(fields: [companyAccountId], references: [companyAccountId])
 
-  DonationOrganisation                       DonationOrganisation? @relation(fields: [donationOrganisationId], references: [donationOrganisationId])
+  DonationOrganisation   DonationOrganisation? @relation(fields: [donationOrganisationId], references: [donationOrganisationId])
   donationOrganisationId String?
-  Comment                                    Comment[]
-  Like                                       Like[]
-
+  Comment                Comment[]
+  Like                   Like[]
 }
 
 model Comment {
@@ -113,10 +121,10 @@ model Like {
 }
 
 model Blog {
-  title     String @id @default(uuid())
-  description   String
-  image  String
-  author    String?
-  link      String?
-  date      String
+  title       String  @id @default(uuid())
+  description String
+  image       String
+  author      String?
+  link        String?
+  date        String
 }

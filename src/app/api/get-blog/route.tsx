@@ -4,7 +4,6 @@ import { NextResponse, NextRequest } from "next/server";
 export async function GET(request: NextRequest) {
   try {
     const blogs = await prisma.blog.findMany();
-    console.log(blogs);
     return NextResponse.json(blogs);
   } catch (error) {
     console.error("Error fetching blogs:", error);

@@ -87,7 +87,6 @@ export async function sendBlogs(blogs: Blog[]){
     }
   );
   console.log(blogs)
-
   if (response.ok) {
     console.log("Blogs sent successfully");
   } else {
