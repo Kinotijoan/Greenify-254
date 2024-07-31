@@ -1,5 +1,5 @@
+import ProductCard from "@/components/ProductCard";
 import React from "react";
-import ProductCard from "./product_image";
 
 const products = [
   {
@@ -52,7 +52,7 @@ const products = [
   },
 ];
 
-const ProductList = () => {
+const Page = () => {
   return (
     <div className="flex flex-wrap gap-4 justify-center md:justify-start">
       {products.map((product, index) => (
@@ -62,4 +62,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default Page;

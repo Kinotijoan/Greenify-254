@@ -6,6 +6,7 @@ import Aboutus from "@/components/Aboutus";
 import Footer from "@/components/UI/Footer";
 import How_It_Works from "@/components/How_It_Works";
 import CompaniesSection from "@/components/Companies";
+import ProductCard from "@/components/ProductCard";
 
 const MyApp: React.FC = () => {
   return (

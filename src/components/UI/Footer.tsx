@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { NavLink } from "./Nav-bar";
+import { NavLink } from "./NavBar";
 import { url } from "inspector";
 import { Button } from "./Button";
 import { Mail } from "lucide-react";
