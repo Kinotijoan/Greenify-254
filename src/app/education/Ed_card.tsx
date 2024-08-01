@@ -15,6 +15,17 @@ interface Ed_cardProps {
   link: string;
 }
 
+function truncateText(text: string, maxWords: number): string {
+  const words = text.split(' ');
+  if (words.length > maxWords) {
+    return words.slice(0, maxWords).join(' ') + '..';
+  }
+  return text;
+}
+
+
+
+
 const Ed_card = ({
   title,
   date,
@@ -25,6 +36,8 @@ const Ed_card = ({
 }: Ed_cardProps) => {
   const defaultImageUrl =
     "/images/3R's.png";
+
+    const truncatedDescription = truncateText(description, 40);
   return (
    <div className="box space-y-3">
   <h3 className="font-bold text-xl">{title}</h3>
@@ -41,7 +54,7 @@ const Ed_card = ({
 
   {img_url ? <Image src={img_url} alt={title} width={300} height={100} className="rounded-xl" /> : <Image src={defaultImageUrl} alt={title} width={200} height={150} />}
   
-  <p className="font-light">{description}.</p>
+  <p className="font-light">{truncatedDescription}.</p>
   <Link href={link}>
     <Button variant="outline" className="ml-auto">
       Read more
