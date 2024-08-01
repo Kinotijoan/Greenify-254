@@ -1,6 +1,6 @@
 import React from 'react'
-import CompaniesList from './_components/CompaniesList'
-import SearchForm from './_components/SearchForm'
+import CompaniesList from './CompaniesList'
+
 
 const page = () => {
   return (
