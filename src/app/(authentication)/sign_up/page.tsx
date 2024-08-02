@@ -1,5 +1,6 @@
 'use client';
 import { useState, ChangeEvent, FormEvent } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 type UserFormData = {
   firstName: string;
@@ -21,7 +22,7 @@ const SignUpPage: React.FC = () => {
   const [isUser, setIsUser] = useState(true);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen ">
+    <div className="flex flex-col items-center justify-center h-screen">
       <div className="bg-white shadow-2xl rounded-lg py-8 mb-16 w-full max-w-2xl h-full mt-16">
         <div className="flex justify-around p-10">
           <button
@@ -52,18 +53,47 @@ const SignUpUserPage: React.FC = () => {
     confirmPassword: '',
   });
 
+  const [errors, setErrors] = useState<string[]>([]);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const validateForm = () => {
+    const newErrors: string[] = [];
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.push('Passwords do not match.');
+    }
+    if (formData.password.length < 8) {
+      newErrors.push('Password must be at least 8 characters long.');
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      newErrors.push('Email is not valid.');
+    }
+    setErrors(newErrors);
+    return newErrors.length === 0;
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    if (validateForm()) {
+      console.log(formData);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="px-8">
       <h1 className="text-4xl font-bold text-[rgba(30,75,0,1)] mb-16 text-center">Sign Up</h1>
+      {errors.length > 0 && (
+        <div className="mb-6">
+          {errors.map((error, index) => (
+            <div key={index} className="text-red-500">{error}</div>
+          ))}
+        </div>
+      )}
       <div className="mb-6">
         <label className="block text-gray-700 font-bold mb-2" htmlFor="firstName">First Name:</label>
         <input
@@ -97,27 +127,41 @@ const SignUpUserPage: React.FC = () => {
           required
         />
       </div>
-      <div className="mb-6">
+      <div className="mb-6 relative">
         <label className="block text-gray-700 font-bold mb-2" htmlFor="password">Password:</label>
         <input
-          className="border rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight"
-          type="password"
+          className="border rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight pr-10"
+          type={showPassword ? "text" : "password"}
           name="password"
           value={formData.password}
           onChange={handleInputChange}
           required
         />
+        <button
+          type="button"
+          className="absolute inset-y-12 right-0 flex items-center px-3 text-gray-700"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEye /> : <FaEyeSlash />}
+        </button>
       </div>
-      <div className="mb-6">
+      <div className="mb-6 relative">
         <label className="block text-gray-700 font-bold mb-2" htmlFor="confirmPassword">Confirm Password:</label>
         <input
-          className="border rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight"
-          type="password"
+          className="border rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight pr-10"
+          type={showConfirmPassword ? "text" : "password"}
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleInputChange}
           required
         />
+        <button
+          type="button"
+          className="absolute inset-y-12 right-0 flex items-center px-3 text-gray-700"
+          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+        >
+          {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+        </button>
       </div>
       <div className="flex justify-center mt-8 mb-8">
         <span className="mr-2">Already have an account</span>
@@ -144,18 +188,47 @@ const SignUpRecyclingCompanyPage: React.FC = () => {
     confirmPassword: '',
   });
 
+  const [errors, setErrors] = useState<string[]>([]);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const validateForm = () => {
+    const newErrors: string[] = [];
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.push('Passwords do not match.');
+    }
+    if (formData.password.length < 8) {
+      newErrors.push('Password must be at least 8 characters long.');
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      newErrors.push('Email is not valid.');
+    }
+    setErrors(newErrors);
+    return newErrors.length === 0;
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    if (validateForm()) {
+      console.log(formData);
+    }
   };
 
   return (
-    <form className="px-8" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="px-8">
       <h1 className="text-4xl font-bold text-[rgba(30,75,0,1)] mb-16 text-center">Sign Up</h1>
+      {errors.length > 0 && (
+        <div className="mb-6">
+          {errors.map((error, index) => (
+            <div key={index} className="text-red-500">{error}</div>
+          ))}
+        </div>
+      )}
       <div className="mb-6">
         <label className="block text-gray-700 font-bold mb-2" htmlFor="companyName">Company Name:</label>
         <input
@@ -189,27 +262,41 @@ const SignUpRecyclingCompanyPage: React.FC = () => {
           required
         />
       </div>
-      <div className="mb-6">
+      <div className="mb-6 relative">
         <label className="block text-gray-700 font-bold mb-2" htmlFor="password">Password:</label>
         <input
-          className="border rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight"
-          type="password"
+          className="border rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight pr-10"
+          type={showPassword ? "text" : "password"}
           name="password"
           value={formData.password}
           onChange={handleInputChange}
           required
         />
+        <button
+          type="button"
+          className="absolute inset-y-12 right-0 flex items-center px-3 text-gray-700"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEye /> : <FaEyeSlash />}
+        </button>
       </div>
-      <div className="mb-6">
+      <div className="mb-6 relative">
         <label className="block text-gray-700 font-bold mb-2" htmlFor="confirmPassword">Confirm Password:</label>
         <input
-          className="border rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight"
-          type="password"
+          className="border rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight pr-10"
+          type={showConfirmPassword ? "text" : "password"}
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleInputChange}
           required
         />
+        <button
+          type="button"
+          className="absolute inset-y-12 right-0 flex items-center px-3 text-gray-700"
+          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+        >
+          {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+        </button>
       </div>
       <div className="flex justify-center mt-8 mb-8">
         <span className="mr-2">Already have an account</span>
