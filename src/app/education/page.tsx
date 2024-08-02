@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Ed_card from "./Ed_card";
-import { getBlogs, scrapeRogue } from "@/webScraping/ScrapeRogue";
-import { scrapeBlogs } from "@/webScraping/ScrapeForge";
+import EdCard from "./_components/EdCard";
+import { getBlogs, ScrapeRogue } from "@/webScraping/ScrapeRogue";
+import { Scrapeblogs } from "@/webScraping/ScrapeForge";
 import { sendBlogs } from "@/webScraping/ScrapeRogue";
 
 type Blog = {
@@ -24,8 +24,8 @@ const Page: React.FC = () => {
   //   const url2 =
   //     "https://www.forgerecycling.co.uk/blog/category/recycling/page/3/";
 
-  //   const blogsData1 = await scrapeRogue(url1);
-  //   const blogsData2 = await scrapeBlogs(url2);
+  //   const blogsData1 = await ScrapeRogue(url1);
+  //   const blogsData2 = await Scrapeblogs(url2);
 
   //   const combinedBlogs = [...(blogsData1 || []), ...(blogsData2 || [])];
 
@@ -63,13 +63,9 @@ const Page: React.FC = () => {
     fetchData();
   }, []); // Fetch data when component mounts
 
-
-
   // if (loading) {
   //   return <div>Loading...</div>;
   // }
-
-  
 
   return (
     <div>
@@ -81,7 +77,7 @@ const Page: React.FC = () => {
       ) : (
         <div className="wrapper">
           {data.map((blog) => (
-            <Ed_card
+            <EdCard
               key={blog.title}
               title={blog.title}
               date={blog.date}
