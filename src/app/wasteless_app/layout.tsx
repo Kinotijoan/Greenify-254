@@ -8,7 +8,7 @@ const Layout: React.FC = ({}) => {
       <Navbar />
       <div className="flex flex-row h-full">
         <Sidebar />
-        <div className="flex-1">{}</div>
+        <div className="flex-2">{}</div>
       </div>
     </div>
   );
