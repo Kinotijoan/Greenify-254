@@ -7,8 +7,8 @@ import { Individual } from "@prisma/client";
 import { redirect } from "next/navigation";
 import {
   generateEmailVerificationCode,
-  sendVerificationCode,
 } from "./functions";
+import { sendEmail } from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   const res = await request.json();
@@ -40,10 +40,10 @@ export async function POST(request: NextRequest) {
         },
       });
     }
-
+    const subject = "Reset Password"
     const code = await generateEmailVerificationCode(userId, res.email);
     // Send email with code
-    await sendVerificationCode(res.email, code);
+    await sendEmail({to:res.email, html:code, subject:subject})
     // Redirect to email verification page
     const session = await lucia.createSession(userId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);

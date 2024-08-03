@@ -24,7 +24,3 @@ export async function createPasswordResetToken(userId: string){
     });
 
 }
-
-export async function sendPasswordResetEmail(email: string, token: string) {
-    
-}
