@@ -66,3 +66,4 @@ const Ed_card = ({
 };
 
 export default Ed_card;
+

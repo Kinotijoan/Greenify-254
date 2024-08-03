@@ -10,9 +10,9 @@ type Blog = {
   date: string;
   image: string | null;
   link: string;
-}
+};
 
-export const scrapeRogue = async (url: string): Promise<Blog[] | null> => {
+export const ScrapeRogue = async (url: string): Promise<Blog[] | null> => {
   let browser: Browser | null = null;
 
   try {
@@ -35,8 +35,8 @@ export const scrapeRogue = async (url: string): Promise<Blog[] | null> => {
       const blogData: Blog[] = [];
 
       blogElements.forEach((blog) => {
-        const titleElement = blog.querySelector(".C27-heading a"); 
-        const contentElement = blog.querySelector(".C27-excerpt"); 
+        const titleElement = blog.querySelector(".C27-heading a");
+        const contentElement = blog.querySelector(".C27-excerpt");
         const imageElement = blog.querySelector(".post-thumbnail img");
         const linkElement = blog.querySelector(".arrow-link");
 
@@ -46,14 +46,15 @@ export const scrapeRogue = async (url: string): Promise<Blog[] | null> => {
           : "";
         const image = imageElement ? imageElement.getAttribute("data-src") : "";
         const link = linkElement ? linkElement.getAttribute("href") : "";
-        const authorElement = blog.querySelector(".author a"); 
-        const dateElement = blog.querySelector(".postMeta-date"); 
+        const authorElement = blog.querySelector(".author a");
+        const dateElement = blog.querySelector(".postMeta-date");
 
-        const author = authorElement ? authorElement.textContent?.trim() ?? null : null;
+        const author = authorElement
+          ? authorElement.textContent?.trim() ?? null
+          : null;
         const date = dateElement ? dateElement.textContent?.trim() : "";
 
-        if (title && description && date && link ) {
-          
+        if (title && description && date && link) {
           blogData.push({ title, description, date, link, image, author });
         }
       });
@@ -75,28 +76,25 @@ export const scrapeRogue = async (url: string): Promise<Blog[] | null> => {
   }
 };
 
-export async function sendBlogs(blogs: Blog[]){
-  const response = await fetch(
-    "http://localhost:3000/api/add-blog",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(blogs),
-    }
-  );
-  console.log(blogs)
+export async function sendBlogs(blogs: Blog[]) {
+  const response = await fetch("http://localhost:3000/api/addBlog", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(blogs),
+  });
+  console.log(blogs);
   if (response.ok) {
     console.log("Blogs sent successfully");
   } else {
     console.error("Error sending blogs");
   }
-} 
+}
 
 export async function getBlogs(): Promise<Blog[]> {
-  console.log("getting blogs.....")
-  const response = await fetch("http://localhost:3000/api/get-blog");
+  console.log("getting blogs.....");
+  const response = await fetch("http://localhost:3000/api/getBlog");
   const blogs = await response.json();
   return blogs;
 }

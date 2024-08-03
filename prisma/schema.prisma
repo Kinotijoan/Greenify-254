@@ -15,17 +15,22 @@ datasource db {
 
 model Individual {
   individualId    String    @id @default(uuid())
-  name            String
-  email           String
+  userName        String?
+  firstName       String
+  lastName        String
+  email           String @unique
   password        String
-  phoneNumber     String
-  profileimageUrl String
+  phoneNumber     String?
+  profileimageUrl String?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  emailVerified   Boolean   @default(false)
   Comment         Comment[]
   Post            Post[]
   Like            Like[]
   Session         Session[]
+  EmailVerificationCode EmailVerificationCode[]
+  PasswordResetToken     PasswordResetToken[]
 }
 
 model Session {
@@ -34,6 +39,27 @@ model Session {
   expiresAt DateTime
 
   individual Individual @relation(fields: [userId], references: [individualId], onDelete: Cascade)
+}
+
+model EmailVerificationCode {
+  id        String   @id @default(cuid())
+  userId    String
+  email     String
+  code      String
+  expiresAt DateTime
+  individual  Individual     @relation(fields: [userId], references: [individualId])
+
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token      String
+  expiresAt DateTime
+  individual  Individual     @relation(fields: [userId], references: [individualId])
+
+  @@index([userId])
 }
 
 model WasteFacility {
