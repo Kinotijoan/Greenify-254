@@ -23,8 +23,4 @@ export async function generateEmailVerificationCode(
   return code;
 }
 
-export async function sendVerificationCode(email: String, code: String) {
-  // Send email with code
-  console.log(`Sending email to ${email} with code: ${code}`);
-  return true;
-}
+
