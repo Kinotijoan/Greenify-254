@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header";
+// import Header from "./Header";
 import Link from "next/link";
 import { Button } from "./UI/Button";
 import Image from "next/image";
@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <section className="w-full h-[90vh]" id="hero">
       <div>
-        <Header />
+        {/* <Header /> */}
       </div>
       <div className="h-[105vh] hero-bg w-full absolute"></div>
       <div className=" flex justify-evenly h-full relative">
