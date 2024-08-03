@@ -43,7 +43,7 @@ const events = [
 
 const Page = () => {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-4 justify-center md:justify-normal">
       {events.map(({ src, title, location, date }, index) => (
         <EventCard
           key={index}

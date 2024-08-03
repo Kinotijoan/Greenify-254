@@ -11,9 +11,9 @@ interface EventProps {
 
 const EventCard = ({ src, title,location, date }: EventProps) => {
   return (
-    <div className="shadow max-w-[250px] p-1 rounded">
+    <div className="shadow max-w-[250px] p-3 rounded">
       <Image src={src} height={100} width={250} alt="the event" />
-      <h3 className="text-lg">
+      <h3 className="text-lg font-bold">
         {title}
       </h3>
       <p className="flex gap-3 text-lg items-center">
