@@ -1,9 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import EdCard from "./_components/EdCard";
-import { getBlogs, ScrapeRogue } from "@/webScraping/ScrapeRogue";
-import { Scrapeblogs } from "@/webScraping/ScrapeForge";
+import Ed_card from "./Ed_card";
+import { getBlogs, scrapeRogue } from "@/webScraping/ScrapeRogue";
+import { scrapeBlogs } from "@/webScraping/ScrapeForge";
 import { sendBlogs } from "@/webScraping/ScrapeRogue";
+import SearchForm from "../companies/SearchForm"
+import { useSearchParams } from "next/navigation";
 
 type Blog = {
   title: string;
@@ -18,14 +20,16 @@ const Page: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [data, setData] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const query = searchParams.get('query') || ' ';
 
   // const fetchBlogs = async () => {
   //   const url1 = "https://roguedisposal.com/resources/education/p3";
   //   const url2 =
   //     "https://www.forgerecycling.co.uk/blog/category/recycling/page/3/";
 
-  //   const blogsData1 = await ScrapeRogue(url1);
-  //   const blogsData2 = await Scrapeblogs(url2);
+  //   const blogsData1 = await scrapeRogue(url1);
+  //   const blogsData2 = await scrapeBlogs(url2);
 
   //   const combinedBlogs = [...(blogsData1 || []), ...(blogsData2 || [])];
 
@@ -52,7 +56,12 @@ const Page: React.FC = () => {
     const fetchData = async () => {
       try {
         const blogs = await getBlogs();
-        setData(blogs);
+        const filteredBlogs = blogs.filter((blog) =>
+          Object.values(blog).some((value) =>
+            String(value).toLowerCase().includes(query.toLowerCase())
+          )
+        );
+        setData(filteredBlogs);
       } catch (error) {
         console.error("Error fetching blogs:", error);
       } finally {
@@ -61,23 +70,29 @@ const Page: React.FC = () => {
     };
 
     fetchData();
-  }, []); // Fetch data when component mounts
+  }, [query]); // Fetch data when component mounts
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+
+
+  if (loading) {
+    return<div className="flex items-center justify-center h-screen">
+    <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-green-500"></div>
+  </div>
+  }
+
 
   return (
     <div>
       <h1 className="text-5xl text-center font-bold pt-10">
         Education Resources
       </h1>
-      {loading ? (
-        <div>Loading...</div>
+      <SearchForm />
+      {(data.length === 0) ? (
+        <div> Oops, not found</div>
       ) : (
         <div className="wrapper">
           {data.map((blog) => (
-            <EdCard
+            <Ed_card
               key={blog.title}
               title={blog.title}
               date={blog.date}
