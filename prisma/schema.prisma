@@ -30,6 +30,7 @@ model Individual {
   Like            Like[]
   Session         Session[]
   EmailVerificationCode EmailVerificationCode[]
+  PasswordResetToken     PasswordResetToken[]
 }
 
 model Session {
@@ -45,6 +46,16 @@ model EmailVerificationCode {
   userId    String
   email     String
   code      String
+  expiresAt DateTime
+  individual  Individual     @relation(fields: [userId], references: [individualId])
+
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token      String
   expiresAt DateTime
   individual  Individual     @relation(fields: [userId], references: [individualId])
 
