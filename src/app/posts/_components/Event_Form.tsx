@@ -107,7 +107,7 @@ const Event_Form = () => {
                   <FormLabel>Date of the Event</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Please enter the date of teh event"
+                      placeholder="Please enter the date of the event"
                       {...field}
                     />
                   </FormControl>
