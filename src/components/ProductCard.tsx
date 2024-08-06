@@ -8,6 +8,7 @@ interface ProductImageProps {
   title: string;
   price: number;
   description: string;
+  contact: string;
 }
 
 const ProductCard = ({
@@ -16,6 +17,7 @@ const ProductCard = ({
   title,
   price,
   description,
+  contact,
 }: ProductImageProps) => (
   <div className="shadow w-[200px] p-3">
     <Link href={websiteLink || ""}>
@@ -23,6 +25,7 @@ const ProductCard = ({
       <h3 className="text-lg">{title}</h3>
       <p className="font-bold text-xl">Ksh:{price}</p>
       <p className="text-sm">{description}</p>
+      <p className="text-sm"><span className="font-bold">Contact:</span> {contact}</p>
     </Link>
   </div>
 );
