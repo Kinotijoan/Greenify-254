@@ -11,6 +11,7 @@ export async function POST(request: NextRequest , response: NextResponse) {
     const user = await prisma.individual.findUnique({
       where: {
         email: email,
+        emailVerified: true,
       },
     });
 

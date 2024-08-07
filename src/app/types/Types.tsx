@@ -13,3 +13,14 @@ export interface User {
   email: string;
   password: string;
 };
+
+export interface Post{
+  title: string;
+  description: string;
+  price?: number;
+  imgUrl: string;
+  websiteLink?: string;
+  eventDate?: string;
+  eventTime?: string;
+  venue?: string;
+}
