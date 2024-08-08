@@ -21,9 +21,12 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "csv-parser": "^3.0.0",
+    "formidable": "^3.5.1",
     "lucia": "^3.2.0",
     "lucide-react": "^0.407.0",
+    "multer": "^1.4.5-lts.1",
     "next": "14.2.5",
+    "next-connect": "^1.0.0",
     "nodemailer": "^6.9.14",
     "oslo": "^1.2.1",
     "puppeteer": "^22.13.0",
@@ -35,6 +38,8 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/formidable": "^3.4.5",
+    "@types/multer": "^1.4.11",
     "@types/node": "^20.14.12",
     "@types/nodemailer": "^6.4.15",
     "@types/react": "^18",

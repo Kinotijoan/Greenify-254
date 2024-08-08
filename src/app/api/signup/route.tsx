@@ -4,7 +4,6 @@ import { hash } from "@node-rs/argon2";
 import { NextResponse, NextRequest } from "next/server";
 import { generateIdFromEntropySize } from "lucia";
 import { Individual } from "@prisma/client";
-import { redirect } from "next/navigation";
 import {
   generateEmailVerificationCode,
 } from "./functions";
@@ -40,7 +39,7 @@ export async function POST(request: NextRequest) {
         },
       });
     }
-    const subject = "Reset Password"
+    const subject = "Email Verification";
     const code = await generateEmailVerificationCode(userId, res.email);
     // Send email with code
     await sendEmail({to:res.email, html:code, subject:subject})
@@ -50,11 +49,12 @@ export async function POST(request: NextRequest) {
     return new Response(null,{
       status: 302,
       headers: {
-        location:"/verifyEmail",
+        location:"/email_verification",
         "Set-Cookie": sessionCookie.serialize()
       }
     })
   } catch (error) {
+    return NextResponse.json({ message: `Something Went wrong ${error}` }, { status: 500 });
     // Handle the error
   }
 }
