@@ -19,10 +19,12 @@ export async function sendEmail({
   subject: string;
   html: string;
 }) {
+  console.log("Sending email to", to);
+  
   await transporter.sendMail({
     from: `"Wasteless" <${process.env.GMAIL_USER}>`, // sender address
-    to, 
-    subject,// list of receivers
+    to,
+    subject, // list of receivers
     html, // html body
   });
 }

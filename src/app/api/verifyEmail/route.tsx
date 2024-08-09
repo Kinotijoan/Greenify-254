@@ -32,6 +32,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     });
 
     if (!emailVerificationCode) {
+      
       return NextResponse.json({ error: "Invalid code" }, { status: 400 });
     }
 
