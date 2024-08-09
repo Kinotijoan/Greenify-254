@@ -7,48 +7,56 @@ const products = [
     title: "Canvas Image",
     price: 250,
     description: "Made from paper art",
+    contact:"0742374812"
   },
   {
     src: "/download.jpeg",
     title: "Canvas Image",
     price: 250,
     description: "Made from paper art",
+    contact:"0742374812"
   },
   {
     src: "/download.jpeg",
     title: "Canvas Image",
     price: 250,
     description: "Made from paper art",
+    contact:"0742374812"
   },
   {
     src: "/download.jpeg",
     title: "Canvas Image",
     price: 250,
     description: "Made from paper art",
+    contact:"0742374812"
   },
   {
     src: "/download.jpeg",
     title: "Canvas Image",
     price: 250,
     description: "Made from paper art",
+    contact:"0742374812"
   },
   {
     src: "/download.jpeg",
     title: "Canvas Image",
     price: 250,
     description: "Made from paper art",
+    contact:"0742374812"
   },
   {
     src: "/download.jpeg",
     title: "Canvas Image",
     price: 250,
     description: "Made from paper art",
+    contact:"0742374812"
   },
   {
     src: "/download.jpeg",
     title: "Canvas Image",
     price: 250,
     description: "Made from paper art",
+    contact:"0742374812"
   },
 ];
 
