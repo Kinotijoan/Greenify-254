@@ -37,8 +37,6 @@ export async function POST(request: NextRequest) {
             name: res.name,
             location: res.location,
             phoneNumber: res.phoneNumber,
-            bio: res.bio,
-            profileImageUrl: res.profileImageUrl,
           },
         });
 
