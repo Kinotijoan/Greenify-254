@@ -8,7 +8,7 @@ export async function createPasswordResetToken(userId: string){
 
     await prisma.passwordResetToken.deleteMany({
         where: {
-            userId: userId,
+            accountId: userId,
         },
     });
 
@@ -17,7 +17,7 @@ export async function createPasswordResetToken(userId: string){
   
     await prisma.passwordResetToken.create({
         data: {
-            userId: userId,
+            accountId: userId,
             token: token,
             expiresAt: createDate(new TimeSpan(2, "h")),
         },

@@ -13,24 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Individual {
-  individualId    String    @id @default(uuid())
-  userName        String?
-  firstName       String
-  lastName        String
-  email           String @unique
-  password        String
-  phoneNumber     String?
-  profileimageUrl String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  emailVerified   Boolean   @default(false)
-  Comment         Comment[]
-  Post            Post[]
-  Like            Like[]
-  Session         Session[]
-  EmailVerificationCode EmailVerificationCode[]
-  PasswordResetToken     PasswordResetToken[]
+
+enum userRole {
+  COMPANYACCOUNT
+  INDIVIDUAL
+}
+
+model Account {
+  accountId             String    @id @default(uuid())
+  role                  userRole  @default(INDIVIDUAL)
+  email                 String    @unique
+  password              String
+  IndividualId          String?
+  companyAccountId      String?
+  sessions              Session[] // Corrected plural name for sessions
+  emailVerified         Boolean   @default(false)
+  emailVerificationCode EmailVerificationCode[]
+  passwordResetToken    PasswordResetToken[]
+  
+  Individual            Individual? @relation(fields: [IndividualId], references: [individualId])
+  companyAccount        CompanyAccount? @relation(fields: [companyAccountId], references: [companyAccountId])
 }
 
 model Session {
@@ -38,28 +40,58 @@ model Session {
   userId    String
   expiresAt DateTime
 
-  individual Individual @relation(fields: [userId], references: [individualId], onDelete: Cascade)
+  account   Account     @relation(references: [accountId], fields: [userId], onDelete: Cascade)
 }
+
+
+model Individual {
+  individualId    String    @id @default(uuid())
+  userName        String?
+  firstName       String
+  lastName        String
+  phoneNumber     String?
+  profileimageUrl String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  Account         Account[]
+  Comment         Comment[]
+  Post            Post[]
+  Like            Like[]
+}
+
+model CompanyAccount {
+  companyAccountId String   @id @default(uuid())
+  name             String
+  bio              String?
+  profileImageUrl  String?
+  location         String
+  phoneNumber      String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  Post             Post[]
+  Account          Account[]
+}
+
 
 model EmailVerificationCode {
   id        String   @id @default(cuid())
-  userId    String
+  accountId    String
   email     String
   code      String
   expiresAt DateTime
-  individual  Individual     @relation(fields: [userId], references: [individualId])
+  account   Account   @relation(fields: [accountId], references: [accountId])
 
-  @@index([userId])
+  @@index([accountId])
 }
 
 model PasswordResetToken {
   id        String   @id @default(cuid())
-  userId    String
+  accountId    String
   token      String
   expiresAt DateTime
-  individual  Individual     @relation(fields: [userId], references: [individualId])
+  account   Account   @relation(fields: [accountId], references: [accountId])
 
-  @@index([userId])
+  @@index([accountId])
 }
 
 model WasteFacility {
@@ -78,19 +110,7 @@ model WasteFacility {
   updatedAt       DateTime @updatedAt
 }
 
-model CompanyAccount {
-  companyAccountId String   @id @default(uuid())
-  name             String
-  email            String
-  password         String
-  bio              String
-  profileImageUrl  String
-  location         String
-  phoneNumber      String
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  Post             Post[]
-}
+
 
 model DonationOrganisation {
   donationOrganisationId String   @id @default(uuid())

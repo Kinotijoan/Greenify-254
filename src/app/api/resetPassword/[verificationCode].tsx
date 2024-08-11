@@ -7,6 +7,7 @@ import { encodeHex } from "oslo/encoding";
 import { sha256 } from "oslo/crypto";
 import { isWithinExpirationDate } from "oslo";
 import { lucia } from "@/lib/lucia";
+import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest, response: NextResponse) {
   const res = await request.json();
@@ -14,19 +15,29 @@ export async function POST(request: NextRequest, response: NextResponse) {
   const verificationToken = searchParams.get('verificationCode')
   try{
 
+    const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
+    console.log(sessionId);
+
+    if (!sessionId) {
+      console.log("no session id");
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { user } = await lucia.validateSession(sessionId);
+    console.log("user", sessionId, user);
+
+    if (!user) {
+      console.log("no user");
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const tokenHash = encodeHex(await sha256(new TextEncoder().encode(verificationToken || "")));
     const token = await prisma.passwordResetToken.findFirst({
       where: {
         token: tokenHash,
       },
     });
-    if(token){
-      await prisma.passwordResetToken.deleteMany({
-        where: {
-          token: tokenHash,
-        },
-      });
-    }
+    
 
     if (!token || isWithinExpirationDate(token.expiresAt)) {
      return NextResponse.json({ message: "User does not exist" });
@@ -35,16 +46,24 @@ export async function POST(request: NextRequest, response: NextResponse) {
     await lucia.invalidateUserSessions(token.id);
     const hashedpassword = await hash(res.password);
 
-    await prisma.individual.update({
+    await prisma.account.update({
       where : {
-        individualId: token.userId,
+        accountId: user.accountId,
       },
       data: {
         password: hashedpassword,
       },
     })
 
-    const session = await lucia.createSession(token.userId, {});
+    if (token) {
+      await prisma.passwordResetToken.deleteMany({
+        where: {
+          token: tokenHash,
+        },
+      });
+    }
+
+    const session = await lucia.createSession(user.accountId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
     return new Response(null, {
       status: 302,
