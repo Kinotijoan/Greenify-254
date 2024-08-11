@@ -2,32 +2,36 @@ import prisma from "@/lib/prisma";
 import { lucia } from "@/lib/lucia";
 import { isWithinExpirationDate } from "oslo";
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest, response: NextResponse) {
   const res = await request.json();
   const { code } = res;
 
-  const cookies = request.headers.get("cookie");
-  const sessionCookie = cookies
-    ?.split(";")
-    .find((c) => c.trim().startsWith("sessionId="));
-  if (!sessionCookie) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+    const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
+    console.log(sessionId);
+    
 
-  const sessionId = sessionCookie.split("=")[1];
-  const { user } = await lucia.validateSession(sessionId);
+    if (!sessionId) {
+      console.log("no session id")
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+    const { user } = await lucia.validateSession(sessionId);
+    console.log("user", sessionId, user)
+
+
+    if (!user) {
+      console.log("no user")
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
 
   
     const emailVerificationCode = await prisma.emailVerificationCode.findFirst({
       where: {
-        userId: user.id,
+        accountId: user.id,
         code,
-
       },
     });
 
@@ -40,25 +44,25 @@ export async function POST(request: NextRequest, response: NextResponse) {
       return NextResponse.json({ error: "Expired code" }, { status: 400 });
     }
 
-    await prisma.emailVerificationCode.deleteMany({
+    await prisma.account.update({
       where: {
-        userId: user.id,
-      },
-    });
-
-    await lucia.invalidateUserSessions(user.id);
-
-    await prisma.individual.update({
-      where: {
-        individualId: user.id
+        accountId: user.individualId
       },
       data: {
         emailVerified: true,
       },
     });
+    console.log(user.individualId)
+    await prisma.emailVerificationCode.deleteMany({
+      where: {
+        accountId: user.id,
+      },
+    });
+    
+    await lucia.invalidateUserSessions(user.id);
   
 
-  const session = await lucia.createSession(user.id, {});
+  const session = await lucia.createSession(user.accountId, {});
   const newSessionCookie = lucia.createSessionCookie(session.id);
   return new Response(null, {
     status: 302,

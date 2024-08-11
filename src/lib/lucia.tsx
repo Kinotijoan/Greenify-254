@@ -12,14 +12,15 @@ export const lucia = new Lucia(adapter, {
     },
   },
   getUserAttributes: (attributes) => {
+    console.log("Attributes from Database :" , attributes);
+    
     return {
       // attributes has the type of DatabaseUserAttributes
-      firstName: attributes.firstName,
-      lastName: attributes.lastName,
+      accountId: attributes.accountId,
       email: attributes.email,
-      phoneNumber: attributes.phoneNumber,
-      hashedPassword: attributes.hashedPassword,
-
+      individualId: attributes.IndividualId,
+      companyAccountId: attributes.companyAccountId,
+      hashedPassword: attributes.password,
     };
   },
 });
@@ -33,11 +34,11 @@ declare module "lucia" {
 }
 
 interface DatabaseUserAttributes {
-  firstName: string;
-  lastName: string;
+  accountId: string;
   email: string;
-  phoneNumber: String;
-  hashedPassword: string;
+  IndividualId?: string;
+  companyAccountId?: string;
+  password: string;
 }
 
 export const validateRequest = cache(async () => {
