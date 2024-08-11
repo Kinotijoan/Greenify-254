@@ -62,8 +62,8 @@ model Individual {
 model CompanyAccount {
   companyAccountId String   @id @default(uuid())
   name             String
-  bio              String
-  profileImageUrl  String
+  bio              String?
+  profileImageUrl  String?
   location         String
   phoneNumber      String
   createdAt        DateTime @default(now())
