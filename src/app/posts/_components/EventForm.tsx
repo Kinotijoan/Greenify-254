@@ -15,6 +15,9 @@ import {
   FormMessage,
 } from "@/app/posts/_components/Form";
 import { Input } from "@/components/UI/Input";
+import { FileInput } from "./FileInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const isBrowser = typeof window !== "undefined";
 const FileListType = isBrowser ? FileList : Array;
@@ -58,11 +61,17 @@ const Event_Form = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen mt-20 mb-20">
-      <div className="bg-white shadow-2xl rounded-lg w-full max-w-md p-6 mt-20">
-      <h1 className="font-semibold text-lg text-center my-5">
-				Create a New Innovation
-			</h1>
+    
+      <div >
+       
+      <button className="relative left-96">
+          <FontAwesomeIcon icon={faClose} className="h-6 w-6 text-gray-500" />
+        </button>
+        <h1 className="font-semibold text-2xl text-center mb-5">
+          Post an Event
+        </h1>
+       
+        
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
@@ -155,23 +164,25 @@ const Event_Form = () => {
               name="banner_image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Banner image</FormLabel>
-                  <FormControl>
-                    
-                  </FormControl>
+                  <FormLabel className="required">Cover Image</FormLabel>
+                  <FileInput {...form.register("banner_image")} />
+                  <FormDescription></FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <div className="flex justify-center">
+            <div className="flex justify-evenly">
               <Button type="submit" className="bg-blue-600">
                 Submit
+              </Button>
+              <Button type="reset" className="bg-blue-600">
+                Cancel
               </Button>
             </div>
           </form>
         </Form>
       </div>
-    </div>
+
   );
 };
 
