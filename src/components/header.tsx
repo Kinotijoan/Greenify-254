@@ -1,5 +1,5 @@
 import React from "react";
-import NavLinks from "./UI/Nav-bar";
+import NavLinks from "./UI/NavBar";
 import { Button } from "./UI/Button";
 
 const Header: React.FC = () => {

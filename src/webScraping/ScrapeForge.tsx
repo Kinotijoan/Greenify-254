@@ -12,7 +12,7 @@ interface Blog {
   link: string;
 }
 
-export const scrapeBlogs = async (url: string): Promise<Blog[] | null> => {
+export const Scrapeblogs = async (url: string): Promise<Blog[] | null> => {
   let browser: Browser | null = null;
 
   try {

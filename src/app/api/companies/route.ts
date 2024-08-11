@@ -8,20 +8,7 @@ export const GET = async (req: NextRequest) => {
     const pageSize = 20; // Set the number of companies per page
 
     try {
-        const totalCompanies = await prisma.wasteFacility.count({
-            where: {
-                OR: [
-                    { name: { contains: searchQuery ?? '', mode: 'insensitive' } },
-                    { email: { contains: searchQuery ?? '', mode: 'insensitive' } },
-                    { district: { contains: searchQuery ?? '', mode: 'insensitive' } },
-                    { county: { contains: searchQuery ?? '', mode: 'insensitive' } },
-                    { location: { contains: searchQuery ?? '', mode: 'insensitive' } },
-                    { address: { contains: searchQuery ?? '', mode: 'insensitive' } },
-                    { wasteType: { contains: searchQuery ?? '', mode: 'insensitive' } },
-                    { facilityType: { contains: searchQuery ?? '', mode: 'insensitive' } },
-                ],
-            },
-        });
+        
 
         const results = await prisma.wasteFacility.findMany({
             where: {
@@ -36,8 +23,10 @@ export const GET = async (req: NextRequest) => {
                     { facilityType: { contains: searchQuery ?? '', mode: 'insensitive' } },
                 ],
             },
-            skip: (page - 1) * pageSize,
-            take: pageSize,
+            take: 100,
+            
+            // skip: (page - 1) * pageSize,
+            // take: pageSize,
         });
 
         return NextResponse.json(results);

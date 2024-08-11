@@ -15,16 +15,51 @@ datasource db {
 
 model Individual {
   individualId    String    @id @default(uuid())
-  name            String
-  email           String
+  userName        String?
+  firstName       String
+  lastName        String
+  email           String @unique
   password        String
-  phoneNumber     String
-  profileimageUrl String
+  phoneNumber     String?
+  profileimageUrl String?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  emailVerified   Boolean   @default(false)
   Comment         Comment[]
   Post            Post[]
   Like            Like[]
+  Session         Session[]
+  EmailVerificationCode EmailVerificationCode[]
+  PasswordResetToken     PasswordResetToken[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+
+  individual Individual @relation(fields: [userId], references: [individualId], onDelete: Cascade)
+}
+
+model EmailVerificationCode {
+  id        String   @id @default(cuid())
+  userId    String
+  email     String
+  code      String
+  expiresAt DateTime
+  individual  Individual     @relation(fields: [userId], references: [individualId])
+
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token      String
+  expiresAt DateTime
+  individual  Individual     @relation(fields: [userId], references: [individualId])
+
+  @@index([userId])
 }
 
 model WasteFacility {
@@ -76,6 +111,11 @@ model Post {
   content          String
   imageUrl         String
   category         String
+  eventDate        DateTime?
+  eventLocation    String?
+  eventTime        String?
+  productPrice     Float?
+  websiteLink      String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
   authorId         String? // Assuming this is for individuals
@@ -84,11 +124,10 @@ model Post {
   author         Individual?     @relation(fields: [authorId], references: [individualId])
   companyAccount CompanyAccount? @relation(fields: [companyAccountId], references: [companyAccountId])
 
-  DonationOrganisation                       DonationOrganisation? @relation(fields: [donationOrganisationId], references: [donationOrganisationId])
+  DonationOrganisation   DonationOrganisation? @relation(fields: [donationOrganisationId], references: [donationOrganisationId])
   donationOrganisationId String?
-  Comment                                    Comment[]
-  Like                                       Like[]
-
+  Comment                Comment[]
+  Like                   Like[]
 }
 
 model Comment {
@@ -113,10 +152,10 @@ model Like {
 }
 
 model Blog {
-  title     String @id @default(uuid())
-  description   String
-  image  String
-  author    String?
-  link      String?
-  date      String
+  title       String  @id @default(uuid())
+  description String
+  image       String
+  author      String?
+  link        String?
+  date        String
 }
