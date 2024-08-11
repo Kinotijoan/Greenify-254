@@ -47,8 +47,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       emailVerified: true,
     },
   });
-  console.log(user.individualId);
-  await prisma.emailVerificationCode.deleteMany({
+   await prisma.emailVerificationCode.deleteMany({
     where: {
       accountId: user.id,
     },
@@ -61,7 +60,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
   return new Response(null, {
     status: 302,
     headers: {
-      Location: "/login",
+      Location: "/location",
       "Set-Cookie": newSessionCookie.serialize(),
     },
   });

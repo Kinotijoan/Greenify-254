@@ -37,6 +37,8 @@ export async function POST(request: NextRequest) {
             name: res.name,
             location: res.location,
             phoneNumber: res.phoneNumber,
+            bio: res.bio,
+            profileImageUrl: res.profileImageUrl,
           },
         });
 
@@ -45,7 +47,7 @@ export async function POST(request: NextRequest) {
             accountId: companyId,
             email: res.email,
             password: hashedpassword,
-            IndividualId: company.companyAccountId,
+            companyAccountId: company.companyAccountId,
             role: userRole.COMPANYACCOUNT,
           },
         });

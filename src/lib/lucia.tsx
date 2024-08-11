@@ -2,6 +2,7 @@ import { Lucia } from "lucia";
 import { adapter } from "./prismaAdapter";
 import { cache } from "react";
 import { cookies } from "next/headers";
+import { userRole } from "@prisma/client";
 
 
 export const lucia = new Lucia(adapter, {
@@ -21,6 +22,7 @@ export const lucia = new Lucia(adapter, {
       individualId: attributes.IndividualId,
       companyAccountId: attributes.companyAccountId,
       hashedPassword: attributes.password,
+      role: attributes.role,
     };
   },
 });
@@ -39,6 +41,7 @@ interface DatabaseUserAttributes {
   IndividualId?: string;
   companyAccountId?: string;
   password: string;
+  role: userRole;
 }
 
 export const validateRequest = cache(async () => {

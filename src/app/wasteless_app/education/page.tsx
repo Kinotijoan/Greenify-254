@@ -1,11 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Ed_card from "./Ed_card";
-import { getBlogs, scrapeRogue } from "@/webScraping/ScrapeRogue";
-import { scrapeBlogs } from "@/webScraping/ScrapeForge";
+import { getBlogs, ScrapeRogue } from "@/webScraping/ScrapeRogue";
+import { Scrapeblogs } from "@/webScraping/ScrapeForge";
 import { sendBlogs } from "@/webScraping/ScrapeRogue";
 import SearchForm from "../companies/SearchForm"
 import { useSearchParams } from "next/navigation";
+import { validateRequest } from "@/lib/lucia";
+import { redirect } from "next/navigation";
 
 type Blog = {
   title: string;
@@ -17,6 +19,11 @@ type Blog = {
 };
 
 const Page: React.FC = () => {
+  const user = validateRequest();
+  if (!user) {
+    return redirect("/login");
+  }
+
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [data, setData] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
