@@ -13,73 +13,70 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/app/wasteless_app/posts/_components/Form";
+} from "@/app/posts/_components/Form";
 import { Input } from "@/components/UI/Input";
 import { FileInput } from "./FileInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const isBrowser = typeof window !== "undefined";
 const FileListType = isBrowser ? FileList : Array;
 
-const ProductsFormSchema = z.object({
-  product: z.string({ required_error: "Product name is required" }).min(2, {
-    message: "Product name must be at least 2 characters.",
+const EventFormSchema = z.object({
+  title: z.string({ required_error: "Title is required" }).min(2, {
+    message: "Title must be at least 2 characters.",
   }),
   description: z
     .string({ required_error: "Description is required" })
     .min(10, { message: "Description should be at least 10 or more words" })
     .max(50, { message: "Description should 100 or less words" }),
-  price: z
-    .string({ required_error: "Price is required" })
-    .transform((val) => parseInt(val))
-    .refine((val) => val > 1, "Price cannot be negative"),
-  contact: z
-    .string({ required_error: "Contact number is required" })
-    .min(10, { message: "Phone number must be at least 10 digits" })
-    .max(13, { message: "Phone number cannot exceed 13 digits" }),
+  date: z
+    .string({
+      required_error: "date is required",
+      invalid_type_error: "Date must be in the fomart YYYY-MM-DD",
+    })
+    .date(),
+  time: z.string({ required_error: "time is required" }).time(),
+  venue: z.string({ required_error: "Venue is required" }),
   banner_image: z
     .instanceof(FileListType)
     .optional()
     .refine((file) => file == null || file?.length == 1, "File is required."),
 });
 
-// type Event = z.infer<typeof ProductsFormSchema>;
+// type Event = z.infer<typeof EventFormSchema>;
 
-const RecycledProductsForm = () => {
-  const form = useForm<z.infer<typeof ProductsFormSchema>>({
-    resolver: zodResolver(ProductsFormSchema),
+const Event_Form = () => {
+  const form = useForm<z.infer<typeof EventFormSchema>>({
+    resolver: zodResolver(EventFormSchema),
     defaultValues: {
-      product: "",
+      title: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof ProductsFormSchema>) {
+  function onSubmit(values: z.infer<typeof EventFormSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
 
-  const handleCancel = () => {
-    // Handle cancel logic here, e.g., navigate away, clear form, etc.
-    console.log("Cancel clicked");
-  };
-
   return (
-    <div>
-      <div className="bg-white shadow-2xl rounded-lg w-full max-w-md p-6 mt-10">
-        <h1 className="font-bold text-lg text-center my-5">
-          Recycled Product Form
+    
+      <div >
+        <h1 className="font-semibold text-2xl text-center mb-5">
+          Post an Event
         </h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
               control={form.control}
-              name="product"
+              name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name of the product</FormLabel>
+                  <FormLabel>Title of the Event</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="What is the name of the product?"
+                      placeholder="What is the name of the event?"
                       {...field}
                     />
                   </FormControl>
@@ -107,15 +104,14 @@ const RecycledProductsForm = () => {
 
             <FormField
               control={form.control}
-              name="price"
+              name="date"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Price in Ksh</FormLabel>
+                  <FormLabel>Date of the Event</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Please enter the price of the product in Kenyan shillings"
+                      placeholder="Please enter the date of the event"
                       {...field}
-                      type="number"
                     />
                   </FormControl>
                   <FormMessage />
@@ -125,13 +121,13 @@ const RecycledProductsForm = () => {
 
             <FormField
               control={form.control}
-              name="contact"
+              name="time"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Contact</FormLabel>
+                  <FormLabel>Time of the Event</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Enter the phone number that the buyer can contact"
+                      placeholder="Enter the time the event will start"
                       {...field}
                     />
                   </FormControl>
@@ -139,6 +135,24 @@ const RecycledProductsForm = () => {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="venue"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Venue of the Event</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Where will the event take place?"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="banner_image"
@@ -162,8 +176,9 @@ const RecycledProductsForm = () => {
           </form>
         </Form>
       </div>
-    </div>
+
   );
 };
 
-export default RecycledProductsForm;
+export default Event_Form;
+
