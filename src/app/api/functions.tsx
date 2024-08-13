@@ -8,13 +8,13 @@ export async function generateEmailVerificationCode(
 ): Promise<string> {
   await prisma.emailVerificationCode.deleteMany({
     where: {
-      userId: userId,
+      accountId: userId,
     },
   })
   const code = generateRandomString(6, alphabet("0-9"));
   await prisma.emailVerificationCode.create({
     data: {
-    userId: userId,
+    accountId: userId,
     email,
     code,
     expiresAt: createDate(new TimeSpan(15, "m")), // 15 minutes

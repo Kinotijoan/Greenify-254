@@ -25,18 +25,18 @@ export async function POST(request: NextRequest, response: NextResponse) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const individual = await prisma.account.findUnique({
+    const company = await prisma.account.findUnique({
       where: {
-        email: user?.email,
+        email: user.email,
         emailVerified: true,
       },
     });
 
-    if (!individual) {
+    if (!company) {
       return NextResponse.json({ message: "Incorrect Email or Password" });
     }
 
-    const validPassword = await verify(individual.password, res.password, {
+    const validPassword = await verify(company.password, res.password, {
       memoryCost: 19456,
       timeCost: 2,
       outputLen: 32,

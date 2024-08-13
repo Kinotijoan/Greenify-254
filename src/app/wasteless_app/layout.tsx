@@ -1,23 +1,30 @@
-import React from "react";
+// app/wasteless_app/layout.tsx
 import Sidebar from "./components/sidebar";
 import Navbar from "./components/navbar";
+import { validateRequest } from "@/lib/lucia";
+import { redirect } from "next/navigation";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
-  return (
-    <div className="flex flex-col">
-      <Navbar />
-      <div className="flex flex-row h-full">
-        <Sidebar />
-        <div className="flex-1">
-          {children}
+export default async function Layout({ children }: LayoutProps) {
+  const  user = await validateRequest();
+
+  if (!user) {
+   // You must return null or a valid React component after a redirect
+    return (
+      <div className="flex flex-col">
+        <Navbar />
+        <div className="flex flex-row h-full">
+          <Sidebar user={user} />
+  
+          <div className="flex-1">{children}</div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
 
-export default Layout;
+  console.log("User logged in", user);
+
+}

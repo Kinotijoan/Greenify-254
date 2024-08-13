@@ -1,6 +1,8 @@
 import EventCard from "@/components/EventCard";
 import { title } from "process";
 import React from "react";
+import { validateRequest } from "@/lib/lucia";
+import { redirect } from "next/navigation";
 
 const events = [
   {
@@ -42,6 +44,10 @@ const events = [
 ];
 
 const Page = () => {
+  const user = validateRequest();
+  if (!user) {
+    return redirect("/login");
+  }
   return (
     <div className="flex flex-wrap gap-4 justify-center md:justify-normal">
       {events.map(({ src, title, location, date }, index) => (
