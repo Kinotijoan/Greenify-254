@@ -16,23 +16,12 @@ import { Label } from "@/app/posts/_components/Label"
 import Event_Form from "./_components/EventForm"
 
 import React from 'react'
+import UserDialog from "./_components/UserDialog"
+import PostsDialog from "./_components/PostsDialog"
 
 const posts = () => {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Share</Button>
-      </DialogTrigger>
-      <DialogHeader>
-
-      </DialogHeader>
-      <DialogContent className="sm:max-w-md">
-        <Event_Form/>
-      </DialogContent>
-      <DialogFooter>
-        
-      </DialogFooter>
-    </Dialog>
+    <PostsDialog/>
   )
 }
 
