@@ -63,15 +63,9 @@ const Event_Form = () => {
   return (
     
       <div >
-       
-      <button className="relative left-96">
-          <FontAwesomeIcon icon={faClose} className="h-6 w-6 text-gray-500" />
-        </button>
         <h1 className="font-semibold text-2xl text-center mb-5">
           Post an Event
         </h1>
-       
-        
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField

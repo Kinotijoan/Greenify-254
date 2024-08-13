@@ -64,7 +64,7 @@ const RecycledProductsForm = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen mt-20 mb-20">
+    <div>
       <div className="bg-white shadow-2xl rounded-lg w-full max-w-md p-6 mt-10">
         <h1 className="font-bold text-lg text-center my-5">
           Recycled Product Form

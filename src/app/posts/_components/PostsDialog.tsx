@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/UI/Button";
 import {
   Dialog,
@@ -10,10 +12,24 @@ import {
   DialogTrigger,
 } from "@/app/posts/_components/Dialog";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import Event_Form from "./EventForm";
+import RecycledProductsForm from "./RecycledProductsForm";
 
 const PostsDialog = () => {
+  const [showEventForm, setShowEventForm] = useState(false);
+  const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
+
+  const handleEventButtonClick = () => {
+    setShowEventForm(!showEventForm);
+    setShowRecycledProductForm(false); // Close the other form
+  };
+
+  const handleRecycledProductButtonClick = () => {
+    setShowRecycledProductForm(!showRecycledProductForm);
+    setShowEventForm(false); // Close the other form
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -25,14 +41,24 @@ const PostsDialog = () => {
         </DialogHeader>
         <div className="flex flex-col gap-5 justify-center items-center mt-5">
           <div>
-            <Button type="button" variant="secondary" className="bg-green-800 rounded-3xl">
-                <Link href="/posts/_components/EventForm.tsx">An event</Link>             
+            <Button
+              type="button"
+              onClick={handleEventButtonClick}
+              className="bg-green-800 rounded-3xl text-black"
+            >
+              An Event
             </Button>
+            {showEventForm && <Event_Form />}
           </div>
           <div>
-            <Button type="button" variant="secondary" className="bg-green-800 rounded-3xl">
-                <Link href="/posts/_components/RecycledProductsForm.tsx">Recycled Product</Link>             
+            <Button
+              type="button"
+              onClick={handleRecycledProductButtonClick}
+              className="bg-green-800 rounded-3xl text-black"
+            >
+              Recycled Product
             </Button>
+            {showRecycledProductForm && <RecycledProductsForm />}
           </div>
         </div>
       </DialogContent>
