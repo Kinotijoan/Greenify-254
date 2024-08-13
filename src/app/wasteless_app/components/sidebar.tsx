@@ -1,24 +1,29 @@
 'use client'
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Sidebar: React.FC = () => {
+
+  const router = useRouter()
+
   const [selectedSection, setSelectedSection] = useState("home");
 
   const handleSectionClick = (section: string) => {
     setSelectedSection(section);
     // Add any additional logic you want to execute when a section is clicked
+    router.push(`/wasteless_app/${section}`);
   };
 
   return (
     <div className="flex flex-col text-2xl font-bold mx-16 gap-8 border-r-2 border-black pr-8 py-8 ">
       <button
         className={`flex flex-row gap-4 py-1 px-16 rounded-lg ${
-          selectedSection === "home"
+          selectedSection === "education"
             ? "bg-green-300"
             : "hover:bg-gray-200 transition-colors"
         }`}
-        onClick={() => handleSectionClick("home")}
+        onClick={() => handleSectionClick("education")}
       >
         <Image src="/images/Home.png" alt="Home icon" width={35} height={30} />
         <h1>Home</h1>
