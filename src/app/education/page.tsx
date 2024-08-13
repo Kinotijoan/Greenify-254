@@ -1,14 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Ed_card from "./Ed_card";
+import EdCard from "./_components/EdCard";
 import { getBlogs, ScrapeRogue } from "@/webScraping/ScrapeRogue";
 import { Scrapeblogs } from "@/webScraping/ScrapeForge";
 import { sendBlogs } from "@/webScraping/ScrapeRogue";
-import SearchForm from "../companies/SearchForm"
+import SearchForm from "../wasteless_app/companies/SearchForm";
 import { useSearchParams } from "next/navigation";
 import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 
 type Blog = {
   title: string;
@@ -20,13 +19,16 @@ type Blog = {
 };
 
 const Page: React.FC = () => {
-  
+  const user = validateRequest();
+  if (!user) {
+    return redirect("/login");
+  }
 
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [data, setData] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
-  const query = searchParams.get('query') || ' ';
+  const query = searchParams.get("query") || " ";
 
   // const fetchBlogs = async () => {
   //   const url1 = "https://roguedisposal.com/resources/education/p3";
@@ -77,14 +79,13 @@ const Page: React.FC = () => {
     fetchData();
   }, [query]); // Fetch data when component mounts
 
-
-
   if (loading) {
-    return<div className="flex items-center justify-center h-screen">
-    <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-green-500"></div>
-  </div>
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-green-500"></div>
+      </div>
+    );
   }
-
 
   return (
     <div>
@@ -92,12 +93,12 @@ const Page: React.FC = () => {
         Education Resources
       </h1>
       <SearchForm />
-      {(data.length === 0) ? (
+      {data.length === 0 ? (
         <div> Oops, not found</div>
       ) : (
         <div className="wrapper">
           {data.map((blog) => (
-            <Ed_card
+            <EdCard
               key={blog.title}
               title={blog.title}
               date={blog.date}

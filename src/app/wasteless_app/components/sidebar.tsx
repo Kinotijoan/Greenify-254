@@ -1,24 +1,37 @@
 'use client'
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { User } from "lucia";
+import UserDialog from "../posts/_components/UserDialog";
+import PostsDialog from "../posts/_components/PostsDialog";
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  user : any;
+}
+
+const Sidebar = ({user}: SidebarProps) => {
+
+  const router = useRouter()
+
   const [selectedSection, setSelectedSection] = useState("home");
 
   const handleSectionClick = (section: string) => {
     setSelectedSection(section);
     // Add any additional logic you want to execute when a section is clicked
+    router.push(`/wasteless_app/${section}`);
   };
+
 
   return (
     <div className="flex flex-col text-2xl font-bold mx-16 gap-8 border-r-2 border-black pr-8 py-8 ">
       <button
         className={`flex flex-row gap-4 py-1 px-16 rounded-lg ${
-          selectedSection === "home"
+          selectedSection === "education"
             ? "bg-green-300"
             : "hover:bg-gray-200 transition-colors"
         }`}
-        onClick={() => handleSectionClick("home")}
+        onClick={() => handleSectionClick("education")}
       >
         <Image src="/images/Home.png" alt="Home icon" width={35} height={30} />
         <h1>Home</h1>
@@ -66,14 +79,21 @@ const Sidebar: React.FC = () => {
         />
         <h1>Products</h1>
       </button>
-      <div className="mx-6 mt-96">
+      {/* <div className="mx-6 mt-96">
         <button
           className="bg-[rgba(30,75,0,1)] hover:bg-green-800 text-white font-bold py-2 px-8 rounded-full"
           type="submit"
+          onClick={() => handlePostNavigation()}
         >
           POST
         </button>
-      </div>
+      </div> */}
+
+      ${
+        user ? (
+          <UserDialog/>
+        ) : (<PostsDialog/>)
+      }
     </div>
   );
 };

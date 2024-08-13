@@ -13,7 +13,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/app/posts/_components/Form";
+} from "@/app/wasteless_app/posts/_components/Form";
 import { Input } from "@/components/UI/Input";
 import { FileInput } from "./FileInput";
 
@@ -60,7 +60,7 @@ const RecycledProductsForm = () => {
 
   const handleCancel = () => {
     // Handle cancel logic here, e.g., navigate away, clear form, etc.
-    console.log('Cancel clicked');
+    console.log("Cancel clicked");
   };
 
   return (
@@ -90,7 +90,7 @@ const RecycledProductsForm = () => {
 
             <FormField
               control={form.control}
-              name="description" 
+              name="description"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Description</FormLabel>
