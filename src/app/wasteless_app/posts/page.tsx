@@ -1,26 +1,16 @@
-import { Copy } from "lucide-react";
 
-import { Button } from "@/components/UI/Button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/app/wasteless_app/posts/_components/Dialog";
-import { Input } from "@/components/UI/Input";
-import { Label } from "@/app/wasteless_app/posts/_components/Label";
-import Event_Form from "./_components/EventForm";
+import { Button } from "@/components/UI/Button";
 
-import React from "react";
-import { User } from "lucia";
-import UserDialog from "./_components/UserDialog";
-import PostsDialog from "./_components/PostsDialog";
 import { validateRequest } from "@/lib/lucia";
-import { redirect } from "next/navigation";
+import PostsDialog from "./_components/PostsDialog";
+import UserDialog from "./_components/UserDialog";
 
 // interface postProps{
 //   user: User
