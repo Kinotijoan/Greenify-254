@@ -1,10 +1,5 @@
 "use client";
 
-import React from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { date, z } from "zod";
-import { Button } from "@/components/UI/Button";
 import {
   Form,
   FormControl,
@@ -14,10 +9,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/app/wasteless_app/posts/_components/Form";
+import { Button } from "@/components/UI/Button";
 import { Input } from "@/components/UI/Input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { FileInput } from "./FileInput";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const isBrowser = typeof window !== "undefined";
 const FileListType = isBrowser ? FileList : Array;
@@ -61,14 +58,12 @@ const Event_Form = () => {
   }
 
   return (
-    <div>
-      <button className="relative left-96">
-        <FontAwesomeIcon icon={faClose} className="h-6 w-6 text-gray-500" />
-      </button>
+    <div className="max-h-[80vh] overflow-auto flex flex-col space-y-2 w-full">
+     
       <h1 className="font-semibold text-2xl text-center mb-5">Post an Event</h1>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex-1 px-2">
           <FormField
             control={form.control}
             name="title"
