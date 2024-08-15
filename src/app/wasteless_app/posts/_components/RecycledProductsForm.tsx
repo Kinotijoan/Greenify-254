@@ -16,6 +16,11 @@ import {
 } from "@/app/wasteless_app/posts/_components/Form";
 import { Input } from "@/components/UI/Input";
 import { FileInput } from "./FileInput";
+import {
+  EventFormContext,
+  RecycledProductFormContext,
+} from "../../components/sidebar";
+import { useContext } from "react";
 
 const isBrowser = typeof window !== "undefined";
 const FileListType = isBrowser ? FileList : Array;
@@ -45,6 +50,12 @@ const ProductsFormSchema = z.object({
 // type Event = z.infer<typeof ProductsFormSchema>;
 
 const RecycledProductsForm = () => {
+
+  const { showEventForm, setShowEventForm } = useContext(EventFormContext);
+  const { showRecycledProductForm, setShowRecycledProductForm } = useContext(
+    RecycledProductFormContext
+  );
+  
   const form = useForm<z.infer<typeof ProductsFormSchema>>({
     resolver: zodResolver(ProductsFormSchema),
     defaultValues: {
@@ -155,7 +166,13 @@ const RecycledProductsForm = () => {
               <Button type="submit" className="bg-blue-600">
                 Submit
               </Button>
-              <Button type="reset" className="bg-blue-600">
+              <Button
+                type="reset"
+                className="bg-blue-600"
+                onClick={() => {
+                  setShowRecycledProductForm(!showRecycledProductForm);
+                }}
+              >
                 Cancel
               </Button>
             </div>
