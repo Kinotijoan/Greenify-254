@@ -89,7 +89,7 @@ const Sidebar = ({user}: SidebarProps) => {
         </button>
       </div> */}
 
-      ${
+      {
         user ? (
           <UserDialog/>
         ) : (<PostsDialog/>)
