@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
         eventLocation: eventLocation,
         createdAt: new Date(),
         updatedAt: new Date(),
-        category: "event", // Add a valid value for the category property
+        category: "event", 
       },
     });
 
