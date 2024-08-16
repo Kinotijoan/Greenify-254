@@ -67,7 +67,7 @@ const Page = () => {
   if (!user) {
     return redirect("/login");
   }
-  return (
+  return ( 
     <div className="flex flex-wrap gap-4 justify-center md:justify-start">
       {products.map((product, index) => (
         <ProductCard key={index} {...product} />
