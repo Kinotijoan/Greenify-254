@@ -1,34 +1,68 @@
-import React from "react";
-import { CircleMarker, MapContainer, Popup, TileLayer } from "react-leaflet";
+
+import React, { useEffect, useState } from "react";
+import { Marker, MapContainer, Popup, TileLayer, CircleMarker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import axios from "axios";
+import { Company } from "@/lib/types/Types";
+import { Radius } from "lucide-react";
 
 const Maps = () => {
+  const[companies, setCompanies] = useState<Company[]>([]);
+
+  useEffect(() => {
+    const fetchCompanies = axios.get("http://localhost:3000/api/companies").then((response) => {
+      setCompanies(response.data);
+      console.log(response.data);
+    });
+    fetchCompanies;
+
+    if (!companies) {
+      console.log("No companies");
+    }
+    if (companies) {
+      console.log(companies);
+    }
+  }, []);
+
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
+    <div style={{ height: "100vh", width: "100%" }}>
       <MapContainer
-        center={[51.505, -0.09]}
+        center={[1.2921, 36.8219]}
         zoom={13}
-        style={{ height: "400px", width: "600px", position: "relative" }}
+        style={{ height: "100%", width: "100%" }}
       >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <CircleMarker
-          center={[51.505, -0.09]}
-          pathOptions={{ color: "red" }}
-          radius={20}
-          fillOpacity={0.5}
-          fillColor="red"
-        >
-          <Popup>
-            <h1>Popup in CircleMarker</h1>
-          </Popup>
-        </CircleMarker>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {companies.map((company) => {
+          let latitude = parseFloat(
+            String(company.latitude).replace(/[^\d.-]/g, "")
+          );
+          let longitude = parseFloat(
+            String(company.longitude).replace(/[^\d.-]/g, "")
+          );
+          console.log(company.latitude, company.longitude);
+          if (!isNaN(latitude) && !isNaN(longitude)) {
+            return (
+              <CircleMarker
+                key={company.wasteFacilityId}
+                center={[latitude, longitude]}
+                pathOptions={{ color: "red" }}
+                radius={20}
+                fillOpacity={0.5}
+                fillColor="red"
+              >
+                <Popup>
+                  <h1>{company.name}</h1>
+                  <p>{company.address}</p>
+                  <p>{company.email}</p>
+                </Popup>
+              </CircleMarker>
+            );
+          }
+        })}
       </MapContainer>
     </div>
   );
