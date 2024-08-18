@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -21,20 +21,21 @@ interface RecycledProductFormContextType {
   setShowRecycledProductForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-
 export const EventFormContext = createContext<EventFormContextType>({
   showEventForm: false,
   setShowEventForm: () => {},
 });
-export const RecycledProductFormContext = createContext<
-  RecycledProductFormContextType
->({showRecycledProductForm: false, setShowRecycledProductForm: () => {}});
+export const RecycledProductFormContext =
+  createContext<RecycledProductFormContextType>({
+    showRecycledProductForm: false,
+    setShowRecycledProductForm: () => {},
+  });
 
-const Sidebar = ({user}: SidebarProps) => {
-   const [showEventForm, setShowEventForm] = useState(false);
+const Sidebar = ({ user }: SidebarProps) => {
+  const [showEventForm, setShowEventForm] = useState(false);
   const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const [selectedSection, setSelectedSection] = useState("home");
 
@@ -43,7 +44,6 @@ const Sidebar = ({user}: SidebarProps) => {
     // Add any additional logic you want to execute when a section is clicked
     router.push(`/wasteless_app/${section}`);
   };
-
 
   return (
     <EventFormContext.Provider value={{ showEventForm, setShowEventForm }}>
