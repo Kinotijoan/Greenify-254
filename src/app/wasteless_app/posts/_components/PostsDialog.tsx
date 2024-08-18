@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/app/wasteless_app/posts/_components/Dialog";
+} from "./Dialog";
 
 import {
   AlertDialog,
@@ -18,7 +18,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/app/wasteless_app/posts/_components/alert-dialog";
+} from "./alert-dialog";
 
 import React, { useState } from "react";
 import Event_Form from "./EventForm";
@@ -43,7 +43,7 @@ const PostsDialog = () => {
     setOpenDialog(!setOpenDialog);
     setShowEventForm(false);
     setShowRecycledProductForm(false);
-  }
+  };
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -55,8 +55,17 @@ const PostsDialog = () => {
       <AlertDialog open={openDialog}>
         <AlertDialogContent className="sm:max-w-md">
           <AlertDialogHeader className="flex items-center justify-between">
-            {(!showEventForm && !showRecycledProductForm) && <AlertDialogTitle>What would you like to post?</AlertDialogTitle>}
-            <Button size="icon" onClick={handleCloseDialog} variant="secondary" className="absolute top-0 right-2 w-8 h-8"><XIcon size={17}/></Button>
+            {!showEventForm && !showRecycledProductForm && (
+              <AlertDialogTitle>What would you like to post?</AlertDialogTitle>
+            )}
+            <Button
+              size="icon"
+              onClick={handleCloseDialog}
+              variant="secondary"
+              className="absolute top-0 right-2 w-8 h-8"
+            >
+              <XIcon size={17} />
+            </Button>
           </AlertDialogHeader>
           <div className="flex flex-col gap-5 justify-center items-center mt-5">
             {!showEventForm && !showRecycledProductForm && (
@@ -79,12 +88,11 @@ const PostsDialog = () => {
             )}
             {showEventForm && <Event_Form />}
             {showRecycledProductForm && <RecycledProductsForm />}
-          </div>          
+          </div>
         </AlertDialogContent>
       </AlertDialog>
     </>
-  );  
-  
+  );
 };
 
 export default PostsDialog;
