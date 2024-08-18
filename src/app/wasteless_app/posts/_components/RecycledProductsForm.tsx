@@ -50,12 +50,11 @@ const ProductsFormSchema = z.object({
 // type Event = z.infer<typeof ProductsFormSchema>;
 
 const RecycledProductsForm = () => {
-
   const { showEventForm, setShowEventForm } = useContext(EventFormContext);
   const { showRecycledProductForm, setShowRecycledProductForm } = useContext(
     RecycledProductFormContext
   );
-  
+
   const form = useForm<z.infer<typeof ProductsFormSchema>>({
     resolver: zodResolver(ProductsFormSchema),
     defaultValues: {

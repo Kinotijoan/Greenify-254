@@ -37,12 +37,10 @@ const PostsDialog = () => {
   );
   const handleEventButtonClick = () => {
     setShowEventForm(!showEventForm);
-  
   };
 
   const handleRecycledProductButtonClick = () => {
     setShowRecycledProductForm(!showRecycledProductForm);
-
   };
 
   const handleCloseDialog = () => {
