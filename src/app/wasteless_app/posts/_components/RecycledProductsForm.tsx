@@ -13,7 +13,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/app/wasteless_app/posts/_components/Form";
+} from "./Form";
 import { Input } from "@/components/UI/Input";
 import { FileInput } from "./FileInput";
 
