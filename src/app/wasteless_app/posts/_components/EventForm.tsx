@@ -15,8 +15,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { FileInput } from "./FileInput";
+
+import {
+  EventFormContext,
+  RecycledProductFormContext,
+} from "../../components/sidebar";
+import { useContext } from "react";
+
 import axios from "axios";
 import { useState } from "react";
+
 
 const isBrowser = typeof window !== "undefined";
 const FileListType = isBrowser ? FileList : Array;
@@ -54,6 +62,10 @@ const EventFormSchema = z.object({
 // type Event = z.infer<typeof EventFormSchema>;
 
 const Event_Form = () => {
+   const { showEventForm, setShowEventForm } = useContext(EventFormContext);
+   const { showRecycledProductForm, setShowRecycledProductForm } = useContext(
+     RecycledProductFormContext
+   );
   const form = useForm<z.infer<typeof EventFormSchema>>({
     resolver: zodResolver(EventFormSchema),
     defaultValues: {
@@ -62,14 +74,6 @@ const Event_Form = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-
-  // const formData = new FormData();
-  // formData.append("title", form.getValues("title"));
-  // formData.append("description", form.getValues("description"));
-  // formData.append("date", form.getValues("date").toISOString().slice(0, 10));
-  // formData.append("time", form.getValues("time"));
-  // formData.append("venue", form.getValues("venue"));
-  // formData.append("banner_image", form.getValues("banner_image"));
 
 
   function onSubmit(values: z.infer<typeof EventFormSchema>) {
@@ -103,6 +107,13 @@ const Event_Form = () => {
   }
 
   return (
+
+    <div
+      className="max-h-[80vh] overconst PostsDialog = () => {
+  const [showEventForm, setShowEventForm] = useState(false);
+  const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
+flow-auto flex flex-col space-y-2 w-full"
+    >
     <div className="max-h-[80vh] overflow-auto flex flex-col space-y-2 w-full">
       <h1 className="font-semibold text-2xl text-center mb-5">Post an Event</h1>
 
@@ -223,7 +234,13 @@ const Event_Form = () => {
             >
               {isLoading ? "Loading..." : "Submit"}
             </Button>
-            <Button type="reset" className="bg-blue-600">
+            <Button
+              type="reset"
+              className="bg-blue-600"
+              onClick={() => {
+                setShowEventForm(!showEventForm);
+              }}
+            >
               Cancel
             </Button>
           </div>

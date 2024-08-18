@@ -20,23 +20,29 @@ import {
   AlertDialogTrigger,
 } from "./alert-dialog";
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Event_Form from "./EventForm";
 import RecycledProductsForm from "./RecycledProductsForm";
 import { Icon, XIcon } from "lucide-react";
 
-const PostsDialog = () => {
-  const [showEventForm, setShowEventForm] = useState(false);
-  const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
+import {
+  EventFormContext,
+  RecycledProductFormContext,
+} from "../../components/sidebar";
 
+const PostsDialog = () => {
+  const { showEventForm, setShowEventForm } = useContext(EventFormContext);
+  const { showRecycledProductForm, setShowRecycledProductForm } = useContext(
+    RecycledProductFormContext
+  );
   const handleEventButtonClick = () => {
-    setShowEventForm(true);
-    setShowRecycledProductForm(false); // Close the other form
+    setShowEventForm(!showEventForm);
+  
   };
 
   const handleRecycledProductButtonClick = () => {
-    setShowRecycledProductForm(true);
-    setShowEventForm(false); // Close the other form
+    setShowRecycledProductForm(!showRecycledProductForm);
+
   };
 
   const handleCloseDialog = () => {
