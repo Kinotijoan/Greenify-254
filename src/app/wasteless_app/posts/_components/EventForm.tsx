@@ -8,7 +8,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/app/wasteless_app/posts/_components/Form";
+} from "./Form";
 import { Button } from "@/components/UI/Button";
 import { Input } from "@/components/UI/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -63,11 +63,25 @@ const Event_Form = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+ 
+
   function onSubmit(values: z.infer<typeof EventFormSchema>) {
     setIsLoading(true); // Show loading indicator
+    const formData = new FormData();
+    formData.append("title", values.title);
+    formData.append("description", values.description);
+    formData.append("date", values.date.toISOString().slice(0, 10));
+    formData.append("time", values.time);
+    formData.append("venue", values.venue);
+    formData.append("banner_image", (values.banner_image as FileList)[0]);
+
 
     axios
-      .post("http://localhost:3000/api/eventsPost", values)
+      .post("http://localhost:3000/api/eventsPost", formData,{
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => {
         console.log("Data sent successfully:", response.data);
         // Handle successful submission, e.g., show success message, clear form
@@ -89,6 +103,7 @@ const Event_Form = () => {
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 flex-1 px-2"
+          encType="multipart/form-data"
         >
           <FormField
             control={form.control}
