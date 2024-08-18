@@ -11,16 +11,15 @@ const pipeline = promisify(require("stream").pipeline);
 export async function POST(request: NextRequest) {
   try {
 
-   const user = await validateRequest();
-   if (!user) {
-     redirect("/login");
-     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-   }
+  //  const user = await validateRequest();
+  //  if (!user) {
+  //    redirect("/log_in");
+  //    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  //  }
     const formData = await request.formData();
     const title = formData.get("title") as string;
-    const price = parseInt(formData.get("price") as string);
     const description = formData.get("description") as string;
-    const image = formData.get("image") as File;
+    const image = formData.get("banner_image") as File;
     const eventDate = formData.get("date") as string;
     const eventTime = formData.get("time") as string;
     const eventLocation = formData.get("venue") as string;
@@ -39,7 +38,6 @@ export async function POST(request: NextRequest) {
     const newItem = await prisma.post.create({
       data: {
         title: title,
-        productPrice: price,
         content: description,
         imageUrl: relativeFilePath,
         eventDate: new Date(eventDate),
@@ -47,7 +45,7 @@ export async function POST(request: NextRequest) {
         eventLocation: eventLocation,
         createdAt: new Date(),
         updatedAt: new Date(),
-        category: "event", // Add a valid value for the category property
+        category: "event", 
       },
     });
 

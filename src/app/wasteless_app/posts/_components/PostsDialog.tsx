@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/app/wasteless_app/posts/_components/Dialog";
+} from "./Dialog";
 
 import {
   AlertDialog,
@@ -18,7 +18,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/app/wasteless_app/posts/_components/alert-dialog";
+} from "./alert-dialog";
 
 import React, { useState, useContext } from "react";
 import Event_Form from "./EventForm";

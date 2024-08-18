@@ -5,16 +5,16 @@ export interface Blog {
   date: string;
   image: string | null;
   link: string;
-};
+}
 
 export interface User {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-};
+}
 
-export interface Post{
+export interface Post {
   title: string;
   description: string;
   price?: number;
@@ -23,4 +23,15 @@ export interface Post{
   eventDate?: string;
   eventTime?: string;
   venue?: string;
+}
+
+export interface Company {
+  wasteFacilityId: number
+  address: string;
+  latitude: number;
+  longitude: number;
+  name: string;
+  email: string;
+  district: string;
+  county: string;
 }

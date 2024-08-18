@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Dialog,
@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/app/wasteless_app/posts/_components/Dialog";
+} from "./Dialog";
 import { Button } from "@/components/UI/Button";
 
 import Link from "next/link";
@@ -18,8 +18,10 @@ const UserDialog = () => {
   const [openDialog, setOpenDialog] = useState(false);
   return (
     <>
-      <Button variant="outline" onClick={() => setOpenDialog(!openDialog)}>Post</Button>
-      <Dialog open = {openDialog} modal>
+      <Button variant="outline" onClick={() => setOpenDialog(!openDialog)}>
+        Post
+      </Button>
+      <Dialog open={openDialog} modal>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Oops! only recycling companies can post.</DialogTitle>
