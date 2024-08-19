@@ -50,11 +50,11 @@ const Sidebar = ({ user }: SidebarProps) => {
       <RecycledProductFormContext.Provider
         value={{ showRecycledProductForm, setShowRecycledProductForm }}
       >
-        <div className="flex flex-col text-2xl font-bold mx-16 gap-8 border-r-2 border-black pr-8 py-8 ">
+        <div className="flex flex-col text-2xl font-bold mx-16 gap-8 border-r-2 border-black pr-8 py-8 bg-green-500 ">
           <button
             className={`flex flex-row gap-4 py-1 px-16 rounded-lg ${
               selectedSection === "education"
-                ? "bg-green-300"
+                ? "bg-green-400"
                 : "hover:bg-gray-200 transition-colors"
             }`}
             onClick={() => handleSectionClick("education")}
