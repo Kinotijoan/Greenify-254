@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
-import { createPasswordResetToken } from "./functions";
+import { createPasswordResetToken } from "@/lib/functions";
 import { sendEmail } from "@/lib/email";
 import { lucia } from "@/lib/lucia";
 import { cookies } from "next/headers";

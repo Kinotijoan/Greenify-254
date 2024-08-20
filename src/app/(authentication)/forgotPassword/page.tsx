@@ -2,12 +2,15 @@
 
 import axios from 'axios';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 
 type FormData = {
   email: string;
 };
 
 const ForgotPassword: React.FC = () => {
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     email: '',
   });
@@ -18,13 +21,27 @@ const ForgotPassword: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log('Forgot password request submitted:', formData);
     axios.post('http://localhost:3000/api/forgotPassword', formData).then((res) => {
       
+    }).catch((error) => {
+      setErrorMessage(error.response?.data.message);
     });
-    // You can add your logic here
   };
+
+    const handleResendLink = (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      axios
+        .post(`http://localhost:3000/api/resendResetLink`, formData)
+        .then((res) => {
+          if (res.status === 200) {
+            router.push("/login");
+          }
+        })
+        .catch((error) => {
+          setErrorMessage(error.response?.data.message);
+        });
+    };
 
   return (
     <div className="flex flex-col justify-center">
@@ -42,12 +59,17 @@ const ForgotPassword: React.FC = () => {
                 onChange={handleInputChange}
                 required
               />
+              {errorMessage && <div className='text-red-500'>{errorMessage}</div>}
               <div>
                 <button
                   className="bg-[rgba(30,75,0,1)] text-white flex justify-center mx-auto mt-20 mb-24 rounded-3xl text-xl px-3 py-1"
                   type="submit"
                 >
                   Reset password
+                </button>
+
+                <button className=" border-2 border-[rgba(30,75,0,1)] text-white flex justify-center mx-auto mt-20 mb-24 rounded-3xl text-xl px-3 py-1">
+                  Resend Link
                 </button>
               </div>
             </form>
