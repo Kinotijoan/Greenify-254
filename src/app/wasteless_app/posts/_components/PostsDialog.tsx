@@ -66,7 +66,7 @@ const PostsDialog = () => {
               size="icon"
               onClick={handleCloseDialog}
               variant="secondary"
-              className="absolute top-0 right-2 w-8 h-8"
+              className="absolute top-2 right-2 w-8 h-8"
             >
               <XIcon size={17} />
             </Button>
