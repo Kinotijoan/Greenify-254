@@ -15,6 +15,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { FileInput } from "./FileInput";
+
+import {
+  EventFormContext,
+  RecycledProductFormContext,
+} from "../../components/sidebar";
+import { useContext } from "react";
+
 import axios from "axios";
 import { useState } from "react";
 import {
@@ -22,6 +29,7 @@ import {
   RecycledProductFormContext,
 } from "../../components/sidebar";
 import { useContext } from "react";
+
 
 const isBrowser = typeof window !== "undefined";
 const FileListType = isBrowser ? FileList : Array;
@@ -59,6 +67,7 @@ const EventFormSchema = z.object({
 // type Event = z.infer<typeof EventFormSchema>;
 
 const Event_Form = () => {
+   const { showEventForm, setShowEventForm } = useContext(EventFormContext);
   const form = useForm<z.infer<typeof EventFormSchema>>({
     resolver: zodResolver(EventFormSchema),
     defaultValues: {
@@ -67,6 +76,7 @@ const Event_Form = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+
 
   const { showEventForm, setShowEventForm } = useContext(EventFormContext);
 
@@ -101,6 +111,11 @@ const Event_Form = () => {
   }
 
   return (
+
+    <div
+      className="max-h-[80vh] overconst 
+flow-auto flex flex-col space-y-2 w-full"
+    >
     <div className="max-h-[80vh] overflow-auto flex flex-col space-y-2 w-full">
       <h1 className="font-semibold text-2xl text-center mb-5">Post an Event</h1>
 
@@ -223,6 +238,9 @@ const Event_Form = () => {
             </Button>
             <Button
               type="reset"
+
+              className="bg-blue-600"
+
               className="bg-green-800"
               onClick={() => {
                 setShowEventForm(!showEventForm);
@@ -233,6 +251,7 @@ const Event_Form = () => {
           </div>
         </form>
       </Form>
+    </div>
     </div>
   );
 };
