@@ -63,9 +63,6 @@ const EventFormSchema = z.object({
 
 const Event_Form = () => {
    const { showEventForm, setShowEventForm } = useContext(EventFormContext);
-   const { showRecycledProductForm, setShowRecycledProductForm } = useContext(
-     RecycledProductFormContext
-   );
   const form = useForm<z.infer<typeof EventFormSchema>>({
     resolver: zodResolver(EventFormSchema),
     defaultValues: {
@@ -109,9 +106,7 @@ const Event_Form = () => {
   return (
 
     <div
-      className="max-h-[80vh] overconst PostsDialog = () => {
-  const [showEventForm, setShowEventForm] = useState(false);
-  const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
+      className="max-h-[80vh] overconst 
 flow-auto flex flex-col space-y-2 w-full"
     >
     <div className="max-h-[80vh] overflow-auto flex flex-col space-y-2 w-full">
