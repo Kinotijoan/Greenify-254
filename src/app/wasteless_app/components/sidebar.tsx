@@ -8,7 +8,7 @@ import PostsDialog from "../posts/_components/PostsDialog";
 import { createContext, useContext } from "react";
 
 interface SidebarProps {
-  user: any;
+  user: User | null;
 }
 
 interface EventFormContextType {
@@ -109,7 +109,7 @@ const Sidebar = ({ user }: SidebarProps) => {
         </button>
       </div> */}
 
-          {user ? <UserDialog /> : <PostsDialog />}
+          {user?.role == "INDIVIDUAL" ? <UserDialog /> : <PostsDialog />}
         </div>
       </RecycledProductFormContext.Provider>
     </EventFormContext.Provider>

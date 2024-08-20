@@ -1,4 +1,5 @@
-// app/wasteless_app/layout.tsx
+// app/wasteless_app/layout.tsx console.log("User logged in", user);
+
 import Sidebar from "./components/sidebar";
 import Navbar from "./components/navbar";
 import { validateRequest } from "@/lib/lucia";
@@ -13,18 +14,18 @@ export default async function Layout({ children }: LayoutProps) {
 
   if (!user) {
    // You must return null or a valid React component after a redirect
-    return (
-      <div className="flex flex-col">
-        <Navbar />
-        <div className="flex flex-row h-full">
-          <Sidebar user={user} />
-  
-          <div className="flex-1">{children}</div>
-        </div>
-      </div>
-    );
+    redirect("/login");
+    return null;
   }
+  return (
+    <div className="flex flex-col">
+      <Navbar />
+      <div className="flex flex-row h-full">
+        <Sidebar user={user} />
 
-  console.log("User logged in", user);
+        <div className="flex-1">{children}</div>
+      </div>
+    </div>
+  );
 
 }
