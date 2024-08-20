@@ -1,11 +1,10 @@
-
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTrigger
-} from "@/app/wasteless_app/posts/_components/Dialog";
+  DialogTrigger,
+} from "./_components/Dialog";
 import { Button } from "@/components/UI/Button";
 
 import { validateRequest } from "@/lib/lucia";
@@ -16,24 +15,23 @@ import UserDialog from "./_components/UserDialog";
 //   user: User
 // }
 
-export default async function post(){
-
-  const user = await validateRequest()
+export default async function post() {
+  const user = await validateRequest();
   // if (!user) {
   //   redirect("/log_in")
   // }
 
   if (!user) {
-    return(
+    return (
       <Dialog>
         <DialogHeader></DialogHeader>
         <DialogContent className="sm:max-w-md">
-          <UserDialog/>
+          <UserDialog />
         </DialogContent>
         <DialogFooter></DialogFooter>
       </Dialog>
-    )
-  }else{
+    );
+  } else {
     return (
       <Dialog>
         <DialogTrigger asChild>
@@ -41,12 +39,10 @@ export default async function post(){
         </DialogTrigger>
         <DialogHeader></DialogHeader>
         <DialogContent className="sm:max-w-md">
-          <PostsDialog/>
+          <PostsDialog />
         </DialogContent>
         <DialogFooter></DialogFooter>
       </Dialog>
     );
   }
-
-};
-
+}

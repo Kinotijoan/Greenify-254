@@ -11,7 +11,7 @@ import {
 } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
-import { Label } from "@/app/wasteless_app/posts/_components/Label";
+import { Label } from "./Label";
 
 const Form = FormProvider;
 

@@ -3,6 +3,15 @@ import { title } from "process";
 import React from "react";
 import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
+import axios from 'axios';
+
+
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:3000/api',
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
+
 
 const events = [
   {
@@ -43,11 +52,21 @@ const events = [
   },
 ];
 
+
 const Page = () => {
   const user = validateRequest();
   if (!user) {
     return redirect("/login");
   }
+
+  axiosInstance.get("/events")
+  .then((response)=>
+   {
+    console.log(response.data)
+   }) 
+   .catch((error)=>{
+    console.log(error)
+   })
   return (
     <div className="flex flex-wrap gap-4 justify-center md:justify-normal">
       {events.map(({ src, title, location, date }, index) => (

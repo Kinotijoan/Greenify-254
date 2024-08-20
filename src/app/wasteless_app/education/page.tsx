@@ -9,16 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-
-type Blog = {
-  title: string;
-  description: string;
-  author: string | null;
-  date: string;
-  image: string | null;
-  link: string;
-};
-
+import { Blog } from "@/lib/types/Types";
 const Page: React.FC = () => {
   
 
