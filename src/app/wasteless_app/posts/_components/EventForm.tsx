@@ -24,6 +24,11 @@ import { useContext } from "react";
 
 import axios from "axios";
 import { useState } from "react";
+import {
+  EventFormContext,
+  RecycledProductFormContext,
+} from "../../components/sidebar";
+import { useContext } from "react";
 
 
 const isBrowser = typeof window !== "undefined";
@@ -73,6 +78,8 @@ const Event_Form = () => {
   const [isLoading, setIsLoading] = useState(false);
 
 
+  const { showEventForm, setShowEventForm } = useContext(EventFormContext);
+
   function onSubmit(values: z.infer<typeof EventFormSchema>) {
     setIsLoading(true); // Show loading indicator
     const formData = new FormData();
@@ -83,9 +90,8 @@ const Event_Form = () => {
     formData.append("venue", values.venue);
     formData.append("banner_image", (values.banner_image as FileList)[0]);
 
-
     axios
-      .post("http://localhost:3000/api/eventsPost", formData,{
+      .post("http://localhost:3000/api/eventsPost", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -99,6 +105,7 @@ const Event_Form = () => {
       .catch((error) => {
         console.error("Error sending data:", error);
         // Handle error, e.g., show error message to user
+
         setIsLoading(false); // Hide loading indicator
       });
   }
@@ -224,14 +231,17 @@ flow-auto flex flex-col space-y-2 w-full"
             <Button
               type="submit"
               disabled={isLoading}
-              className="bg-blue-600"
+              className="bg-green-800"
               onClick={form.handleSubmit(onSubmit)}
             >
               {isLoading ? "Loading..." : "Submit"}
             </Button>
             <Button
               type="reset"
+
               className="bg-blue-600"
+
+              className="bg-green-800"
               onClick={() => {
                 setShowEventForm(!showEventForm);
               }}
