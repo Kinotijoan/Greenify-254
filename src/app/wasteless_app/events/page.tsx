@@ -1,8 +1,8 @@
 import EventCard from "@/components/EventCard";
-import { title } from "process";
 import React from "react";
 import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
+import axiosInstance from "../axios";
 
 const events = [
   {
@@ -48,6 +48,15 @@ const Page = () => {
   if (!user) {
     return redirect("/login");
   }
+
+  axiosInstance
+    .get("/events")
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   return (
     <div className="flex flex-wrap gap-4 justify-center md:justify-normal">
       {events.map(({ src, title, location, date }, index) => (
