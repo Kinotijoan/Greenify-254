@@ -1,6 +1,11 @@
 'use client';
 
 import { useState, ChangeEvent, FormEvent } from 'react';
+import Link from 'next/link';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 type FormData = {
   email: string;
@@ -8,6 +13,8 @@ type FormData = {
 };
 
 const LogInPage: React.FC = () => {
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     email: '',
     password: '',
@@ -20,20 +27,27 @@ const LogInPage: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
+    axios.post("http://localhost:3000/api/companyAuth/login", formData).then((res) => {
+      if (res.status === 200) {
+        router.push("/wasteless_app");
+      }
+    }).catch((error) => {
+      setError(error.response?.data.message);
+    });
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-
       <div className="bg-white shadow-2xl rounded-lg py-8 mb-16 w-full max-w-2xl h-full mt-16">
-        
-        <h1 className="text-4xl font-bold text-[rgba(30,75,0,1)] mb-16 text-center">Log In</h1>
+        <h1 className="text-4xl font-bold text-[rgba(30,75,0,1)] mb-16 text-center">
+          Log In
+        </h1>
         <form onSubmit={handleSubmit} className="px-8">
-
           <div className="mb-6">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="email"
+            >
               Email:
             </label>
             <input
@@ -46,7 +60,10 @@ const LogInPage: React.FC = () => {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="password"
+            >
               Password:
             </label>
             <input
@@ -58,11 +75,27 @@ const LogInPage: React.FC = () => {
               required
             />
           </div>
-          <div className='flex justify-center font-bold mb-3'>Forgot your password ?</div>
-          <div className='flex justify-center font-bold'>
-            <span className='mr-2'> Already have an account </span>
-           <span className='text-pink-500'> Log in ?</span>
+          {error && (
+            <div className="z-40">
+              <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
             </div>
+          )}
+          <Link
+            href="/forgotPassword"
+            className="text-blue-600 mb-2 flex justify-center"
+          >
+            Forgot password?
+          </Link>{" "}
+          <div className="flex justify-center font-bold">
+            <span className="mr-2"> New to Greenify254? </span>
+            <Link href="/signup" className="text-blue-600">
+              Sign up
+            </Link>
+          </div>
           <div className="flex justify-center mt-20">
             <button
               className="bg-[rgba(30,75,0,1)] hover:bg-green-800 text-white font-bold py-2 px-12 rounded-full "
