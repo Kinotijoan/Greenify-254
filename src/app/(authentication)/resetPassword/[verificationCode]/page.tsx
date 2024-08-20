@@ -50,7 +50,7 @@ const Page = () => {
       
       return;
     }
- 
+  
     console.log("Forgot password request submitted:", formData);
     axios
       .post(`http://localhost:3000/api/resetPassword/${verificationCode}`, formData)
@@ -63,6 +63,7 @@ const Page = () => {
         setErrorMessage(error.response?.data.message);
       });
   };
+
 
   return (
     <div>
@@ -110,6 +111,7 @@ const Page = () => {
                   >
                     Reset password
                   </button>
+                 
                 </div>
               </form>
             </div>
