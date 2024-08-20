@@ -40,6 +40,7 @@ export async function POST(request: NextRequest) {
       const verificationCode = await createPasswordResetToken(
         individual.accountId
       );
+      console.log("Verification code:", verificationCode);
       const resetLink = `http://localhost:3000/resetPassword/${verificationCode}`;
       const subject = "Reset Password";
 

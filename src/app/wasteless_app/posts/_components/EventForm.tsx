@@ -91,6 +91,7 @@ const Event_Form = () => {
       .catch((error) => {
         console.error("Error sending data:", error);
         // Handle error, e.g., show error message to user
+       
         setIsLoading(false); // Hide loading indicator
       });
   }

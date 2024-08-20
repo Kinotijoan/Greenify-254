@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
 type FormData = {
@@ -19,6 +20,9 @@ const ForgotPassword: React.FC = () => {
     e.preventDefault();
     // Handle form submission logic here
     console.log('Forgot password request submitted:', formData);
+    axios.post('http://localhost:3000/api/forgotPassword', formData).then((res) => {
+      
+    });
     // You can add your logic here
   };
 
@@ -43,7 +47,7 @@ const ForgotPassword: React.FC = () => {
                   className="bg-[rgba(30,75,0,1)] text-white flex justify-center mx-auto mt-20 mb-24 rounded-3xl text-xl px-3 py-1"
                   type="submit"
                 >
-                  Recover password
+                  Reset password
                 </button>
               </div>
             </form>

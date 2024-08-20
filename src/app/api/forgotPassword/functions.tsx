@@ -23,4 +23,6 @@ export async function createPasswordResetToken(userId: string){
         },
     });
 
+    return token;
+
 }
