@@ -50,7 +50,7 @@ const Page = () => {
       
       return;
     }
- 
+  
     console.log("Forgot password request submitted:", formData);
     axios
       .post(`http://localhost:3000/api/resetPassword/${verificationCode}`, formData)
@@ -64,20 +64,20 @@ const Page = () => {
       });
   };
 
+
   return (
     <div>
-      Your verification code is: {verificationCode}
       <div className="flex flex-col justify-center">
-        <div className="mt-32 flex items-center mx-auto bg-white shadow-2xl w-1/3 h-3/5">
-          <div className=" mt-16 flex flex-col justify-center font-bold text-4xl">
-            <h1 className=" flex justify-center mb-8 mx-auto">
+        <div className="mt-32 flex items-center mx-8 lg:mx-auto bg-white shadow-2xl lg:w-1/3 lg:h-3/5">
+          <div className=" mt-16 flex flex-col justify-center font-bold  text-3xl lg:text-4xl">
+            <h1 className=" flex justify-center mb-4 mx-auto text-[rgba(30,75,0,1)]">
               Forgot Password
             </h1>
-            <div className="mt-8 mx-16">
+            <div className="mt-8 mx-14">
               <form onSubmit={handleSubmit}>
                 {errors && <div>{errors}</div>}
                 {errors.length > 0 && (
-                  <div className="mb-6">
+                  <div className="lg:mb-6">
                     {errors.map((error, index) => (
                       <div key={index} className="text-red-500">
                         {error}
@@ -85,18 +85,18 @@ const Page = () => {
                     ))}
                   </div>
                 )}
-                <label className="text-xl "> New Password</label>
+                <label className="text-xs lg:text-xl "> New Password</label>
                 <input
-                  className="mt-6 border border-black py-2 px-2 text-xl w-full rounded-3xl"
+                  className="lg:mt-6 mb-4 border border-black lg:py-2 lg:px-2 text-xl w-full rounded-3xl"
                   type="text"
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
                   required
                 />
-                <label className="text-xl ">Confirm New Password</label>
+                <label className=" text-xs lg:text-xl  ">Confirm Password</label>
                 <input
-                  className="mt-6 border border-black py-2 px-2 text-xl w-full rounded-3xl"
+                  className="lg:mt-6 border border-black lg:py-2 lg:px-2 text-xl w-full rounded-3xl"
                   type="text"
                   name="confirmPassword"
                   value={formData.confirmPassword}
@@ -105,11 +105,12 @@ const Page = () => {
                 />
                 <div>
                   <button
-                    className="bg-[rgba(30,75,0,1)] text-white flex justify-center mx-auto mt-20 mb-24 rounded-3xl text-xl px-3 py-1"
+                    className="bg-[rgba(30,75,0,1)] text-white flex justify-center mx-auto mt-14 lg:mt-20 mb-24 rounded-3xl text-xl px-3 py-1"
                     type="submit"
                   >
                     Reset password
                   </button>
+                 
                 </div>
               </form>
             </div>

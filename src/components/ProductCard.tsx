@@ -4,27 +4,27 @@ import React from "react";
 
 interface ProductImageProps {
   websiteLink?: string;
-  src: string;
+  imageUrl: string;
   title: string;
-  price: number;
-  description: string;
+  productPrice: number;
+  content: string;
   contact: string;
 }
 
 const ProductCard = ({
   websiteLink,
-  src,
+  imageUrl,
   title,
-  price,
-  description,
+  productPrice,
+  content,
   contact,
 }: ProductImageProps) => (
   <div className="shadow w-[200px] p-3">
     <Link href={websiteLink || ""}>
-      <Image src={src} width={300} height={0} alt={title} className="h-auto" />
+      <Image src={imageUrl} width={300} height={0} alt={title} className="h-auto" />
       <h3 className="text-lg">{title}</h3>
-      <p className="font-bold text-xl">Ksh:{price}</p>
-      <p className="text-sm">{description}</p>
+      <p className="font-bold text-xl">Ksh:{productPrice}</p>
+      <p className="text-sm">{content}</p>
       <p className="text-sm"><span className="font-bold">Contact:</span> {contact}</p>
     </Link>
   </div>
