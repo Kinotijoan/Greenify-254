@@ -45,6 +45,17 @@ export async function POST(request: NextRequest, response: NextResponse) {
       return NextResponse.json({ error: "Expired code" }, { status: 400 });
     }
 
+    if (user.role === "COMPANYACCOUNT") {
+      await prisma.account.update({
+        where: {
+          accountId: user.companyAccountId,
+        },
+        data: {
+          emailVerified: true,
+        },
+      });
+      
+    }else{
     await prisma.account.update({
       where: {
         accountId: user.individualId
@@ -53,6 +64,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         emailVerified: true,
       },
     });
+  };
     console.log(user.individualId)
     await prisma.emailVerificationCode.deleteMany({
       where: {

@@ -1,3 +1,4 @@
+'use client'
 import ProductCard from "@/components/ProductCard";
 import React, { useEffect, useState } from "react";
 import { validateRequest } from "@/lib/lucia";
@@ -5,10 +6,10 @@ import { redirect, useRouter } from "next/navigation";
 import axiosInstance from "../axios";
 
 interface Product {
-  src: string;
+  imageUrl: string;
   title: string;
-  price: number;
-  description: string;
+  productPrice: number;
+  content: string;
   contact: string;
 }
 // products = [
@@ -75,15 +76,13 @@ const Page = () => {
   const router = useRouter();
  
   useEffect(() => {
-    const user = validateRequest();
-    if (!user) {
-      router.push("/login"); // Navigate to login page if user is not authenticated
-      return;
-    }
+    
 
     axiosInstance
       .get("/products")
       .then((response) => {
+        console.log("new response",response);
+        
         if (response.status === 200) {
           setProducts(response.data);
         }
