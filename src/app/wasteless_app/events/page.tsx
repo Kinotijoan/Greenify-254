@@ -1,3 +1,4 @@
+'use client'
 import EventCard from "@/components/EventCard";
 import React, { useEffect, useState } from "react";
 import { validateRequest } from "@/lib/lucia";
@@ -55,12 +56,6 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const user = validateRequest();
-    if (!user) {
-      router.push("/login");
-      return;
-    }
-
     axiosInstance
       .get("/events")
       .then((response) => {
