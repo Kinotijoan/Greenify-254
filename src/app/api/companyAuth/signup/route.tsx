@@ -34,9 +34,8 @@ export async function POST(request: NextRequest) {
         const company = await prisma.companyAccount.create({
           data: {
             companyAccountId: companyId,
-            name: res.name,
+            name: res.companyName,
             location: res.location,
-            phoneNumber: res.phoneNumber,
           },
         });
 

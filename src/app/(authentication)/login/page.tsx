@@ -27,9 +27,9 @@ const LogInPage: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    axios.post("http://localhost:3000/api/companyAuth/login", formData).then((res) => {
+    axios.post("http://localhost:3000/api/login", formData).then((res) => {
       if (res.status === 200) {
-        router.push("/wasteless_app");
+        router.push("/wasteless_app/education");
       }
     }).catch((error) => {
       setError(error.response?.data.message);
