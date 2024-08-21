@@ -8,13 +8,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./Form";
+} from "../../../../components/UI/Form";
 import { Button } from "@/components/UI/Button";
 import { Input } from "@/components/UI/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { FileInput } from "./FileInput";
+import { FileInput } from "../../../../components/UI/FileInput";
 import axios from "axios";
 import { useState } from "react";
 import {

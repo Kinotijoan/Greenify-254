@@ -13,9 +13,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./Form";
+} from "../../../../components/UI/Form";
 import { Input } from "@/components/UI/Input";
-import { FileInput } from "./FileInput";
+import { FileInput } from "../../../../components/UI/FileInput";
 import {
   EventFormContext,
   RecycledProductFormContext,
