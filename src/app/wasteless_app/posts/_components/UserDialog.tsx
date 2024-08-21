@@ -1,60 +1,89 @@
 "use client";
-
+import { Button } from "@/components/UI/Button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "./Dialog";
-import { Button } from "@/components/UI/Button";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./alert-dialog";
+
+import React, { useState, useContext } from "react";
+import Event_Form from "./EventForm";
+import RecycledProductsForm from "./RecycledProductsForm";
+import { Icon, XIcon } from "lucide-react";
+
+import {
+  EventFormContext,
+  RecycledProductFormContext,
+} from "../../components/sidebar";
+import SignUpPage from "@/app/(authentication)/signup/page";
+import { useRouter } from "next/router";
 import Link from "next/link";
-import { useState } from "react";
 
-const UserDialog = () => {
+const UserPostDialog = () => {
+  const handleCloseDialog = () => {
+    setOpenDialog(!setOpenDialog);
+  };
+
+  const [showSignupForm, setshowSignupForm] = useState(false);
+
   const [openDialog, setOpenDialog] = useState(false);
+
   return (
     <>
       <Button variant="outline" onClick={() => setOpenDialog(!openDialog)}>
         Post
       </Button>
-      <Dialog open={openDialog} modal>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Oops! only recycling companies can post.</DialogTitle>
-            <DialogDescription>Do you want to?</DialogDescription>
-          </DialogHeader>
-          <div className="flex flex-col gap-4 justify-center items-center">
-            <div>
-              <Button
-                type="button"
-                variant="secondary"
-                className="bg-green-800 rounded-3xl"
-              >
-                <Link href="/components/pages/authentication/sign_up_recycling_company.tsx">
-                  Sign up as a company
-                </Link>
-              </Button>
-            </div>
-            <div>
-              <DialogClose>
+      <AlertDialog open={openDialog}>
+        <AlertDialogContent className="sm:max-w-md space-y-2">
+          <AlertDialogHeader className="flex items-center justify-between">
+              <><AlertDialogTitle>Oops! Only companies can post.</AlertDialogTitle><AlertDialogDescription>Would you like to?</AlertDialogDescription></>
+            <Button
+              size="icon"
+              onClick={handleCloseDialog}
+              variant="secondary"
+              className="absolute top-2 right-2 w-8 h-8"
+            >
+              <XIcon size={17} />
+            </Button>
+          </AlertDialogHeader>
+          <div className="flex flex-col gap-5 justify-center items-center mt-5">
+            
+              <div className="flex flex-col gap-4">
                 <Button
                   type="button"
-                  variant="secondary"
-                  className="bg-green-800 rounded-3xl"
+                  // onClick={() => setshowSignupForm(!showSignupForm)}
+                  className="bg-green-800 rounded-3xl text-black"
+                >
+                  <Link href="/app/signup">Sign up as company</Link>
+                  
+                </Button>
+                <Button
+                  type="button"
+                  onClick={handleCloseDialog}
+                  className="bg-green-800 rounded-3xl text-black"
                 >
                   close
                 </Button>
-              </DialogClose>
-            </div>
+              </div>
           </div>
-        </DialogContent>
-      </Dialog>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };
 
-export default UserDialog;
+export default UserPostDialog;
