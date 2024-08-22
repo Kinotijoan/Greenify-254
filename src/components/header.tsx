@@ -24,7 +24,7 @@ const Header: React.FC = () => {
             className="bg-transparent hover:bg-green-500 hover:text-white hover:outline-1 text-green-500 ring-1 ring-green-500 font-bold rounded-full"
             onClick={handleLoginClick}
           >
-            Login
+            Sign Up
           </Button>
         </div>
       </div>
