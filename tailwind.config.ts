@@ -21,7 +21,8 @@ const config = {
       colors: {
         lowpink: "#F6E7FF",
         highpink: "#D175FF",
-        greenbg: "#F0FFF4",
+        greenbg: "#36b336",
+        greenbglight: "#4DFF4D",
         cardbg:"#FAFFF9",
         quotebg:"#FFE2B4",
         border: "hsl(var(--border))",

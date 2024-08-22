@@ -10,22 +10,23 @@ interface LayoutProps {
 }
 
 export default async function Layout({ children }: LayoutProps) {
-  const  user = await validateRequest();
+  const user = await validateRequest();
 
   if (!user) {
    // You must return null or a valid React component after a redirect
     redirect("/login");
     return null;
   }
-  return (
-    <div className="flex flex-col">
-      <Navbar />
-      <div className="flex flex-row h-full">
-        <Sidebar user={user} />
-
-        <div className="flex-1">{children}</div>
+   return (
+      
+      <div className="flex bg-greenbg h-screen">
+      <Sidebar user={user} />
+    
+      <div className="flex-grow bg-white rounded-lg p-4 m-1 md:ml-0">
+        {children}
       </div>
     </div>
-  );
+    
+    );
 
 }
