@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import ProductCard from "@/components/ProductCard";
 import React, { useEffect, useState } from "react";
 import { validateRequest } from "@/lib/lucia";
@@ -74,15 +74,13 @@ interface Product {
 const Page = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const router = useRouter();
- 
-  useEffect(() => {
-    
 
+  useEffect(() => {
     axiosInstance
       .get("/products")
       .then((response) => {
-        console.log("new response",response);
-        
+        console.log("new response", response);
+
         if (response.status === 200) {
           setProducts(response.data);
         }
@@ -93,10 +91,15 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-      {products.map((product, index) => (
-        <ProductCard key={index} {...product} />
-      ))}
+    <div>
+      <h1 className="text-5xl text-center font-bold pt-10">
+        Available Products
+      </h1>
+      <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+        {products.map((product, index) => (
+          <ProductCard key={index} {...product} />
+        ))}
+      </div>
     </div>
   );
 };

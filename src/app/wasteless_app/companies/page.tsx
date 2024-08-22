@@ -5,10 +5,6 @@ import { redirect } from 'next/navigation';
 
 
 const page = () => {
-  const user =  validateRequest();
-  if (!user) {
-    return redirect('/login');
-  }
 
   return (
     <div>

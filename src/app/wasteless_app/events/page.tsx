@@ -68,16 +68,22 @@ const Page = () => {
       });
   }, []);
   return (
-    <div className="flex flex-wrap gap-4 justify-center md:justify-normal">
-      {events.map(({ imageUrl, title, eventLocation, eventDate }, index) => (
-        <EventCard
-          key={index}
-          imageUrl={imageUrl}
-          title={title}
-          eventLocation={eventLocation}
-          eventDate={eventDate}
-        />
-      ))}
+    <div>
+      <h1 className="text-5xl text-center font-bold pt-10">
+        Greenify-254 Events
+      </h1>
+
+      <div className="flex flex-wrap gap-4 justify-center md:justify-normal">
+        {events.map(({ imageUrl, title, eventLocation, eventDate }, index) => (
+          <EventCard
+            key={index}
+            imageUrl={imageUrl}
+            title={title}
+            eventLocation={eventLocation}
+            eventDate={eventDate}
+          />
+        ))}
+      </div>
     </div>
   );
 };
