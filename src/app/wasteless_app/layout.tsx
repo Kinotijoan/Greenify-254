@@ -18,7 +18,7 @@ export default async function Layout({ children }: LayoutProps) {
       <div className="flex bg-greenbg h-screen">
       <Sidebar user={user} />
     
-      <div className="flex-grow bg-white rounded-lg p-4 ml-3 md:ml-0">
+      <div className="flex-grow bg-white rounded-lg p-4 m-1 md:ml-0">
         {children}
       </div>
     </div>

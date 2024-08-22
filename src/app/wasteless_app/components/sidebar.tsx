@@ -48,6 +48,7 @@ const Sidebar = ({ user }: SidebarProps) => {
   };
 
   const handleHomeClick = () => {
+    setSelectedSection("home")
     setIsSidebarOpen(false); // Close sidebar after selecting Home
     router.push(`/wasteless_app/`);
   };
@@ -68,7 +69,7 @@ const Sidebar = ({ user }: SidebarProps) => {
 
           {/* Sidebar Menu */}
           <div
-            className={`fixed inset-y-0 left-0 z-50 w-64 bg-greenbg p-5 text-xl transform transition-transform duration-300 lg:relative lg:translate-x-0 ${
+            className={`fixed inset-y-0 left-0 z-50 w-64 bg-greenbg p-5 flex flex-col gap-3 text-xl transform transition-transform duration-300 lg:relative lg:translate-x-0 ${
               isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             }`}
           >
