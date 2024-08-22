@@ -14,6 +14,13 @@ export interface User {
   password: string;
 }
 
+export interface Individual {
+userName?: string | null | undefined;
+  phoneNumber?: string | null | undefined;
+  profileimageUrl?: string | null | undefined;
+  email: string;
+}
+
 export interface Post {
   title: string;
   description: string;
@@ -34,4 +41,14 @@ export interface Company {
   email: string;
   district: string;
   county: string;
+}
+
+export interface CompanyAccount {
+  name?: string;
+  email: string;
+  location?: string | undefined;
+  phoneNumber?: string | null | undefined;
+  bio?: string | null | undefined;
+  profileimageUrl?: string | null | undefined;
+
 }

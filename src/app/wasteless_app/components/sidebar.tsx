@@ -6,6 +6,7 @@ import { User } from "lucia";
 import UserDialog from "../posts/_components/UserDialog";
 import PostsDialog from "../posts/_components/PostsDialog";
 import { createContext, useContext } from "react";
+import { BookText, Calendar, House, Package2, Menu, X } from "lucide-react";
 
 interface SidebarProps {
   user: User | null;
@@ -34,6 +35,7 @@ export const RecycledProductFormContext =
 const Sidebar = ({ user }: SidebarProps) => {
   const [showEventForm, setShowEventForm] = useState(false);
   const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const router = useRouter();
 
@@ -41,8 +43,14 @@ const Sidebar = ({ user }: SidebarProps) => {
 
   const handleSectionClick = (section: string) => {
     setSelectedSection(section);
-    // Add any additional logic you want to execute when a section is clicked
+    setIsSidebarOpen(false); // Close sidebar after selecting an item
     router.push(`/wasteless_app/${section}`);
+  };
+
+  const handleHomeClick = () => {
+    setSelectedSection("home")
+    setIsSidebarOpen(false); // Close sidebar after selecting Home
+    router.push(`/wasteless_app/`);
   };
 
   return (
@@ -50,65 +58,82 @@ const Sidebar = ({ user }: SidebarProps) => {
       <RecycledProductFormContext.Provider
         value={{ showRecycledProductForm, setShowRecycledProductForm }}
       >
-        <div className="flex flex-col text-2xl font-bold mx-16 gap-8 border-r-2 border-black pr-8 py-8 ">
+        <div>
+          {/* Mobile Toggle Button */}
           <button
-            className={`flex flex-row gap-4 py-1 px-16 rounded-lg ${
-              selectedSection === "education"
-                ? "bg-green-300"
-                : "hover:bg-gray-200 transition-colors"
-            }`}
-            onClick={() => handleSectionClick("education")}
+            className="text-white lg:hidden p-2"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
-            <Image
-              src="/images/Home.png"
-              alt="Home icon"
-              width={35}
-              height={30}
-            />
-            <h1>Home</h1>
+            {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          <button
-            className={`flex flex-row gap-4 py-1 px-16 rounded-lg ${
-              selectedSection === "companies"
-                ? "bg-green-300"
-                : "hover:bg-gray-200 transition-colors"
-            }`}
-            onClick={() => handleSectionClick("companies")}
-          >
-            <Image
-              src="/images/Companies.png"
-              alt="Home icon"
-              width={35}
-              height={30}
-            />
-            <h1>Companies</h1>
-          </button>
-          <button
-            className={`flex flex-row gap-4 py-1 px-16 rounded-lg ${
-              selectedSection === "products"
-                ? "bg-green-300"
-                : "hover:bg-gray-200 transition-colors"
-            }`}
-            onClick={() => handleSectionClick("products")}
-          >
-            <Image
-              src="/images/Products.png"
-              alt="Home icon"
-              width={35}
-              height={30}
-            />
-            <h1>Products</h1>
-          </button>
-          {/* <div className="mx-6 mt-96">
-        <button
-          className="bg-[rgba(30,75,0,1)] hover:bg-green-800 text-white font-bold py-2 px-8 rounded-full"
-          type="submit"
-          onClick={() => handlePostNavigation()}
-        >
-          POST
-        </button>
-      </div> */}
 
+          {/* Sidebar Menu */}
+          <div
+            className={`fixed inset-y-0 left-0 z-50 w-64 bg-greenbg p-5 flex flex-col gap-3 text-xl transform transition-transform duration-300 lg:relative lg:translate-x-0 ${
+              isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
+          >
+            <Image
+              src="/logo.png"
+              alt="greenify-254"
+              width={300}
+              height={40}
+              className="my-5"
+              onClick={() => handleHomeClick()}
+            />
+
+            <button
+              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
+                selectedSection === "home"
+                  ? "font-bold underline hover:border hover:border-1 transition-all duration-300"
+                  : "hover:border hover:border-1 transition-all duration-300"
+              }`}
+              onClick={() => handleHomeClick()}
+            >
+              <House />
+              Home
+            </button>
+            <button
+              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
+                selectedSection === "products"
+                  ? "font-bold underline"
+                  : "hover:border hover:border-1 transition-all duration-300"
+              }`}
+              onClick={() => handleSectionClick("products")}
+            >
+              <Package2 />
+              Products
+            </button>
+            <button
+              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
+                selectedSection === "education"
+                  ? "font-bold underline"
+                  : "hover:border hover:border-1 transition-all duration-300"
+              }`}
+              onClick={() => handleSectionClick("education")}
+            >
+              <BookText />
+              Education
+            </button>
+            <button
+              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
+                selectedSection === "events"
+                  ? "font-bold underline"
+                  : "hover:border hover:border-1 transition-all duration-300"
+              }`}
+              onClick={() => handleSectionClick("events")}
+            >
+              <Calendar />
+              Events
+            </button>
+          </div>
+          {/* Overlay for mobile view */}
+          {isSidebarOpen && (
+            <div
+              className="fixed inset-0 bg-black opacity-50 z-40 lg:hidden"
+              onClick={() => setIsSidebarOpen(false)}
+            />
+          )}
           {user?.role == "INDIVIDUAL" ? <UserDialog /> : <PostsDialog />}
         </div>
       </RecycledProductFormContext.Provider>

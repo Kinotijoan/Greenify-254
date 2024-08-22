@@ -53,7 +53,7 @@ const PostsDialog = () => {
 
   return (
     <>
-      <Button variant="outline" onClick={() => setOpenDialog(!openDialog)}>
+      <Button className="hover:bg-greenbglight" variant="outline" onClick={() => setOpenDialog(!openDialog)}>
         Post
       </Button>
       <AlertDialog open={openDialog}>
@@ -77,14 +77,14 @@ const PostsDialog = () => {
                 <Button
                   type="button"
                   onClick={handleEventButtonClick}
-                  className="bg-green-800 rounded-3xl text-black"
+                  className="bg-greenbg rounded-3xl text-white"
                 >
                   An Event
                 </Button>
                 <Button
                   type="button"
                   onClick={handleRecycledProductButtonClick}
-                  className="bg-green-800 rounded-3xl text-black"
+                  className="bg-greenbg rounded-3xl text-white"
                 >
                   Recycled Product
                 </Button>
