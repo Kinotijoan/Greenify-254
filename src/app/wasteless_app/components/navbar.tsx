@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
       <div className="flex items-center">
         <Image src="/images/logo.png" alt="logo" width={80} height={80} />
         <div className="text-5xl ml-4 text-[rgba(30,75,0,1)] font-extrabold">
-          <h1>Wasteless</h1>
+          <h1>Greenify</h1>
         </div>
       </div>
       <div className="flex items-center justify-center w-full">
