@@ -84,6 +84,7 @@ const RecycledProductsForm = () => {
         // Handle successful submission, e.g., show success message, clear form
         form.reset(); // Reset form fields
         setIsLoading(false); // Hide loading indicator
+        setShowRecycledProductForm(!showRecycledProductForm);
       })
       .catch((error) => {
         console.error("Error sending data:", error);

@@ -6,10 +6,10 @@ import { redirect, useRouter } from "next/navigation";
 import axiosInstance from "../axios";
 
 interface Events {
-  src: "string";
+  imageUrl: "string";
   title: "string";
-  location: "string";
-  date: "string";
+  eventLocation: "string";
+  eventDate: "string";
 }
 
 // const events = [
@@ -69,13 +69,13 @@ const Page = () => {
   }, []);
   return (
     <div className="flex flex-wrap gap-4 justify-center md:justify-normal">
-      {events.map(({ src, title, location, date }, index) => (
+      {events.map(({ imageUrl, title, eventLocation, eventDate }, index) => (
         <EventCard
           key={index}
-          src={src}
+          imageUrl={imageUrl}
           title={title}
-          location={location}
-          date={date}
+          eventLocation={eventLocation}
+          eventDate={eventDate}
         />
       ))}
     </div>
