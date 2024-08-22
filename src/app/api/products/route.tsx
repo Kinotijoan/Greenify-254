@@ -17,7 +17,9 @@ export const GET = async (req: NextRequest) => {
             // take: pageSize,
         });
 
+        console.log(results);
         return NextResponse.json(results);
+        
     } catch (error) {
         console.error('Error companies', error);
         return NextResponse.json({ error: `Error fetching waste facilities: ${error}` }, { status: 500 });

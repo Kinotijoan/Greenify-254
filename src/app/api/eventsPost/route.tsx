@@ -11,11 +11,11 @@ const pipeline = promisify(require("stream").pipeline);
 export async function POST(request: NextRequest) {
   try {
 
-  //  const user = await validateRequest();
-  //  if (!user) {
-  //    redirect("/log_in");
-  //    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  //  }
+   const user = await validateRequest();
+   if (!user) {
+     redirect("/log_in");
+     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+   }
     const formData = await request.formData();
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
         createdAt: new Date(),
         updatedAt: new Date(),
         category: "event", 
+        companyAccountId: user.companyAccountId,
       },
     });
 

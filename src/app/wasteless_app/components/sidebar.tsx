@@ -9,7 +9,7 @@ import { createContext, useContext } from "react";
 import { BookText, Calendar, House, Package2, Menu, X } from "lucide-react";
 
 interface SidebarProps {
-  user: any;
+  user: User | null;
 }
 
 interface EventFormContextType {
@@ -127,9 +127,6 @@ const Sidebar = ({ user }: SidebarProps) => {
               Events
             </button>
 
-            {user ? <UserDialog /> : <PostsDialog />}
-          </div>
-
           {/* Overlay for mobile view */}
           {isSidebarOpen && (
             <div
@@ -137,6 +134,7 @@ const Sidebar = ({ user }: SidebarProps) => {
               onClick={() => setIsSidebarOpen(false)}
             />
           )}
+          {user?.role == "INDIVIDUAL" ? <UserDialog /> : <PostsDialog />}
         </div>
       </RecycledProductFormContext.Provider>
     </EventFormContext.Provider>

@@ -13,14 +13,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./Form";
+} from "../../../../components/UI/Form";
 import { Input } from "@/components/UI/Input";
-import { FileInput } from "./FileInput";
+import { FileInput } from "../../../../components/UI/FileInput";
 import {
   EventFormContext,
   RecycledProductFormContext,
 } from "../../components/sidebar";
 import { useContext } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 const isBrowser = typeof window !== "undefined";
 const FileListType = isBrowser ? FileList : Array;
@@ -50,10 +52,10 @@ const ProductsFormSchema = z.object({
 // type Event = z.infer<typeof ProductsFormSchema>;
 
 const RecycledProductsForm = () => {
-  const { showEventForm, setShowEventForm } = useContext(EventFormContext);
   const { showRecycledProductForm, setShowRecycledProductForm } = useContext(
     RecycledProductFormContext
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof ProductsFormSchema>>({
     resolver: zodResolver(ProductsFormSchema),
@@ -63,9 +65,32 @@ const RecycledProductsForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof ProductsFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    setIsLoading(true); // Show loading indicator
+    const formData = new FormData();
+    formData.append("product", values.product);
+    formData.append("description", values.description);
+    formData.append("price", String(values.price));
+    formData.append("contact", values.contact);
+    formData.append("banner_image", (values.banner_image as FileList)[0]);
+
+    axios
+      .post("http://localhost:3000/api/productPost", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log("Data sent successfully:", response.data);
+        // Handle successful submission, e.g., show success message, clear form
+        form.reset(); // Reset form fields
+        setIsLoading(false); // Hide loading indicator
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+        // Handle error, e.g., show error message to user
+
+        setIsLoading(false); // Hide loading indicator
+      });
   }
 
   const handleCancel = () => {
@@ -74,110 +99,108 @@ const RecycledProductsForm = () => {
   };
 
   return (
-    <div>
-      <div className="bg-white shadow-2xl rounded-lg w-full max-w-md p-6 mt-10">
-        <h1 className="font-bold text-lg text-center my-5">
-          Recycled Product Form
-        </h1>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
-              name="product"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name of the product</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="What is the name of the product?"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+    <div className="max-h-[80vh] overflow-auto flex flex-col space-y-2 w-full">
+      <h1 className="font-bold text-xl text-center mb-2">
+        Post Recycled Product
+      </h1>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 flex-1 px-2"
+          encType="multipart/form-data"
+        >
+          <FormField
+            control={form.control}
+            name="product"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name of the product</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter product's name" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Write a short description of what the event is about"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Input placeholder="Describe the event" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="price"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Price in Ksh</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Please enter the price of the product in Kenyan shillings"
-                      {...field}
-                      type="number"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Price in Ksh</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Enter the price "
+                    {...field}
+                    type="number"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="contact"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Contact</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Enter the phone number that the buyer can contact"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="banner_image"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="required">Cover Image</FormLabel>
-                  <FileInput {...form.register("banner_image")} />
-                  <FormDescription></FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex justify-evenly">
-              <Button type="submit" className="bg-blue-600">
-                Submit
-              </Button>
-              <Button
-                type="reset"
-                className="bg-blue-600"
-                onClick={() => {
-                  setShowRecycledProductForm(!showRecycledProductForm);
-                }}
-              >
-                Cancel
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </div>
+          <FormField
+            control={form.control}
+            name="contact"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Contact</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter a phone number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="banner_image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="required">Cover Image</FormLabel>
+                <FileInput {...form.register("banner_image")} />
+                <FormDescription></FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="flex justify-evenly">
+            <Button
+              type="submit"
+              className="bg-green-800"
+              disabled={isLoading}
+              onClick={form.handleSubmit(onSubmit)}
+            >
+              {isLoading ? "Loading..." : "Submit"}
+            </Button>
+            <Button
+              type="reset"
+              className="bg-green-800"
+              onClick={() => {
+                setShowRecycledProductForm(!showRecycledProductForm);
+              }}
+            >
+              Cancel
+            </Button>
+          </div>
+        </form>
+      </Form>
     </div>
   );
 };

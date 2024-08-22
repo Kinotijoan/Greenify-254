@@ -16,10 +16,10 @@ export async function POST(request: NextRequest) {
     }
 
     const formData = await request.formData();
-    const title = formData.get("title") as string;
+    const title = formData.get("product") as string;
     const price = parseInt(formData.get("price") as string);
     const description = formData.get("description") as string;
-    const image = formData.get("image") as File;
+    const image = formData.get("banner_image") as File;
     const link = formData.get("link") as string;
 
     const filePath = path.join(
@@ -41,8 +41,9 @@ export async function POST(request: NextRequest) {
         imageUrl: relativeFilePath,
         createdAt: new Date(),
         updatedAt: new Date(),
-        category: "product", // Add a valid value for the category property
+        category: "product", 
         websiteLink: link,
+        companyAccountId: user.companyAccountId,
       },
     });
 

@@ -4,7 +4,7 @@ import { hash } from "@node-rs/argon2";
 import { NextResponse, NextRequest } from "next/server";
 import { generateIdFromEntropySize } from "lucia";
 import { Individual, userRole } from "@prisma/client";
-import { generateEmailVerificationCode } from "../../functions";
+import { generateEmailVerificationCode } from "@/lib/functions";
 import { sendEmail } from "@/lib/email";
 
 export async function POST(request: NextRequest) {
@@ -34,9 +34,8 @@ export async function POST(request: NextRequest) {
         const company = await prisma.companyAccount.create({
           data: {
             companyAccountId: companyId,
-            name: res.name,
+            name: res.companyName,
             location: res.location,
-            phoneNumber: res.phoneNumber,
           },
         });
 
@@ -60,9 +59,8 @@ export async function POST(request: NextRequest) {
     console.log(session.id);
     const sessionCookie = lucia.createSessionCookie(session.id);
     return new Response(null, {
-      status: 302,
+      status: 200,
       headers: {
-        location: "/email_verification",
         "Set-Cookie": sessionCookie.serialize(),
       },
     });

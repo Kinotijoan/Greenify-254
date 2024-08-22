@@ -36,6 +36,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     });
 
     if (!emailVerificationCode) {
+      console.log("no email verification code");
       
       return NextResponse.json({ error: "Invalid code" }, { status: 400 });
     }
@@ -44,6 +45,17 @@ export async function POST(request: NextRequest, response: NextResponse) {
       return NextResponse.json({ error: "Expired code" }, { status: 400 });
     }
 
+    if (user.role === "COMPANYACCOUNT") {
+      await prisma.account.update({
+        where: {
+          accountId: user.companyAccountId,
+        },
+        data: {
+          emailVerified: true,
+        },
+      });
+      
+    }else{
     await prisma.account.update({
       where: {
         accountId: user.individualId
@@ -52,6 +64,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         emailVerified: true,
       },
     });
+  };
     console.log(user.individualId)
     await prisma.emailVerificationCode.deleteMany({
       where: {
@@ -65,9 +78,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
   const session = await lucia.createSession(user.accountId, {});
   const newSessionCookie = lucia.createSessionCookie(session.id);
   return new Response(null, {
-    status: 302,
+    status: 200,
     headers: {
-      Location: "/login",
       "Set-Cookie": newSessionCookie.serialize(),
     },
   });
