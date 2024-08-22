@@ -17,7 +17,7 @@ const Header: React.FC = () => {
   return (
     <nav className="fixed top-0 z-20 bg-white shadow md:flex py-4 w-full">
       <div className="container flex justify-between items-center">
-        <h1 className="text-3xl md:text-4xl text-[rgba(30,75,0,1)] font-bold select-none">Greenify</h1>
+        <h1 className="text-3xl md:text-4xl text-[rgba(30,75,0,1)] font-bold select-none">Greenify-254</h1>
         <div className="flex space-x-2 md:space-x-6 justify-between items-center">
           <NavLinks />
           <Button

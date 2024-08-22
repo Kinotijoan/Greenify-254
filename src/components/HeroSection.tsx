@@ -33,7 +33,7 @@ const Hero = () => {
             Turning Trash Into Treasure
           </h1>
           <p className=" italic text-center md:text-2xl mb-16 max-w-[860px] text-lg font-bold">
-            Make a difference for our planet, one step at a time. Wasteless
+            Make a difference for our planet, one step at a time. Greenify-254
             empowers you to adopt sustainable habits and create a positive
             impact on the environment.
           </p>
