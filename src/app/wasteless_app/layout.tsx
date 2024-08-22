@@ -18,15 +18,13 @@ export default async function Layout({ children }: LayoutProps) {
     return null;
   }
    return (
-      
-      <div className="flex bg-greenbg h-screen">
-      <Sidebar user={user} />
-    
-      <div className="flex-grow bg-white rounded-lg p-4 m-1 md:ml-0">
-        {children}
-      </div>
-    </div>
-    
-    );
+     <div className="flex bg-greenbg h-screen overflow-hidden">
+       <Sidebar user={user} />
+
+       <div className="flex-grow bg-white rounded-lg p-4 m-1 md:ml-0 overscroll-contain overflow-auto">
+         {children}
+       </div>
+     </div>
+   );
 
 }

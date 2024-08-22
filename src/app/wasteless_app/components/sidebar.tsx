@@ -126,7 +126,7 @@ const Sidebar = ({ user }: SidebarProps) => {
               <Calendar />
               Events
             </button>
-
+          </div>
           {/* Overlay for mobile view */}
           {isSidebarOpen && (
             <div

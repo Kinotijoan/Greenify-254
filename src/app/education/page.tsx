@@ -19,10 +19,6 @@ type Blog = {
 };
 
 const Page: React.FC = () => {
-  const user = validateRequest();
-  if (!user) {
-    return redirect("/login");
-  }
 
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [data, setData] = useState<Blog[]>([]);
