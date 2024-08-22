@@ -18,7 +18,7 @@ const How_It_Works = () => {
           How it works
         </h2>
         <p className="text-lg mt-3 md:text-xl  md:font-normal">
-          Wasteless empowers both individuals and companies to embrace a more
+          Greenify-254 empowers both individuals and companies to embrace a more
           sustainable lifestyle. Learn how our app simplifies waste management
           for everyone:
         </p>
@@ -57,7 +57,7 @@ const How_It_Works = () => {
         <div className="flex mb-6 md:justify-center md:relative md:mx-20 md:gap-10 md:my-10">
           <Card className="bg-[#D2B8DF] py-10 text-center">
               <CardHeader>
-                <CardTitle className="text-lg font-bold">Join the Wasteless Movement</CardTitle>
+                <CardTitle className="text-lg font-bold">Join the Greenify-254 Movement</CardTitle>
               </CardHeader>
               <CardContent className="text-xl">
                 <p  className="text-lg font-light md:font-normal md:text-xl">
