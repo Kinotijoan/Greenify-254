@@ -1,7 +1,4 @@
-// app/wasteless_app/layout.tsx console.log("User logged in", user);
-
 import Sidebar from "./components/sidebar";
-import Navbar from "./components/navbar";
 import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
 
@@ -13,7 +10,6 @@ export default async function Layout({ children }: LayoutProps) {
   const user = await validateRequest();
 
   if (!user) {
-   // You must return null or a valid React component after a redirect
     redirect("/login");
     return null;
   }

@@ -6,7 +6,17 @@ import { User } from "lucia";
 import UserDialog from "../posts/_components/UserDialog";
 import PostsDialog from "../posts/_components/PostsDialog";
 import { createContext, useContext } from "react";
-import { BookText, Calendar, House, Package2, Menu, X } from "lucide-react";
+import {
+  BookText,
+  Calendar,
+  House,
+  Package2,
+  Menu,
+  X,
+  Building2,
+  LogOut,
+} from "lucide-react";
+import axios from "axios";
 
 interface SidebarProps {
   user: User | null;
@@ -36,6 +46,7 @@ const Sidebar = ({ user }: SidebarProps) => {
   const [showEventForm, setShowEventForm] = useState(false);
   const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  // const [error, setError] = useState<string | null>(null);
 
   const router = useRouter();
 
@@ -48,10 +59,22 @@ const Sidebar = ({ user }: SidebarProps) => {
   };
 
   const handleHomeClick = () => {
-    setSelectedSection("home")
+    setSelectedSection("home");
     setIsSidebarOpen(false); // Close sidebar after selecting Home
     router.push(`/wasteless_app/`);
   };
+
+  // const handleCloseDialog = () => {
+  //   axios.post("http://localhost:3000/api/logout").then((res) => {
+  //     // handle response here
+  //     if (res.status === 200) {
+  //       router.push("/login");
+  //     }
+  //   }).catch((error) => {
+  //     // handle error here
+  //     setError(error.response?.data.message);
+  //   });
+  // }
 
   return (
     <EventFormContext.Provider value={{ showEventForm, setShowEventForm }}>
@@ -85,24 +108,13 @@ const Sidebar = ({ user }: SidebarProps) => {
             <button
               className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
                 selectedSection === "home"
-                  ? "font-bold underline hover:border hover:border-1 transition-all duration-300"
+                  ? "font-bold underline "
                   : "hover:border hover:border-1 transition-all duration-300"
               }`}
               onClick={() => handleHomeClick()}
             >
               <House />
               Home
-            </button>
-            <button
-              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
-                selectedSection === "products"
-                  ? "font-bold underline"
-                  : "hover:border hover:border-1 transition-all duration-300"
-              }`}
-              onClick={() => handleSectionClick("products")}
-            >
-              <Package2 />
-              Products
             </button>
             <button
               className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
@@ -114,6 +126,28 @@ const Sidebar = ({ user }: SidebarProps) => {
             >
               <BookText />
               Education
+            </button>
+            <button
+              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
+                selectedSection === "companies"
+                  ? "font-bold underline"
+                  : "hover:border hover:border-1 transition-all duration-300"
+              }`}
+              onClick={() => handleSectionClick("companies")}
+            >
+              <Building2 />
+              Recyclers
+            </button>
+            <button
+              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
+                selectedSection === "products"
+                  ? "font-bold underline"
+                  : "hover:border hover:border-1 transition-all duration-300"
+              }`}
+              onClick={() => handleSectionClick("products")}
+            >
+              <Package2 />
+              Products
             </button>
             <button
               className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
@@ -134,7 +168,15 @@ const Sidebar = ({ user }: SidebarProps) => {
               onClick={() => setIsSidebarOpen(false)}
             />
           )}
-          {user?.role == "INDIVIDUAL" ? <UserDialog /> : <PostsDialog />}
+          <div className="flex justify-center items-center">
+            {user?.role == "INDIVIDUAL" ? <UserDialog /> : <PostsDialog />}
+          </div>
+          {/* <div className="flex justify-center items-center absolute bottom-10 left-10 border-2 rounded-lg text-white " onClick={() => {
+            handleCloseDialog();
+          }}>
+            <button className="p-2 text-white" >log out</button>
+            <LogOut className="text-white w-20"/>
+          </div> */}
         </div>
       </RecycledProductFormContext.Provider>
     </EventFormContext.Provider>

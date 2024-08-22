@@ -94,6 +94,7 @@ const Event_Form = () => {
         // Handle successful submission, e.g., show success message, clear form
         form.reset(); // Reset form fields
         setIsLoading(false); // Hide loading indicator
+        setShowEventForm(!showEventForm);
       })
       .catch((error) => {
         console.error("Error sending data:", error);
