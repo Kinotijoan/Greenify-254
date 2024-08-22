@@ -29,7 +29,7 @@ const LogInPage: React.FC = () => {
     e.preventDefault();
     axios.post("http://localhost:3000/api/login", formData).then((res) => {
       if (res.status === 200) {
-        router.push("/wasteless_app/education");
+        router.push("/wasteless_app/");
       }
     }).catch((error) => {
       setError(error.response?.data.message);

@@ -68,7 +68,7 @@ const UserPostDialog = () => {
                   // onClick={() => setshowSignupForm(!showSignupForm)}
                   className="bg-green-800 rounded-3xl text-black"
                 >
-                  <Link href="/app/signup">Sign up as company</Link>
+                  <Link href="/signup">Sign up as company</Link>
                   
                 </Button>
                 <Button
