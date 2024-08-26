@@ -169,7 +169,7 @@ const Sidebar = ({ user }: SidebarProps) => {
             />
           )}
           <div className="flex justify-center items-center">
-            {user?.role == "INDIVIDUAL" ? <UserDialog /> : <PostsDialog />}
+            {!user ? <UserDialog /> : <PostsDialog />}
           </div>
           {/* <div className="flex justify-center items-center absolute bottom-10 left-10 border-2 rounded-lg text-white " onClick={() => {
             handleCloseDialog();

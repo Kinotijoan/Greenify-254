@@ -79,7 +79,7 @@ const Page: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-5xl text-center font-bold pt-10">
+      <h1 className="text-4xl text-center font-bold pt-10">
         Education Resources
       </h1>
       <SearchForm />
