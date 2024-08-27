@@ -19,7 +19,7 @@ import {
 import axios from "axios";
 
 interface SidebarProps {
-  user: User | null;
+  user: any;
 }
 
 interface EventFormContextType {
@@ -46,7 +46,7 @@ const Sidebar = ({ user }: SidebarProps) => {
   const [showEventForm, setShowEventForm] = useState(false);
   const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  // const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const router = useRouter();
 
@@ -64,17 +64,17 @@ const Sidebar = ({ user }: SidebarProps) => {
     router.push(`/wasteless_app/`);
   };
 
-  // const handleCloseDialog = () => {
-  //   axios.post("http://localhost:3000/api/logout").then((res) => {
-  //     // handle response here
-  //     if (res.status === 200) {
-  //       router.push("/login");
-  //     }
-  //   }).catch((error) => {
-  //     // handle error here
-  //     setError(error.response?.data.message);
-  //   });
-  // }
+  const handleLogout = () => {
+    axios.post("http://localhost:3000/api/logout").then((res) => {
+      // handle response here
+      if (res.status === 200) {
+        router.push("/login");
+      }
+    }).catch((error) => {
+      // handle error here
+      setError(error.response?.data.message);
+    });
+  }
 
   return (
     <EventFormContext.Provider value={{ showEventForm, setShowEventForm }}>
@@ -171,12 +171,12 @@ const Sidebar = ({ user }: SidebarProps) => {
           <div className="flex justify-center items-center">
             {!user ? <UserDialog /> : <PostsDialog />}
           </div>
-          {/* <div className="flex justify-center items-center absolute bottom-10 left-10 border-2 rounded-lg text-white " onClick={() => {
-            handleCloseDialog();
+           <div className="flex justify-center items-center absolute bottom-10 left-10 border-2 rounded-lg text-white " onClick={() => {
+            handleLogout();
           }}>
             <button className="p-2 text-white" >log out</button>
             <LogOut className="text-white w-20"/>
-          </div> */}
+          </div> 
         </div>
       </RecycledProductFormContext.Provider>
     </EventFormContext.Provider>

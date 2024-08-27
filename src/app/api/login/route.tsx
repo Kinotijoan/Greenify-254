@@ -9,25 +9,11 @@ export async function POST(request: NextRequest, response: NextResponse) {
   const email = res.email;
 
   try {
-    const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
-    console.log(sessionId);
-
-    if (!sessionId) {
-      console.log("no session id");
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { user } = await lucia.validateSession(sessionId);
-    console.log("user", sessionId, user);
-
-    if (!user) {
-      console.log("no user");
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    
 
     const individual = await prisma.account.findUnique({
       where: {
-        email: user?.email,
+        email: email,
         emailVerified: true,
       },
     });
@@ -47,14 +33,18 @@ export async function POST(request: NextRequest, response: NextResponse) {
       return NextResponse.json({ message: "Incorrect Email or Password" });
     }
 
-    const session = await lucia.createSession(user.accountId, {});
-    const sessionCookie = lucia.createSessionCookie(session.id);
-    return new Response(null, {
-      status: 302,
-      headers: {
-        location: "/",
-        "Set-Cookie": sessionCookie.serialize(),
-      },
-    });
+   const session = await lucia.createSession(individual.accountId, {});
+   const sessionCookie = lucia.createSessionCookie(session.id);
+
+   console.log("Session created:", session);
+   console.log("Session cookie:", sessionCookie);
+
+   return new Response(null, {
+     status: 200, 
+     headers: {
+       "Set-Cookie": sessionCookie.serialize(),
+     },
+   });
+
   } catch (error) {}
 }
