@@ -7,7 +7,15 @@ interface LayoutProps {
 }
 
 export default async function Layout({ children }: LayoutProps) {
-  const user = await validateRequest();
+  const result = await validateRequest();
+  if (!result) {
+    redirect("/login");
+  }
+
+  const { user } = result;
+
+  
+  // const {user} = await validateRequest();
 
   if (!user) {
     // redirect("/login");
