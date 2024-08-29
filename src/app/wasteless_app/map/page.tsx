@@ -9,7 +9,6 @@ const Maps = dynamic(() => import("./_components/Maps"), {
 const Page = () => {
   return (
     <div>
-      <h1>Map Page</h1>
       <Maps />
     </div>
   );
