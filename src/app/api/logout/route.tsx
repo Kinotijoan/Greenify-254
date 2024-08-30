@@ -1,26 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { lucia } from "@/lib/lucia";
+import { lucia, validateRequest } from "@/lib/lucia";
+import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest) {
-    const cookies = request.headers.get("cookie");
-    const sessionCookie = cookies
-      ?.split(";")
-      .find((c: string) => c.trim().startsWith("sessionId="));
-    if (!sessionCookie) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-    const sessionId = sessionCookie.split("=")[1];
+  const result = await validateRequest();
 
-    await lucia.invalidateSession(sessionId);
+  if (!result) {
+    return NextResponse.json({ error: "Unauthorized, no result" }, { status: 401 });
+  }
 
-    const newSessionCookie = await lucia.createBlankSessionCookie();
-    return new Response(null, {
-      status: 302,
-      headers: {
-        Location: "/login",
-        "Set-Cookie": newSessionCookie.serialize(),
-        "Referrer-Policy": "strict-origin",
-      },
-    });
+  const { user, session } = result;
+
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized, no session" }, { status: 401 });
+  }
+
+
+  await lucia.invalidateSession(session.id);
+
+  const SessionCookie = await lucia.createBlankSessionCookie();
+  cookies().set(
+    SessionCookie.name,
+    SessionCookie.value,
+    SessionCookie.attributes
+  );
+
+  console.log("Session invalidated:", session.id);
+  console.log("Session cookie cleared:", SessionCookie);
+
+  return new Response(null, {
+    status: 200,
+    headers: {
+      "Referrer-Policy": "strict-origin",
+    },
+  });
 }

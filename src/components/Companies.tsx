@@ -21,7 +21,7 @@ const CompaniesCard = ({ image, title, description }: CompaniesCardProps) => {
       </div>
       <div>
         <h3 className="font-bold text-lg text-[#FFB84D] md:text-2xl mb-3">{title}</h3>
-        <p className="max-w-[400px] text-lg font-semithin md:font-normal">{description}</p>
+        <p className="text-lg font-thin md:font-normal">{description}</p>
       </div>
     </div>
   );
