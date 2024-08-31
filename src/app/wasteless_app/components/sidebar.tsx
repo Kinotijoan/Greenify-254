@@ -184,9 +184,9 @@ const Sidebar = ({ user }: SidebarProps) => {
               onClick={() => setIsSidebarOpen(false)}
             />
           )}
-          {/* <div className="flex justify-center items-center">
-            {!user ? <UserDialog /> : <PostsDialog />}
-          </div> */}
+          <div className="flex justify-center items-center">
+            {user.role == "INDIVIDUAL" ? <UserDialog /> : <PostsDialog />}
+          </div>
           <div
             className="flex justify-center items-center absolute bottom-10 left-10 border-2 rounded-lg text-white "
             onClick={() => {
