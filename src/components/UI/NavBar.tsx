@@ -10,8 +10,7 @@ export interface NavLink {
 
 const links: NavLink[] = [
   { text: "Home", href: "#hero" },
-  { text: "Feature", href: "#features" },
-  { text: "About us", href: "#about-us" },
+  { text: "Features", href: "#features" },
   { text: "How it works", href: "#how-it-works" },
   { text: "Contact", href: "#footer" },
 ];

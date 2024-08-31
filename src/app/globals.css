@@ -112,3 +112,8 @@
   height: auto; /* Adjusted to auto for flexible height */
   width: 95%;
 }
+
+.custom-card-bg {
+    background-color: #ffffff; /* Replace with your desired color */
+    color: #000000; /* Optional: Change the text color if needed */
+}
