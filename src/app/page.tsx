@@ -13,7 +13,6 @@ const MyApp: React.FC = () => {
     <main>
       <Hero />
       <Features />
-      <Aboutus />
       <How_It_Works/>
       <CompaniesSection/>
       <MakeDifference />

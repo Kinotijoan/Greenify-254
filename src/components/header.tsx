@@ -22,8 +22,8 @@ const Header: React.FC = () => {
               src="/landing-page-logo.png"
               alt="greenify-254"
               width={300}
-              height={40}
-              className="my-5"
+              height={10}
+              
             />
         <div className="flex space-x-2 md:space-x-6 justify-between items-center">
           <NavLinks />
