@@ -28,7 +28,7 @@ import { Icon, XIcon } from "lucide-react";
 import {
   EventFormContext,
   RecycledProductFormContext,
-} from "../../components/sidebar";
+} from "../../_components/sidebar";
 import SignUpPage from "@/app/(authentication)/signup/page";
 import { useRouter } from "next/router";
 import Link from "next/link";

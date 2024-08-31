@@ -15,12 +15,12 @@ const How_It_Works = () => {
       className=""
       id="how-it-works"
     >
-      <p className="flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center justify-center ">
         <ScrollingText />
-      </p>
-      <p className="flex flex-col items-center justify-center md:px-40">
+      </div>
+      <div className="flex flex-col items-center justify-center md:px-40">
         <StackingCards />
-      </p>
+      </div>
 
         
       </section>

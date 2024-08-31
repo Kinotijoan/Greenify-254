@@ -5,7 +5,6 @@ import Card from './Card';
 import Modal from './Modal';
 import { CardSpotlight } from './ui/card-spotlight';
 import { HoverEffect } from './ui/card-hover-effect';
-import "@/app/globals.css";
 
 
 type FeaturesType = {
