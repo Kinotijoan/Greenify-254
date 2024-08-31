@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, createContext, useContext } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { User } from "lucia";
 import UserDialog from "../posts/_components/UserDialog";
 import PostsDialog from "../posts/_components/PostsDialog";
-import { createContext, useContext } from "react";
 import {
   BookText,
   Calendar,
@@ -15,7 +14,7 @@ import {
   X,
   Building2,
   LogOut,
-  MapPinned
+  MapPinned,
 } from "lucide-react";
 import axios from "axios";
 
@@ -37,14 +36,13 @@ export const EventFormContext = createContext<EventFormContextType>({
   showEventForm: false,
   setShowEventForm: () => {},
 });
-export const RecycledProductFormContext =
-  createContext<RecycledProductFormContextType>({
-    showRecycledProductForm: false,
-    setShowRecycledProductForm: () => {},
-  });
+
+export const RecycledProductFormContext = createContext<RecycledProductFormContextType>({
+  showRecycledProductForm: false,
+  setShowRecycledProductForm: () => {},
+});
 
 const Sidebar = ({ user }: SidebarProps) => {
-// const Sidebar = () => {
   const [showEventForm, setShowEventForm] = useState(false);
   const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -70,22 +68,18 @@ const Sidebar = ({ user }: SidebarProps) => {
     axios
       .post("http://localhost:3000/api/logout")
       .then((res) => {
-        // handle response here
         if (res.status === 200) {
           router.push("/login");
         }
       })
       .catch((error) => {
-        // handle error here
-        setError(error.response?.data.message);
+        setError("Logout failed. Please try again.");
       });
   };
 
   return (
     <EventFormContext.Provider value={{ showEventForm, setShowEventForm }}>
-      <RecycledProductFormContext.Provider
-        value={{ showRecycledProductForm, setShowRecycledProductForm }}
-      >
+      <RecycledProductFormContext.Provider value={{ showRecycledProductForm, setShowRecycledProductForm }}>
         <div>
           {/* Mobile Toggle Button */}
           <button
@@ -106,77 +100,34 @@ const Sidebar = ({ user }: SidebarProps) => {
               alt="greenify-254"
               width={300}
               height={40}
-              className="my-5"
-              onClick={() => handleHomeClick()}
+              className="my-5 cursor-pointer"
+              onClick={handleHomeClick}
             />
 
-            <button
-              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
-                selectedSection === "home"
-                  ? "font-bold underline "
-                  : "hover:border hover:border-1 transition-all duration-300"
-              }`}
-              onClick={() => handleHomeClick()}
-            >
-              <House />
-              Home
-            </button>
-            <button
-              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
-                selectedSection === "education"
-                  ? "font-bold underline"
-                  : "hover:border hover:border-1 transition-all duration-300"
-              }`}
-              onClick={() => handleSectionClick("education")}
-            >
-              <BookText />
-              Education
-            </button>
-            <button
-              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
-                selectedSection === "companies"
-                  ? "font-bold underline"
-                  : "hover:border hover:border-1 transition-all duration-300"
-              }`}
-              onClick={() => handleSectionClick("companies")}
-            >
-              <Building2 />
-              Recyclers
-            </button>
-            <button
-              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
-                selectedSection === "products"
-                  ? "font-bold underline"
-                  : "hover:border hover:border-1 transition-all duration-300"
-              }`}
-              onClick={() => handleSectionClick("products")}
-            >
-              <Package2 />
-              Products
-            </button>
-            <button
-              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
-                selectedSection === "events"
-                  ? "font-bold underline"
-                  : "hover:border hover:border-1 transition-all duration-300"
-              }`}
-              onClick={() => handleSectionClick("events")}
-            >
-              <Calendar />
-              Events
-            </button>
-            <button
-              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
-                selectedSection === "map"
-                  ? "font-bold underline"
-                  : "hover:border hover:border-1 transition-all duration-300"
-              }`}
-              onClick={() => handleSectionClick("map")}
-            >
-              <MapPinned />
-              Map
-            </button>
+            {[
+              { name: "home", icon: <House />, label: "Home" },
+              { name: "education", icon: <BookText />, label: "Education" },
+              { name: "companies", icon: <Building2 />, label: "Recyclers" },
+              { name: "products", icon: <Package2 />, label: "Products" },
+              { name: "events", icon: <Calendar />, label: "Events" },
+              { name: "map", icon: <MapPinned />, label: "Map" },
+            ].map(({ name, icon, label }) => (
+              <button
+                key={name}
+                className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
+                  selectedSection === name
+                    ? "font-bold underline"
+                    : "hover:border hover:border-1 transition-all duration-300"
+                }`}
+                onClick={() => handleSectionClick(name)}
+              >
+                {icon}
+                {label}
+              </button>
+            ))}
+
           </div>
+
           {/* Overlay for mobile view */}
           {isSidebarOpen && (
             <div
@@ -184,18 +135,25 @@ const Sidebar = ({ user }: SidebarProps) => {
               onClick={() => setIsSidebarOpen(false)}
             />
           )}
-          {/* <div className="flex justify-center items-center">
-            {!user ? <UserDialog /> : <PostsDialog />}
-          </div> */}
-          <div
-            className="flex justify-center items-center absolute bottom-10 left-10 border-2 rounded-lg text-white "
-            onClick={() => {
-              handleLogout();
-            }}
-          >
-            <button className="p-2 text-white">log out</button>
-            <LogOut className="text-white w-20" />
+
+          {/* User Dialog */}
+          <div className="flex justify-center items-center">
+            {user.role === "INDIVIDUAL" ? <UserDialog /> : <PostsDialog />}
           </div>
+
+          {/* Logout Button */}
+          <div
+            className="flex justify-center items-center fixed bottom-4 left-4 lg:bottom-10 lg:left-10 bg-white text-black border-2 rounded-lg p-2 cursor-pointer shadow-lg hover:bg-gray-100 transition-all duration-300"
+            onClick={handleLogout}
+          >
+            <button className="flex items-center gap-2 text-lg font-semibold">
+              <LogOut className="w-6 h-6" />
+              Log Out
+            </button>
+          </div>
+
+          {/* Display error message if there's an error */}
+          {error && <p className="text-red-500 text-center">{error}</p>}
         </div>
       </RecycledProductFormContext.Provider>
     </EventFormContext.Provider>
