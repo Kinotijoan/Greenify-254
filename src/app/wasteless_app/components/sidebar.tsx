@@ -19,9 +19,9 @@ import {
 } from "lucide-react";
 import axios from "axios";
 
-// interface SidebarProps {
-//   user: any;
-// }
+interface SidebarProps {
+  user: User;
+}
 
 interface EventFormContextType {
   showEventForm: boolean;
@@ -43,8 +43,8 @@ export const RecycledProductFormContext =
     setShowRecycledProductForm: () => {},
   });
 
-// const Sidebar = ({ user }: SidebarProps) => {
-const Sidebar = () => {
+const Sidebar = ({ user }: SidebarProps) => {
+// const Sidebar = () => {
   const [showEventForm, setShowEventForm] = useState(false);
   const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
