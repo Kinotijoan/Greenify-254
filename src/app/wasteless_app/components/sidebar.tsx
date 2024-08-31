@@ -15,12 +15,13 @@ import {
   X,
   Building2,
   LogOut,
+  MapPinned
 } from "lucide-react";
 import axios from "axios";
 
-interface SidebarProps {
-  user: any;
-}
+// interface SidebarProps {
+//   user: any;
+// }
 
 interface EventFormContextType {
   showEventForm: boolean;
@@ -42,7 +43,8 @@ export const RecycledProductFormContext =
     setShowRecycledProductForm: () => {},
   });
 
-const Sidebar = ({ user }: SidebarProps) => {
+// const Sidebar = ({ user }: SidebarProps) => {
+const Sidebar = () => {
   const [showEventForm, setShowEventForm] = useState(false);
   const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -65,16 +67,19 @@ const Sidebar = ({ user }: SidebarProps) => {
   };
 
   const handleLogout = () => {
-    axios.post("http://localhost:3000/api/logout").then((res) => {
-      // handle response here
-      if (res.status === 200) {
-        router.push("/login");
-      }
-    }).catch((error) => {
-      // handle error here
-      setError(error.response?.data.message);
-    });
-  }
+    axios
+      .post("http://localhost:3000/api/logout")
+      .then((res) => {
+        // handle response here
+        if (res.status === 200) {
+          router.push("/login");
+        }
+      })
+      .catch((error) => {
+        // handle error here
+        setError(error.response?.data.message);
+      });
+  };
 
   return (
     <EventFormContext.Provider value={{ showEventForm, setShowEventForm }}>
@@ -160,6 +165,17 @@ const Sidebar = ({ user }: SidebarProps) => {
               <Calendar />
               Events
             </button>
+            <button
+              className={`flex text-white items-center gap-4 py-2 px-8 rounded-lg ${
+                selectedSection === "map"
+                  ? "font-bold underline"
+                  : "hover:border hover:border-1 transition-all duration-300"
+              }`}
+              onClick={() => handleSectionClick("map")}
+            >
+              <MapPinned />
+              Map
+            </button>
           </div>
           {/* Overlay for mobile view */}
           {isSidebarOpen && (
@@ -168,15 +184,18 @@ const Sidebar = ({ user }: SidebarProps) => {
               onClick={() => setIsSidebarOpen(false)}
             />
           )}
-          <div className="flex justify-center items-center">
+          {/* <div className="flex justify-center items-center">
             {!user ? <UserDialog /> : <PostsDialog />}
+          </div> */}
+          <div
+            className="flex justify-center items-center absolute bottom-10 left-10 border-2 rounded-lg text-white "
+            onClick={() => {
+              handleLogout();
+            }}
+          >
+            <button className="p-2 text-white">log out</button>
+            <LogOut className="text-white w-20" />
           </div>
-           <div className="flex justify-center items-center absolute bottom-10 left-10 border-2 rounded-lg text-white " onClick={() => {
-            handleLogout();
-          }}>
-            <button className="p-2 text-white" >log out</button>
-            <LogOut className="text-white w-20"/>
-          </div> 
         </div>
       </RecycledProductFormContext.Provider>
     </EventFormContext.Provider>
