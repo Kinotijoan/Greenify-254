@@ -19,7 +19,7 @@ import { FileInput } from "../../../../components/UI/FileInput";
 import {
   EventFormContext,
   RecycledProductFormContext,
-} from "../../components/sidebar";
+} from "../../_components/sidebar";
 import { useContext } from "react";
 import { useState } from "react";
 import axios from "axios";

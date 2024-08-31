@@ -20,7 +20,7 @@ import { useState } from "react";
 import {
   EventFormContext,
   RecycledProductFormContext,
-} from "../../components/sidebar";
+} from "../../_components/sidebar";
 import { useContext } from "react";
 import React from "react";
 

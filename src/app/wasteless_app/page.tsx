@@ -1,34 +1,103 @@
-// pages/index.js
+'use client';
+import { cn } from "@/lib/utils";
+import React, { useEffect, useState } from "react";
+import { BentoGrid, BentoGridItem } from "../../components/ui/bento-grid";
+import {
+  IconArrowWaveRightUp,
+  IconBoxAlignRightFilled,
+  IconBoxAlignTopLeft,
+  IconClipboardCopy,
+  IconFileBroken,
+  IconSignature,
+  IconTableColumn,
+} from "@tabler/icons-react";
+import Image from "next/image";
+import EventsList from "./_components/EventsList";
+import LearnList from "./_components/LearnList";
+import { Blog } from "@/lib/types/Types";
+import { getBlogs, ScrapeRogue } from "@/webScraping/ScrapeRogue";
 
 
-const page = () => {
+
+
+
+export function page() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [data, setData] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const blogs = await getBlogs();
+
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false); // Set loading to false whether fetch is successful or not
+      }
+    };
+
+    fetchData();
+  }, []); // Fetch data when component mounts
   return (
-    <div className="grid grid-cols-12 gap-4 p-4 h-screen">
-      {/* Educational Resources Section - Larger Area */}
-      <div className="col-span-12 lg:col-span-7 bg-white p-6 rounded-md shadow-md">
-        <h2 className="text-xl font-bold mb-4">Educational Resources</h2>
-        {/* Content for educational resources goes here */}
-        <p>Explore our vast range of educational resources to help you get started.</p>
-      </div>
+    <BentoGrid className="max-w-full mx-auto">
+      <BentoGridItem
+        title="Events you may be interested in"
+        description="Take part in waste management initiatives in your community."
+        header={<EventsList />}
+        // icon="recycled-products"
+        className="col-span-2 bg-gray-100"
+      />
+      <BentoGridItem
+        title="Learn"
+        description="Read articles to learn more about waste management."
+        header={<div className="wrapper">
+          {data.map((blog) => (
+            <LearnList
+              key={blog.title}
+              title={blog.title}
+              date={blog.date}
+              author={blog.author}
+              description={blog.description}
+              img_url={blog.image}
+              link={blog.link}
+            />
+          ))}
+        </div>}
+        className="row-span-2 bg-gray-100"
+      />
+      <BentoGridItem
+        title="Recycling guide"
+        description="A guide to recycling in your area."
+        header="Recycling guide"
+        icon="recycling-guide"
+        className="col-span-2 bg-gray-100 row-span-2 "
+      />
+      <BentoGridItem
+        title="Maps"
+        description="Find a recycling center near you."
+        header= {< Skeleton />}
+        // icon="recycling-guide"
+        className="bg-gray-100"
+      />
 
-      {/* Upcoming Events Section */}
-      <div className="col-span-12 lg:col-span-5 bg-white p-6 rounded-md shadow-md">
-        <h2 className="text-xl font-bold mb-4">Upcoming Events</h2>
-        {/* Content for upcoming events goes here */}
-        <p>Stay updated with our latest events.</p>
-      </div>
 
-      {/* Products Section */}
-      <div className="col-span-12 lg:col-span-5 bg-white p-6 rounded-md shadow-md">
-        <h2 className="text-xl font-bold mb-4">Products</h2>
-        {/* Content for products goes here */}
-        <p>Check out our range of products designed to enhance your experience.</p>
-      </div>
-    </div>
-  )
+    </BentoGrid>
+
+
+
+  );
+
 }
 
-export default page
+const Skeleton = () => (
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl   dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black"></div>
+);
 
 
 
+
+
+
+export default page;

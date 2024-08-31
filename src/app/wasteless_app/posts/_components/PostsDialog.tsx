@@ -28,7 +28,7 @@ import { Icon, XIcon } from "lucide-react";
 import {
   EventFormContext,
   RecycledProductFormContext,
-} from "../../components/sidebar";
+} from "../../_components/sidebar";
 
 const PostsDialog = () => {
   const { showEventForm, setShowEventForm } = useContext(EventFormContext);
