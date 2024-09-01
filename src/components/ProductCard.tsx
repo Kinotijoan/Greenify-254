@@ -12,6 +12,7 @@ interface ProductImageProps {
   productPrice: number;
   content: string;
   contact: string;
+  postId:string;
 }
 
 const ProductCard = ({
@@ -21,14 +22,15 @@ const ProductCard = ({
   productPrice,
   content,
   contact,
+  postId,
 }: ProductImageProps) => {
   const [showCommentBox, setShowCommentBox] = useState(false);
   return (
     <div className="shadow w-[200px] p-3">
       {showCommentBox ? (
         <>
-        <CommentList/>
-        <CommentBox />
+        <CommentList postId={postId}/>
+        <CommentBox postId={postId}/>
         </>
       ) : (
         <>
