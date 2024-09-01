@@ -5,50 +5,11 @@ import { redirect, useRouter } from "next/navigation";
 import axiosInstance from "../axios";
 
 interface Events {
-  imageUrl: "string";
-  title: "string";
-  eventLocation: "string";
-  eventDate: "string";
+  imageUrl: string;
+  title: string;
+  eventLocation: string;
+  eventDate: string;
 }
-
-// const events = [
-//   {
-//     src: "/event.jpeg",
-//     title: "Recycle and restore",
-//     location: "Juja Gate C",
-//     date: "13th Aug 2024 10:55 Am - 4:00 Pm",
-//   },
-//   {
-//     src: "/event.jpeg",
-//     title: "Recycle and restore",
-//     location: "Juja Gate C",
-//     date: "13th Aug 2024 10:55 Am - 4:00 Pm",
-//   },
-//   {
-//     src: "/event.jpeg",
-//     title: "Recycle and restore",
-//     location: "Juja Gate C",
-//     date: "13th Aug 2024 10:55 Am - 4:00 Pm",
-//   },
-//   {
-//     src: "/event.jpeg",
-//     title: "Recycle and restore",
-//     location: "Juja Gate C",
-//     date: "13th Aug 2024 10:55 Am - 4:00 Pm",
-//   },
-//   {
-//     src: "/event.jpeg",
-//     title: "Recycle and restore",
-//     location: "Juja Gate C",
-//     date: "13th Aug 2024 10:55 Am - 4:00 Pm",
-//   },
-//   {
-//     src: "/event.jpeg",
-//     title: "Recycle and restore",
-//     location: "Juja Gate C",
-//     date: "13th Aug 2024 10:55 Am - 4:00 Pm",
-//   },
-// ];
 
 const Page = () => {
   const [events, setEvents] = useState<Events[]>([]);
@@ -66,6 +27,8 @@ const Page = () => {
         console.log(error);
       });
   }, []);
+  
+
   return (
     <div>
       <h1 className="text-5xl text-center font-bold pt-10">
@@ -79,7 +42,7 @@ const Page = () => {
             imageUrl={imageUrl}
             title={title}
             eventLocation={eventLocation}
-            eventDate={eventDate}
+            eventDate={eventDate.slice(0, 10)}
           />
         ))}
       </div>

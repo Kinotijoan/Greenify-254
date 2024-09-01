@@ -40,7 +40,7 @@ const EventsList = () => {
             imageUrl={imageUrl}
             title={title}
             eventLocation={eventLocation}
-            eventDate={eventDate}
+            eventDate={eventDate.slice(0, 10)}
           />
         ))}
     </div>
