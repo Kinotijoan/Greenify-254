@@ -11,6 +11,7 @@ interface Product {
   productPrice: number;
   content: string;
   contact: string;
+  postId:string;
 }
 // products = [
 //   {
