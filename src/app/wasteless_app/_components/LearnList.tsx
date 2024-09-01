@@ -18,9 +18,6 @@ interface LearnListProps {
 
 
 
-
-
-
 const LearnList = ({
   title,
   date,
@@ -33,21 +30,40 @@ const LearnList = ({
     "/images/3R's.png";
 
   return (
-   <div className="box space-y-3">
-  {/* <Link href={link}> */}
-    
-  <h3 className="font-bold text-xl">{title}</h3>
-  {/* </Link> */}
-  <div className="flex space-x-6">
-    <div className="flex flex-row items-center space-x-2">
-      <BookOpen size={20} />
-      {author ? <span>{author}</span> : <span>Anonymous</span>}
+    <div className="flex hover:bg-gray-100  items-center justify-center w-full p-4 space-x-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+    {/* Image Section */}
+    <div className="flex-shrink-0">
+      {img_url ? (
+        <Image
+          src={img_url}
+          alt={title}
+          width={100} // Adjust width for a smaller image
+          height={100}
+          className="rounded-lg"
+        />
+      ) : (
+        <Image
+          src={defaultImageUrl}
+          alt={title}
+          width={100} // Adjust width for a smaller image
+          height={100}
+          className="rounded-lg"
+        />
+      )}
+    </div>
+  
+    {/* Text Section */}
+    <div className="flex-1">
+      <h3 className="font-semibold text-md">{title}</h3>
+      <div className="flex space-x-6">
+        <div className="flex items-center space-x-2">
+          <BookOpen size={20} />
+          {author ? <span>{author}</span> : <span>Anonymous</span>}
+        </div>
+      </div>
     </div>
   </div>
-    <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl   dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black"></div>
-  {img_url ? <Image src={img_url} alt={title} width={300} height={100} className="rounded-xl" /> : <Image src={defaultImageUrl} alt={title} width={200} height={150} />}
   
-</div>
   );
 };
 
