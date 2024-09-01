@@ -80,7 +80,7 @@ export const POST = async (req: NextRequest, { params: { id } }: { params: { id:
     data: {
       ...validation.data,
       postId: id,
-      authorId: account!.IndividualId as string
+      authorId: account.IndividualId as string
     }
   })
 
