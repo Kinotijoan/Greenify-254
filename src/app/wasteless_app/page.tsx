@@ -54,52 +54,71 @@ export function page() {
     fetchData();
   }, []); // Fetch data when component mounts
   return (
+    
     <BentoGrid className="max-w-full mx-auto">
+      <button
+      onClick={() => handleSectionClick("events")}>
+      
       <BentoGridItem
         header="Events"
         title="Take part in waste management initiatives in your community."
         description={<EventsList />}
         // icon="recycled-products"
         className="col-span-2 w-full bg-gray-100"
-      />
-      <BentoGridItem
-        header="Learn"
-        title="Read articles to learn more about waste management."
-        description={<div className="flex flex-col overflow-auto p-2 gap-2">
-          {data.map((blog) => (
-            <LearnList
-              key={blog.title}
-              title={blog.title}
-              date={blog.date}
-              author={blog.author}
-              description={blog.description}
-              img_url={blog.image}
-              link={blog.link}
-            />
-          ))}
-        </div>}
-        className="row-span-2 overflow-auto bg-gray-100"
-      />
-      <BentoGridItem
-        header="Waste Management Facilities"
-        title="Find waste management facilitites within our app"
-        description={<CompanyAccountList />}
-        // icon="recycling-guide"
-        className="col-span-2 bg-gray-100 row-span-2 "
-      />
-      <button
-      onClick={() => handleSectionClick("map")}>
-
-      <BentoGridItem
-
-        header= {< Maps />}
-        // icon="recycling-guide"
-        className="bg-gray-100"
         />
-        </button>
+      </button>
+
+      <button
+        onClick={() => handleSectionClick("education")}>
+      
+
+        <BentoGridItem
+          header="Learn"
+          title="Read articles to learn more about waste management."
+          description={<div className="flex flex-col overflow-auto p-2 gap-2">
+            {data.map((blog) => (
+              <LearnList
+                key={blog.title}
+                title={blog.title}
+                date={blog.date}
+                author={blog.author}
+                description={blog.description}
+                img_url={blog.image}
+                link={blog.link}
+              />
+            ))}
+          </div>}
+          className="row-span-2 overflow-auto bg-gray-100"
+        />
+      </button>
 
 
-    </BentoGrid>
+      <button
+        onClick={() => handleSectionClick("companies")}>
+
+
+        <BentoGridItem
+          header="Waste Management Facilities"
+          title="Find waste management facilitites within our app"
+          description={<CompanyAccountList />}
+          // icon="recycling-guide"
+          className="col-span-2 bg-gray-100 row-span-2 "
+        />
+      </button>
+
+      <button
+        onClick={() => handleSectionClick("map")}>
+
+        <BentoGridItem
+
+          header={< Maps />}
+          // icon="recycling-guide"
+          className="bg-gray-100"
+        />
+      </button>
+
+
+    </BentoGrid >
 
 
 
@@ -110,19 +129,19 @@ export function page() {
 
 const Maps = () => (
   <div className="relative group " >
-  <Image 
-    src="/images/locate.png" 
-    alt="image" 
-    width={300} 
-    height={50} 
-    className="object-cover w-full h-full transition-all duration-300 ease-in-out"
-  />
-  <div className="absolute inset-0 bg-black opacity-30 group-hover:opacity-50 transition-all duration-300 ease-in-out"></div>
-  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
-    <span><MapPinned /></span>
-    <span className="text-white text-xl font-bold">Visit Maps</span>
+    <Image
+      src="/images/locate.png"
+      alt="image"
+      width={300}
+      height={50}
+      className="object-cover w-full h-full transition-all duration-300 ease-in-out"
+    />
+    <div className="absolute inset-0 bg-black opacity-30 group-hover:opacity-50 transition-all duration-300 ease-in-out"></div>
+    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+      <span><MapPinned /></span>
+      <span className="text-white text-xl font-bold">Visit Maps</span>
+    </div>
   </div>
-</div>
 
 );
 
