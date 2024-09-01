@@ -63,9 +63,9 @@ const Sidebar = ({ user }: SidebarProps) => {
   };
 
   const handleHomeClick = () => {
-    setSelectedSection("home");
+    setSelectedSection("");
     setIsSidebarOpen(false); // Close sidebar after selecting Home
-    router.push(`/wasteless_app/`);
+    router.push("/wasteless_app/");
   };
 
   const handleLogout = () => {
@@ -203,7 +203,7 @@ const Sidebar = ({ user }: SidebarProps) => {
               handleLogout();
             }}
           >
-            <button className="p-2 text-white">log out</button>
+            <button className="p-2 text-white z-40">log out</button>
             <LogOut className="text-white w-20" />
           </div>
         </div>
