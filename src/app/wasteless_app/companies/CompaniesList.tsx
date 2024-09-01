@@ -90,7 +90,7 @@ const CompaniesList: React.FC = () => {
 
   return (
     <div className="max-h-screen  ">
-      <h1 className="text-4xl text-center font-bold pt-10">Company Showcase</h1>
+      <h1 className="text-4xl text-center font-bold pt-10">Waste management facilities</h1>
       <SearchForm />
       <FilterBar
         wasteType={wasteType}
@@ -100,7 +100,7 @@ const CompaniesList: React.FC = () => {
       />
       <div className="flex-grow overflow-auto h-full md:px-10 ">
         {filteredCompanies.length === 0 ? (
-          <div>no companies</div>
+          <div>Oops, there are no {facilityType} facilities that manage {wasteType } waste</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3 overflow-hidden">
             {filteredCompanies.map((company: WasteFacility) => (

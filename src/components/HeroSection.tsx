@@ -12,7 +12,7 @@ const Hero = () => {
       <div>
         <Header/>
       </div>
-      <div className="h-[105vh] hero-bg w-full absolute"></div>
+      <div className="h-[105vh]  w-full absolute"></div>
       <div className=" flex justify-evenly h-full relative">
         <Image
           src="/world.png"
