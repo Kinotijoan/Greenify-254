@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 type FormData = {
   email: string;
@@ -20,6 +21,7 @@ const LogInPage: React.FC = () => {
     password: '',
   
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -59,22 +61,29 @@ const LogInPage: React.FC = () => {
               required
             />
           </div>
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="password"
-            >
-              Password:
-            </label>
-            <input
-              className=" border border-black rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight "
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+          <div className="mb-6 relative">
+        <label
+          className="block text-gray-700 font-bold mb-2"
+          htmlFor="password"
+        >
+          Password:
+        </label>
+        <input
+          className="border rounded-3xl w-full py-2 px-3 text-gray-700 leading-tight pr-10"
+          type={showPassword ? "text" : "password"}
+          name="password"
+          value={formData.password}
+          onChange={handleInputChange}
+          required
+        />
+        <button
+          type="button"
+          className="absolute inset-y-12 right-0 flex items-center px-3 text-gray-700"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEye /> : <FaEyeSlash />}
+        </button>
+      </div>
           {error && (
             <div className="z-40">
               <Alert variant="destructive">
