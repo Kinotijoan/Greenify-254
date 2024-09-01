@@ -22,7 +22,7 @@ export default function CommentBox({ postId }: CommentFormProps) {
     }
     
     setIsSubmitting(true);
-    console.log(postId);
+    // console.log(postId);
 
     try {
       await axios.post(`/api/products/${postId}/comments`, {        

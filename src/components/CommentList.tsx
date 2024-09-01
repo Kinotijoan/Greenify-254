@@ -2,15 +2,15 @@ import axiosInstance from "@/app/wasteless_app/axios";
 import { useEffect, useState } from "react";
 
 interface Comment {
-  username: string;
-  comment: string;
+  authorName: string;
+  content: string;
 }
 
-export const Comment = ({ username, comment }: Comment) => {
+export const Comment = ({ authorName, content }: Comment) => {
   return (
     <div className="flex flex-col mb-2">
-      <p className="text-sm opacity-60">{username}</p>
-      <p>{comment}</p>
+      <p className="text-sm opacity-60">{authorName}</p>
+      <p>{content}</p>
     </div>
   );
 };
@@ -25,8 +25,8 @@ const CommentList = ({ postId }: { postId: string }) => {
       .get(`/products/${postId}/comments`) // Replace :id with the actual product ID
       .then((response) => {
         if (response.status === 200) {
-          console.log(response.data);
-          // setComments(response.data);
+          // console.log(response.data.comments);
+          setComments(response.data.comments);
         } else {
           setError("Unexpected response format.");
         }
