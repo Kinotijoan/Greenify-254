@@ -119,7 +119,7 @@ const Sidebar = ({ user }: SidebarProps) => {
                     ? "font-bold underline"
                     : "hover:border hover:border-1 transition-all duration-300"
                 }`}
-                onClick={() => handleSectionClick(name)}
+                onClick={() => handleHomeClick()}
               >
                 {icon}
                 {label}

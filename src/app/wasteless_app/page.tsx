@@ -56,20 +56,15 @@ export function page() {
   return (
     
     <BentoGrid className="max-w-full mx-auto">
-      <button
-      onClick={() => handleSectionClick("events")}>
       
       <BentoGridItem
         header="Events"
         title="Take part in waste management initiatives in your community."
         description={<EventsList />}
         // icon="recycled-products"
-        className="col-span-2 w-full bg-gray-100"
+        className="col-span-2  bg-gray-100"
         />
-      </button>
 
-      <button
-        onClick={() => handleSectionClick("education")}>
       
 
         <BentoGridItem
@@ -90,11 +85,8 @@ export function page() {
           </div>}
           className="row-span-2 overflow-auto bg-gray-100"
         />
-      </button>
 
 
-      <button
-        onClick={() => handleSectionClick("companies")}>
 
 
         <BentoGridItem
@@ -104,7 +96,6 @@ export function page() {
           // icon="recycling-guide"
           className="col-span-2 bg-gray-100 row-span-2 "
         />
-      </button>
 
       <button
         onClick={() => handleSectionClick("map")}>
