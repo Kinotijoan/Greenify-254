@@ -19,12 +19,14 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@hookform/resolvers": "^3.9.0",
     "@lucia-auth/adapter-prisma": "^4.0.1",
+    "@node-rs/argon2": "^1.8.3",
+    "@node-rs/argon2-win32-x64-msvc": "^1.8.3",
     "@prisma/client": "^5.17.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
-    "@react-three/fiber": "^8.17.6",
+    "@tabler/icons-react": "^3.14.0",
     "axios": "^1.7.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -52,7 +54,6 @@
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.168.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -66,7 +67,7 @@
     "@types/react-dom": "^18",
     "@types/three": "^0.168.0",
     "postcss": "^8",
-    "prisma": "^5.18.0",
+    "prisma": "^5.19.0",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"

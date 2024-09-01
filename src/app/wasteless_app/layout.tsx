@@ -1,4 +1,4 @@
-import Sidebar from "./components/sidebar";
+import Sidebar from "./_components/sidebar";
 import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
 
