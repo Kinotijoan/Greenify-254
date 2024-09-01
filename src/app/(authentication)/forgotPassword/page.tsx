@@ -59,16 +59,16 @@ const ForgotPassword: React.FC = () => {
                 onChange={handleInputChange}
                 required
               />
-              {errorMessage && <div className='text-red-500'>{errorMessage}</div>}
+              {errorMessage && <div className='text-red-400'>{errorMessage}</div>}
               <div>
                 <button
-                  className="bg-[rgba(30,75,0,1)] text-white flex justify-center mx-auto mt-20 mb-24 rounded-3xl text-xl px-3 py-1"
+                  className="bg-greenbg text-white flex justify-center mx-auto mt-20 mb-24 rounded-3xl text-xl px-3 py-1"
                   type="submit"
                 >
                   Reset password
                 </button>
 
-                <button className=" border-2 border-[rgba(30,75,0,1)] text-white flex justify-center mx-auto mt-20 mb-24 rounded-3xl text-xl px-3 py-1">
+                <button className=" border-2 border-greenbg text-white flex justify-center mx-auto mt-20 mb-24 rounded-3xl text-xl px-3 py-1">
                   Resend Link
                 </button>
               </div>

@@ -224,21 +224,21 @@ flow-auto flex flex-col space-y-2 w-full"
             />
             <div className="flex justify-evenly">
               <Button
-                type="submit"
-                disabled={isLoading}
-                className="bg-green-800"
-                onClick={form.handleSubmit(onSubmit)}
-              >
-                {isLoading ? "Loading..." : "Submit"}
-              </Button>
-              <Button
                 type="reset"
-                className="bg-blue-600"
+                className="border border-greenbg text-greenbg hover:bg-transparent"
                 onClick={() => {
                   setShowEventForm(!showEventForm);
                 }}
               >
                 Cancel
+              </Button>
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-greenbg hover:bg-green-700"
+                onClick={form.handleSubmit(onSubmit)}
+              >
+                {isLoading ? "Loading..." : "Submit"}
               </Button>
             </div>
           </form>

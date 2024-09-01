@@ -183,21 +183,21 @@ const RecycledProductsForm = () => {
           />
           <div className="flex justify-evenly">
             <Button
-              type="submit"
-              className="bg-green-800"
-              disabled={isLoading}
-              onClick={form.handleSubmit(onSubmit)}
-            >
-              {isLoading ? "Loading..." : "Submit"}
-            </Button>
-            <Button
               type="reset"
-              className="bg-green-800"
+              className="border border-greenbg text-greenbg hover:bg-transparent"
               onClick={() => {
                 setShowRecycledProductForm(!showRecycledProductForm);
               }}
             >
               Cancel
+            </Button>
+            <Button
+              type="submit"
+              className="bg-greenbg hover:bg-green-700"
+              disabled={isLoading}
+              onClick={form.handleSubmit(onSubmit)}
+            >
+              {isLoading ? "Loading..." : "Submit"}
             </Button>
           </div>
         </form>

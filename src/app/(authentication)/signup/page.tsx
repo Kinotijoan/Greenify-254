@@ -30,7 +30,7 @@ const SignUpPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="bg-white shadow-2xl rounded-lg py-8 mb-16 w-full max-w-2xl h-full mt-16">
-        <h1 className="text-4xl font-bold text-[rgba(30,75,0,1)] mb-4 text-center">
+        <h1 className="text-4xl font-bold text-greenbg mb-4 text-center">
           Sign Up
         </h1>
 
@@ -38,7 +38,7 @@ const SignUpPage: React.FC = () => {
           <button
             className={`text-2xl font-bold ${
               isUser
-                ? "text-white bg-[rgba(30,75,0,1)] px-16 py-1 rounded-lg"
+                ? "text-white bg-greenbg px-16 py-1 rounded-lg"
                 : "text-gray-400"
             }`}
             onClick={() => setIsUser(true)}
@@ -48,7 +48,7 @@ const SignUpPage: React.FC = () => {
           <button
             className={`text-2xl font-bold ${
               !isUser
-                ? "text-white bg-[rgba(30,75,0,1)] px-16 py-1 rounded-lg"
+                ? "text-white bg-greenbg px-16 py-1 rounded-lg"
                 : "text-gray-400"
             }`}
             onClick={() => setIsUser(false)}
@@ -237,7 +237,7 @@ const SignUpUserPage: React.FC = () => {
         </div>
         <div className="flex justify-center">
           <button
-            className="bg-[rgba(30,75,0,1)] hover:bg-green-800 text-white font-bold py-2 px-12 rounded-full"
+            className="bg-greenbg hover:bg-green-800 text-white font-bold py-2 px-12 rounded-full"
             type="submit"
           >
             Sign Up
@@ -418,7 +418,7 @@ const SignUpRecyclingCompanyPage: React.FC = () => {
       </div>
       <div className="flex justify-center">
         <button
-          className="bg-[rgba(30,75,0,1)] hover:bg-green-800 text-white font-bold py-2 px-12 rounded-full"
+          className="bg-greenbg hover:bg-green-700 text-white font-bold py-2 px-12 rounded-full"
           type="submit"
         >
           Sign Up
