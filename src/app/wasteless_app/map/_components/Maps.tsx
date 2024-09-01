@@ -52,6 +52,8 @@ const Maps = () => {
         ],
         lineOptions: {
           styles: [{ color: "blue", weight: 2 }],
+          extendToWaypoints: true,
+          missingRouteTolerance: 100,
         },
         show: true,
         routeWhileDragging: true,
@@ -90,7 +92,7 @@ const Maps = () => {
                 key={company.wasteFacilityId}
                 center={[latitude, longitude]}
                 pathOptions={{ color: "red" }}
-                radius={20}
+                radius={10}
                 fillOpacity={0.5}
                 fillColor="red"
                 eventHandlers={{

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { TextGenerateEffect } from "@/components/UI/text-generate-effect";
 
 interface CompaniesCardProps {
   image: string;
@@ -21,7 +20,7 @@ const CompaniesCard = ({ image, title, description }: CompaniesCardProps) => {
         />
       </div>
       <div>
-        <h3><TextGenerateEffect words={title} duration={2} filter={false}/></h3>
+        <h3 className="font-bold text-lg text-[#FFB84D] md:text-2xl mb-3">{title}</h3>
         <p className="text-lg font-thin md:font-normal">{description}</p>
       </div>
     </div>

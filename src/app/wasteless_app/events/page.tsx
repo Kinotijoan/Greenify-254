@@ -1,7 +1,6 @@
 'use client'
 import EventCard from "@/components/EventCard";
 import React, { useEffect, useState } from "react";
-import { validateRequest } from "@/lib/lucia";
 import { redirect, useRouter } from "next/navigation";
 import axiosInstance from "../axios";
 

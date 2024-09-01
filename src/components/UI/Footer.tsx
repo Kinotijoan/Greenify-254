@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
         className="bg-opacity-75 text-white h-full flex flex-col container justify-between"
         id="footer"
       >
-        <h3 className="text-2xl font-bold text-center my-3">GREENIFY-254</h3>
+        <h3 className="text-2xl font-bold text-center my-3">WASTELESS</h3>
         <div className="container flex flex-col items-start sm:flex-row sm:justify-between gap-3 mt-6">
           <div className="mb-6 sm:mb-0">
             <p className="text-lg font-semibold md:text-xl">Links</p>

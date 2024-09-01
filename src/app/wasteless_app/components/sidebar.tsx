@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { User } from "lucia";
 import UserDialog from "../posts/_components/UserDialog";
 import PostsDialog from "../posts/_components/PostsDialog";
+import CaptureImage from "@/components/CaptureImage";
 import { createContext, useContext } from "react";
 import {
   BookText,
@@ -15,7 +16,8 @@ import {
   X,
   Building2,
   LogOut,
-  MapPinned
+  MapPinned,
+  Camera,
 } from "lucide-react";
 import axios from "axios";
 
@@ -44,7 +46,7 @@ export const RecycledProductFormContext =
   });
 
 const Sidebar = ({ user }: SidebarProps) => {
-// const Sidebar = () => {
+  const [showCaptureImage, setShowCaptureImage] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
   const [showRecycledProductForm, setShowRecycledProductForm] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -176,8 +178,16 @@ const Sidebar = ({ user }: SidebarProps) => {
               <MapPinned />
               Map
             </button>
+            <button
+              onClick={() => setShowCaptureImage(!showCaptureImage)}
+              className="flex text-white items-center gap-4 py-2 px-8 rounded-lg text-center hover:border hover:border-1 transition-all duration-300"
+            >
+              <Camera />
+              Capture
+            </button>
           </div>
           {/* Overlay for mobile view */}
+          {showCaptureImage && <CaptureImage />}
           {isSidebarOpen && (
             <div
               className="fixed inset-0 bg-black opacity-50 z-40 lg:hidden"

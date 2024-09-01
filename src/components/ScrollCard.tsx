@@ -59,38 +59,37 @@ const StackingCards: React.FC = () => {
 
   return (
     <div className="relative h-[500vh] cards" ref={cardsContainerRef}>
-      {cards.map((card, index) => (
-        
+      {cards.map((card) => (
         <div
           key={card.id}
           className="sticky top-0 flex items-center justify-center h-screen card"
         >
-          
-          <Card className="bg-green-200 border-white md:py-10 card__inner flex items-center">
-      {/* Text Section */}
-      <div className="flex-1 p-4">
-        <CardHeader>
-          <p className="text-sm text-gray-500">How it works</p>
-          <CardTitle className="text-lg font-semibold md:text-4xl">{card.title}</CardTitle>
-        </CardHeader>
-        <CardContent className="text-lg font-light md:font-normal md:text-xl">
-          <p className="text-base md:text-lg font-light">
-            {card.content}
-          </p>
-        </CardContent>
-      </div>
+          <Card className="bg-green-200 border-white md:py-10 card__inner flex flex-col md:flex-row items-center">
+            {/* Text Section */}
+            <div className="flex-1 p-4">
+              <CardHeader>
+                <p className="text-sm text-gray-500">How it works</p>
+                <CardTitle className="text-lg font-semibold md:text-4xl">{card.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-lg font-light md:font-normal md:text-xl">
+                <p className="text-base md:text-lg font-light">
+                  {card.content}
+                </p>
+              </CardContent>
+            </div>
 
-      {/* Image Section */}
-      <div className="flex-1 p-4">
-        <Image
-          src={card.image} // Replace with your actual image path
-          alt="How it works"
-          width={300}  // Specify the width of the image
-          height={200}  // Specify the height of the image
-          className="rounded-md shadow-md"
-        />
-      </div>
-    </Card>
+            {/* Image Section */}
+            <div className="flex-1 p-4">
+              <Image
+                src={card.image}
+                alt="How it works"
+                width={300}
+                height={200}
+                className="rounded-md shadow-md"
+                priority
+              />
+            </div>
+          </Card>
         </div>
       ))}
     </div>
