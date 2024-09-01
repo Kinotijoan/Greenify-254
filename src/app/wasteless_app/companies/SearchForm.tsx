@@ -26,7 +26,7 @@ const SearchForm = () => {
                 <input
                     className="appearance-none  text-gray-700 focus:outline-none w-full "
                     type="text"
-                    placeholder="Search blogs..."
+                    placeholder="Search..."
                     onChange={(e) => handleSearch(e.target.value)}
                     defaultValue={searchParams.get('query')?.toString()}
                 />

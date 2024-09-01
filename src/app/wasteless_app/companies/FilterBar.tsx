@@ -45,6 +45,13 @@ const FilterBar: React.FC<FilterBarProps> = ({
                 >
                     Paper Waste
                 </button>
+                <button
+                    className={`px-4 py-2 rounded-md ${wasteType === 'paper' ? 'bg-green-500  text-white' : 'bg-gray-200 text-gray-700'
+                        }`}
+                    onClick={() => onWasteTypeFilter('electronic')}
+                >
+                    Electronic Waste
+                </button>
             </div>
             <div className='flex flex-row gap-2 border rounded-lg mt-3 p-2'>
 
@@ -62,13 +69,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
                 >
                     Recycling
                 </button>
-                <button
-                    className={`px-4 py-2 rounded-md ${facilityType === 'incinerator' ? 'bg-green-500  text-white' : 'bg-gray-200 text-gray-700'
-                        }`}
-                    onClick={() => onFacilityTypeFilter('incinerator')}
-                >
-                    Incinerator
-                </button>
+                
                 <button
                     className={`px-4 py-2 rounded-md ${facilityType === 'compost' ? 'bg-green-500  text-white' : 'bg-gray-200 text-gray-700'
                         }`}

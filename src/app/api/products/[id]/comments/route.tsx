@@ -13,10 +13,25 @@ export const GET = async (req: NextRequest, { params: { id } }: { params: { id: 
     {
       where: {
         postId: id
+      },
+      include: {
+        author: {
+          select: {
+            firstName: true,
+            lastName: true
+          }
+        }
       }
     }
+
   )
-  return NextResponse.json({ comments: comments })
+
+  const commentsWithAuthorName = comments.map((comment) => ({
+    ...comment,
+    authorName: `${comment.author.firstName} ${comment.author.lastName}`
+  }));
+
+  return NextResponse.json({ comments: commentsWithAuthorName })
 }
 
 

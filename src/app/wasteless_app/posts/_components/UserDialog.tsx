@@ -50,7 +50,7 @@ const UserPostDialog = () => {
       <AlertDialog open={openDialog}>
         <AlertDialogContent className="sm:max-w-md space-y-2">
           <AlertDialogHeader className="flex items-center justify-between">
-              <><AlertDialogTitle>Oops! Only companies can post.</AlertDialogTitle><AlertDialogDescription>Would you like to?</AlertDialogDescription></>
+              <><AlertDialogTitle>Oops! Only companies can post at this time.</AlertDialogTitle><AlertDialogDescription>You can register your company to post events and recycled products here.</AlertDialogDescription></>
             <Button
               size="icon"
               onClick={handleCloseDialog}
@@ -62,21 +62,21 @@ const UserPostDialog = () => {
           </AlertDialogHeader>
           <div className="flex flex-col gap-5 justify-center items-center mt-5">
             
-              <div className="flex flex-col gap-4">
-                <Button
-                  type="button"
-                  // onClick={() => setshowSignupForm(!showSignupForm)}
-                  className="bg-green-800 rounded-3xl text-black"
-                >
-                  <Link href="/signup">Sign up as company</Link>
-                  
-                </Button>
+              <div className="flex flex-row gap-4">
                 <Button
                   type="button"
                   onClick={handleCloseDialog}
-                  className="bg-green-800 rounded-3xl text-black"
+                  className="bg-greenbg rounded-3xl text-white hover:bg-greenbglight"
                 >
-                  close
+                  cancel
+                </Button>
+                <Button
+                  type="button"
+                  // onClick={() => setshowSignupForm(!showSignupForm)}
+                  className="bg-greenbg rounded-3xl text-white hover:bg-greenbglight"
+                >
+                  <Link href="/signup">Sign up as company</Link>
+                  
                 </Button>
               </div>
           </div>
